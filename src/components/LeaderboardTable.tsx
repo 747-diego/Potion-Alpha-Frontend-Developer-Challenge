@@ -1,5 +1,5 @@
 
-import { Share2 } from "lucide-react";
+import { Share2, ChevronDown } from "lucide-react";
 import { Trader } from "../types/trader";
 import { formatNumber, formatUSD, formatWalletAddress } from "../utils/format";
 import { toast } from "sonner";
@@ -14,22 +14,49 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
     toast.success("Wallet address copied to clipboard");
   };
 
+  const TableHeader = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+      <span>{children}</span>
+      <ChevronDown className="h-4 w-4 text-muted-foreground" />
+    </div>
+  );
+
   return (
     <div className="glass-card rounded-lg overflow-hidden">
       <table>
         <thead>
           <tr className="border-b border-secondary">
-            <th>Rank</th>
-            <th>Trader</th>
-            <th>Followers</th>
-            <th>Tokens</th>
-            <th>Win Rate</th>
-            <th>Trades</th>
-            <th>Avg Buy</th>
-            <th>Avg Entry</th>
-            <th>Avg Hold</th>
-            <th>Realized PNL</th>
-            <th></th>
+            <th>
+              <TableHeader>Rank</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Trader</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Followers</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Tokens</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Win Rate</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Trades</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Avg Buy</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Avg Entry</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Avg Hold</TableHeader>
+            </th>
+            <th>
+              <TableHeader>Realized PNL</TableHeader>
+            </th>
+            <th>Share</th>
           </tr>
         </thead>
         <tbody>
