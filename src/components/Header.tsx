@@ -1,4 +1,3 @@
-
 import { Twitter, Sparkles, Share2, Trophy, Rocket } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -54,7 +53,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div className="pt-2">
       {showAlert && (
         <Carousel
           ref={emblaRef}
@@ -66,7 +65,7 @@ const Header = () => {
             skipSnaps: false,
           }}
         >
-          <CarouselContent className="-mt-1">
+          <CarouselContent>
             <CarouselItem>
               <Alert className="mb-4 bg-primary/5 border-primary/20 flex items-center justify-between animate-fade-in">
                 <div className="flex items-center gap-2">
