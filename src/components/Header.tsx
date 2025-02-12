@@ -1,5 +1,5 @@
 
-import { Twitter, Discord, User } from "lucide-react";
+import { Twitter, User } from "lucide-react";
 
 const Header = () => {
   return (
@@ -29,9 +29,6 @@ const Header = () => {
       <div className="flex items-center gap-6">
         <a href="#" className="text-muted-foreground hover:text-white transition-colors">
           <Twitter className="h-5 w-5" />
-        </a>
-        <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-          <Discord className="h-5 w-5" />
         </a>
         <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-colors">
           <User className="h-6 w-6" />
