@@ -73,7 +73,7 @@ const FilterBar = ({
               side="bottom"
               align="end"
               sideOffset={5}
-              alignOffset={-120}
+              alignOffset={-85}
             >
               <p className="font-medium">✨ Coming Soon! ✨</p>
               <p className="text-sm text-muted-foreground">
