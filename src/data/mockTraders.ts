@@ -5,7 +5,7 @@ export const mockTraders: Trader[] = [
   {
     rank: 1,
     name: "Orangie",
-    walletAddress: "6sdE9C...dD4Sca",
+    walletAddress: "6sdE9CXMKmigKKdLPzZJJwdEscaYbRdD4Sca",
     profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=1",
     followers: 279000,
     twitterHandle: "@orangie",
@@ -20,7 +20,7 @@ export const mockTraders: Trader[] = [
   {
     rank: 2,
     name: "RandomGuy420",
-    walletAddress: "3hF8P2...kL9Wqb",
+    walletAddress: "3hF8P2WZzkL9WqbNvM4RQx7Y8SmKpRFkL9Wqb",
     profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=2",
     followers: 156000,
     twitterHandle: "@randomguy420",
@@ -35,7 +35,7 @@ export const mockTraders: Trader[] = [
   {
     rank: 3,
     name: "CryptoWizard",
-    walletAddress: "9nM4R7...pH2Vxc",
+    walletAddress: "9nM4R7XpH2VxcB5kQnP8F2VzNjXpH2Vxc",
     profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=3",
     followers: 98000,
     twitterHandle: "@cryptowizard",
@@ -50,7 +50,7 @@ export const mockTraders: Trader[] = [
   {
     rank: 4,
     name: "TradeQueen",
-    walletAddress: "5kL2J8...tN7Ymp",
+    walletAddress: "5kL2J8tN7YmpKvS4Q9X3ZtR2P8tN7Ymp",
     profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=4",
     followers: 82000,
     twitterHandle: "@tradequeen",
@@ -65,7 +65,7 @@ export const mockTraders: Trader[] = [
   {
     rank: 5,
     name: "NomadEngineer",
-    walletAddress: "3Abnfo...ryMP32",
+    walletAddress: "3Abnfow5Lu7nXabFqetW3pXPntHiQ4ivpDfVz8ryMP32",
     profilePicture: "https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg",
     followers: 203,
     twitterHandle: "@nomadengineer",
