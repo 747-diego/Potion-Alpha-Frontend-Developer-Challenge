@@ -59,7 +59,12 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
                 </div>
               </td>
               <td className="text-muted-foreground">
-                {formatNumber(trader.followers)}
+                <div className="flex flex-col">
+                  <span>{formatNumber(trader.followers)}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {trader.twitterHandle}
+                  </span>
+                </div>
               </td>
               <td>{trader.tokens}</td>
               <td>

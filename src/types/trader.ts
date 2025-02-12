@@ -5,6 +5,7 @@ export interface Trader {
   walletAddress: string;
   profilePicture: string;
   followers: number;
+  twitterHandle: string;
   tokens: number;
   winRate: number;
   trades: {
