@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -202,14 +201,25 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
               <td>{formatUSD(trader.avgEntry)}</td>
               <td>{trader.avgHold}</td>
               <td>
-                <span
-                  className={`${
-                    trader.realizedPNL >= 0 ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {trader.realizedPNL >= 0 ? "+" : "-"}
-                  {formatUSD(Math.abs(trader.realizedPNL))}
-                </span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-1">
+                    <span className={`${
+                      trader.realizedPNL >= 0 ? "text-green-400" : "text-red-400"
+                    }`}>
+                      {trader.realizedPNL >= 0 ? "+" : "-"}
+                      {(Math.abs(trader.realizedPNL) / SOL_PRICE).toFixed(1)}
+                    </span>
+                    <img 
+                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                      alt="SOL"
+                      className="h-4 w-4"
+                    />
+                  </div>
+                  <div className="text-muted-foreground">
+                    {trader.realizedPNL >= 0 ? "+" : "-"}
+                    {formatUSD(Math.abs(trader.realizedPNL))}
+                  </div>
+                </div>
               </td>
               <td>
                 <button className="p-2 rounded-full hover:bg-secondary transition-colors">
