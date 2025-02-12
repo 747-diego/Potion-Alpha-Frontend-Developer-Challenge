@@ -2,6 +2,12 @@
 import { Search } from "lucide-react";
 import { TimeFrame, ViewMode } from "../types/trader";
 import { FilterDrawer, Filters } from "./FilterDrawer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface FilterBarProps {
   viewMode: ViewMode;
@@ -35,16 +41,31 @@ const FilterBar = ({
         >
           Traders
         </button>
-        <button
-          onClick={() => setViewMode("groups")}
-          className={`px-4 py-2 rounded-full transition-colors ${
-            viewMode === "groups"
-              ? "bg-primary text-white"
-              : "text-muted-foreground hover:text-white"
-          }`}
-        >
-          Groups
-        </button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setViewMode("groups")}
+                className={`px-4 py-2 rounded-full transition-colors ${
+                  viewMode === "groups"
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:text-white"
+                }`}
+              >
+                Groups
+              </button>
+            </TooltipTrigger>
+            <TooltipContent 
+              className="bg-secondary/90 backdrop-blur-sm border-primary/20 animate-fade-in"
+              side="bottom"
+            >
+              <p className="font-medium">✨ Coming Soon! ✨</p>
+              <p className="text-sm text-muted-foreground">
+                We're crafting something special for trading groups
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
       <div className="flex gap-2">
         {(["daily", "weekly", "monthly", "all-time"] as TimeFrame[]).map(
