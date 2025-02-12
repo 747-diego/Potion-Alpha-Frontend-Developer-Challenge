@@ -64,7 +64,7 @@ export const mockTraders: Trader[] = [
   },
   {
     rank: 5,
-    name: "TheNomadEngineer",
+    name: "NomadEngineer",
     walletAddress: "3Abnfo...ryMP32",
     profilePicture: "https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg",
     followers: 203,
