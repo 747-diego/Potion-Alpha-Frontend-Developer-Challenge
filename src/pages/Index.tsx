@@ -10,6 +10,7 @@ import { Filters } from "../components/FilterDrawer";
 const Index = () => {
   const [viewMode, setViewMode] = useState<ViewMode>("traders");
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("daily");
+  const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<Filters>({
     minFollowers: 0,
     maxFollowers: 1000000,
@@ -20,7 +21,13 @@ const Index = () => {
   });
 
   const filteredTraders = mockTraders.filter((trader) => {
+    const matchesSearch = searchQuery
+      ? trader.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        trader.walletAddress.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+
     return (
+      matchesSearch &&
       trader.followers >= filters.minFollowers &&
       trader.followers <= filters.maxFollowers &&
       trader.winRate >= filters.minWinRate &&
@@ -40,6 +47,8 @@ const Index = () => {
           timeFrame={timeFrame}
           setTimeFrame={setTimeFrame}
           onFiltersChange={setFilters}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
         />
         <LeaderboardTable traders={filteredTraders} />
       </main>

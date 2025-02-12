@@ -9,6 +9,8 @@ interface FilterBarProps {
   timeFrame: TimeFrame;
   setTimeFrame: (frame: TimeFrame) => void;
   onFiltersChange: (filters: Filters) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
 const FilterBar = ({
@@ -17,6 +19,8 @@ const FilterBar = ({
   timeFrame,
   setTimeFrame,
   onFiltersChange,
+  searchQuery,
+  setSearchQuery,
 }: FilterBarProps) => {
   return (
     <div className="flex items-center justify-between mb-8">
@@ -64,6 +68,8 @@ const FilterBar = ({
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name or wallet"
             className="w-full bg-secondary/50 border border-secondary rounded-full py-2 pl-12 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
