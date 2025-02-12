@@ -8,6 +8,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface FilterBarProps {
   viewMode: ViewMode;
@@ -28,6 +30,17 @@ const FilterBar = ({
   searchQuery,
   setSearchQuery,
 }: FilterBarProps) => {
+  const [isWiggling, setIsWiggling] = useState(false);
+
+  const handleGroupsClick = () => {
+    setIsWiggling(true);
+    toast("✨ Groups feature coming soon!", {
+      description: "We're working on something amazing!",
+      duration: 2000,
+    });
+    setTimeout(() => setIsWiggling(false), 500);
+  };
+
   return (
     <div className="flex items-center justify-between mb-8">
       <div className="flex gap-2">
@@ -45,12 +58,12 @@ const FilterBar = ({
           <Tooltip>
             <TooltipTrigger asChild>
               <button
-                onClick={() => setViewMode("groups")}
+                onClick={handleGroupsClick}
                 className={`px-4 py-2 rounded-full transition-colors ${
                   viewMode === "groups"
                     ? "bg-primary text-white"
                     : "text-muted-foreground hover:text-white"
-                }`}
+                } ${isWiggling ? 'animate-wiggle' : ''}`}
               >
                 Groups
               </button>
