@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Sheet,
@@ -13,6 +12,7 @@ import { Label } from "./ui/label";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { Input } from "./ui/input";
 
 interface FilterDrawerProps {
   onFiltersChange: (filters: Filters) => void;
@@ -38,6 +38,7 @@ const defaultFilters: Filters = {
 
 export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
   const [filters, setFilters] = useState<Filters>(defaultFilters);
+  const [editingValue, setEditingValue] = useState<string | null>(null);
 
   const handleFilterChange = (key: keyof Filters, value: number | number[]) => {
     const newFilters = {
@@ -67,6 +68,32 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
 
   const activeFiltersCount = getActiveFiltersCount();
 
+  const handleInputChange = (field: keyof Filters, value: string) => {
+    const numValue = Number(value);
+    if (isNaN(numValue)) return;
+
+    const getMinMax = (field: keyof Filters) => {
+      switch (field) {
+        case 'minFollowers':
+        case 'maxFollowers':
+          return { min: 0, max: 1000000 };
+        case 'minWinRate':
+          return { min: 0, max: 100 };
+        case 'minTokens':
+        case 'minTrades':
+          return { min: 0, max: 1000 };
+        case 'minPNL':
+          return { min: 0, max: 100000 };
+        default:
+          return { min: 0, max: 0 };
+      }
+    };
+
+    const { min, max } = getMinMax(field);
+    const clampedValue = Math.min(Math.max(numValue, min), max);
+    handleFilterChange(field, clampedValue);
+  };
+
   const FilterItem = ({
     label,
     field,
@@ -83,9 +110,26 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
     value: number;
   }) => (
     <div className="space-y-2">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <Label>{label}</Label>
-        <span className="text-sm text-muted-foreground">{value}</span>
+        {editingValue === field ? (
+          <Input
+            type="number"
+            value={value}
+            onChange={(e) => handleInputChange(field, e.target.value)}
+            onBlur={() => setEditingValue(null)}
+            onKeyDown={(e) => e.key === 'Enter' && setEditingValue(null)}
+            className="w-16 h-6 text-sm text-muted-foreground p-1"
+            autoFocus
+          />
+        ) : (
+          <span 
+            className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
+            onClick={() => setEditingValue(field)}
+          >
+            {value}
+          </span>
+        )}
       </div>
       <Slider
         min={min}
