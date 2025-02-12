@@ -20,7 +20,7 @@ type SortField = keyof Pick<
   | "avgEntry"
   | "avgHold"
   | "realizedPNL"
->;
+> | "trades";
 
 const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
   const [sortField, setSortField] = useState<SortField>("rank");
@@ -85,6 +85,9 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
         };
         comparison = getMinutes(a.avgHold) - getMinutes(b.avgHold);
         break;
+      case "trades":
+        comparison = a.trades.total - b.trades.total;
+        break;
       default:
         comparison = (a[sortField] as number) - (b[sortField] as number);
     }
@@ -113,7 +116,7 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
               <TableHeader field="winRate">Win Rate</TableHeader>
             </th>
             <th>
-              <TableHeader>Trades</TableHeader>
+              <TableHeader field="trades">Trades</TableHeader>
             </th>
             <th>
               <TableHeader field="avgBuy">Avg Buy</TableHeader>
