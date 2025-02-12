@@ -6,10 +6,12 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetFooter,
 } from "./ui/sheet";
 import { Slider } from "./ui/slider";
 import { Label } from "./ui/label";
 import { SlidersHorizontal } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface FilterDrawerProps {
   onFiltersChange: (filters: Filters) => void;
@@ -43,6 +45,11 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
     };
     setFilters(newFilters);
     onFiltersChange(newFilters);
+  };
+
+  const handleClearFilters = () => {
+    setFilters(defaultFilters);
+    onFiltersChange(defaultFilters);
   };
 
   const FilterItem = ({
@@ -138,6 +145,15 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
             value={filters.minPNL}
           />
         </div>
+        <SheetFooter className="absolute bottom-0 left-0 right-0 p-6 border-t">
+          <Button 
+            variant="outline" 
+            onClick={handleClearFilters}
+            className="w-full"
+          >
+            Clear All Filters
+          </Button>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
