@@ -14,22 +14,22 @@ import useEmblaCarousel from "embla-carousel-react";
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
-  const [api] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
     axis: 'y',
     loop: true,
   });
 
   useEffect(() => {
-    if (api) {
+    if (emblaApi) {
       const autoplay = setInterval(() => {
-        api.scrollNext();
+        emblaApi.scrollNext();
       }, 5000); // Change slide every 5 seconds
 
       return () => {
         clearInterval(autoplay);
       };
     }
-  }, [api]);
+  }, [emblaApi]);
 
   const handleConnectX = () => {
     toast("🎉 Coming Soon!", {
@@ -56,7 +56,7 @@ const Header = () => {
     <div>
       {showAlert && (
         <Carousel
-          ref={api}
+          ref={emblaRef}
           opts={{
             align: "start",
             loop: true,
