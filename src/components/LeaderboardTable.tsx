@@ -1,5 +1,6 @@
 
-import { Share2, ChevronDown } from "lucide-react";
+import { Share2, ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 import { Trader } from "../types/trader";
 import { formatNumber, formatUSD, formatWalletAddress } from "../utils/format";
 import { toast } from "sonner";
@@ -8,18 +9,91 @@ interface LeaderboardTableProps {
   traders: Trader[];
 }
 
+type SortField = keyof Pick<
+  Trader,
+  | "rank"
+  | "name"
+  | "followers"
+  | "tokens"
+  | "winRate"
+  | "avgBuy"
+  | "avgEntry"
+  | "avgHold"
+  | "realizedPNL"
+>;
+
 const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
+  const [sortField, setSortField] = useState<SortField>("rank");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+
   const copyWallet = (wallet: string) => {
     navigator.clipboard.writeText(wallet);
     toast.success("Wallet address copied to clipboard");
   };
 
-  const TableHeader = ({ children }: { children: React.ReactNode }) => (
-    <div className="flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const TableHeader = ({
+    children,
+    field,
+  }: {
+    children: React.ReactNode;
+    field?: SortField;
+  }) => (
+    <div
+      className={`flex items-center gap-1 ${
+        field ? "cursor-pointer hover:text-white" : ""
+      } transition-colors`}
+      onClick={() => field && handleSort(field)}
+    >
       <span>{children}</span>
-      <ChevronDown className="h-4 w-4 text-muted-foreground" />
+      {field && (
+        <>
+          {sortField === field ? (
+            sortDirection === "asc" ? (
+              <ChevronUp className="h-4 w-4 text-primary" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-primary" />
+            )
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </>
+      )}
     </div>
   );
+
+  const sortedTraders = [...traders].sort((a, b) => {
+    let comparison = 0;
+    
+    switch (sortField) {
+      case "name":
+        comparison = a.name.localeCompare(b.name);
+        break;
+      case "avgHold":
+        // Convert time string to minutes for comparison
+        const getMinutes = (time: string) => {
+          const value = parseInt(time);
+          return time.includes("h") ? value * 60 : value;
+        };
+        comparison = getMinutes(a.avgHold) - getMinutes(b.avgHold);
+        break;
+      case "trades":
+        comparison = a.trades.total - b.trades.total;
+        break;
+      default:
+        comparison = (a[sortField] as number) - (b[sortField] as number);
+    }
+
+    return sortDirection === "asc" ? comparison : -comparison;
+  });
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
@@ -27,40 +101,40 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
         <thead>
           <tr className="border-b border-secondary">
             <th>
-              <TableHeader>Rank</TableHeader>
+              <TableHeader field="rank">Rank</TableHeader>
             </th>
             <th>
-              <TableHeader>Trader</TableHeader>
+              <TableHeader field="name">Trader</TableHeader>
             </th>
             <th>
-              <TableHeader>Followers</TableHeader>
+              <TableHeader field="followers">Followers</TableHeader>
             </th>
             <th>
-              <TableHeader>Tokens</TableHeader>
+              <TableHeader field="tokens">Tokens</TableHeader>
             </th>
             <th>
-              <TableHeader>Win Rate</TableHeader>
+              <TableHeader field="winRate">Win Rate</TableHeader>
             </th>
             <th>
               <TableHeader>Trades</TableHeader>
             </th>
             <th>
-              <TableHeader>Avg Buy</TableHeader>
+              <TableHeader field="avgBuy">Avg Buy</TableHeader>
             </th>
             <th>
-              <TableHeader>Avg Entry</TableHeader>
+              <TableHeader field="avgEntry">Avg Entry</TableHeader>
             </th>
             <th>
-              <TableHeader>Avg Hold</TableHeader>
+              <TableHeader field="avgHold">Avg Hold</TableHeader>
             </th>
             <th>
-              <TableHeader>Realized PNL</TableHeader>
+              <TableHeader field="realizedPNL">Realized PNL</TableHeader>
             </th>
             <th>Share</th>
           </tr>
         </thead>
         <tbody>
-          {traders.map((trader) => (
+          {sortedTraders.map((trader) => (
             <tr key={trader.rank} className="animate-fade-in">
               <td>
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary text-sm">
