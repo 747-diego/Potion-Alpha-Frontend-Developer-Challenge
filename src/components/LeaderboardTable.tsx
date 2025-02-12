@@ -85,9 +85,6 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
         };
         comparison = getMinutes(a.avgHold) - getMinutes(b.avgHold);
         break;
-      case "trades":
-        comparison = a.trades.total - b.trades.total;
-        break;
       default:
         comparison = (a[sortField] as number) - (b[sortField] as number);
     }
