@@ -1,4 +1,3 @@
-
 import { Twitter, Sparkles, Share2, Trophy, Rocket } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState, useEffect } from "react";
@@ -10,28 +9,23 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from 'embla-carousel-autoplay';
 
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef] = useEmblaCarousel({ 
     align: "start",
     loop: true,
     duration: 20,
     skipSnaps: false,
-  });
-
-  useEffect(() => {
-    if (emblaApi) {
-      const autoplay = setInterval(() => {
-        emblaApi.scrollNext();
-      }, 3000); // Rotate every 3 seconds
-
-      return () => {
-        clearInterval(autoplay);
-      };
-    }
-  }, [emblaApi]);
+  }, [
+    Autoplay({
+      delay: 3000,
+      playOnInit: true,
+      stopOnInteraction: false,
+    })
+  ]);
 
   const handleConnectX = () => {
     toast("🎉 Coming Soon!", {
