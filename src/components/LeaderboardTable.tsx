@@ -1,5 +1,5 @@
 
-import { Share2, ChevronDown, ChevronUp } from "lucide-react";
+import { Share2, ChevronDown, ChevronUp, Equal } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
 import { formatNumber, formatUSD, formatWalletAddress } from "../utils/format";
@@ -78,7 +78,6 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
         comparison = a.name.localeCompare(b.name);
         break;
       case "avgHold":
-        // Convert time string to minutes for comparison
         const getMinutes = (time: string) => {
           const value = parseInt(time);
           return time.includes("h") ? value * 60 : value;
@@ -94,6 +93,9 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
 
     return sortDirection === "asc" ? comparison : -comparison;
   });
+
+  // Assuming 1 SOL = $100 for this example
+  const SOL_PRICE = 100;
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
@@ -182,7 +184,17 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
                 <span className="text-muted-foreground">/</span>
                 <span>{trader.trades.total}</span>
               </td>
-              <td>{formatUSD(trader.avgBuy)}</td>
+              <td>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-1 text-[#14F195]">
+                    <span>{(trader.avgBuy / SOL_PRICE).toFixed(1)}</span>
+                    <Equal className="h-4 w-4" />
+                  </div>
+                  <div className="text-muted-foreground">
+                    {formatUSD(trader.avgBuy)}
+                  </div>
+                </div>
+              </td>
               <td>{formatUSD(trader.avgEntry)}</td>
               <td>{trader.avgHold}</td>
               <td>
