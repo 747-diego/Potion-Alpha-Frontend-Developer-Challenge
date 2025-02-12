@@ -1,15 +1,23 @@
 
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import { TimeFrame, ViewMode } from "../types/trader";
+import { FilterDrawer, Filters } from "./FilterDrawer";
 
 interface FilterBarProps {
   viewMode: ViewMode;
   setViewMode: (mode: ViewMode) => void;
   timeFrame: TimeFrame;
   setTimeFrame: (frame: TimeFrame) => void;
+  onFiltersChange: (filters: Filters) => void;
 }
 
-const FilterBar = ({ viewMode, setViewMode, timeFrame, setTimeFrame }: FilterBarProps) => {
+const FilterBar = ({
+  viewMode,
+  setViewMode,
+  timeFrame,
+  setTimeFrame,
+  onFiltersChange,
+}: FilterBarProps) => {
   return (
     <div className="flex items-center justify-between mb-8">
       <div className="flex gap-2">
@@ -60,10 +68,7 @@ const FilterBar = ({ viewMode, setViewMode, timeFrame, setTimeFrame }: FilterBar
             className="w-full bg-secondary/50 border border-secondary rounded-full py-2 pl-12 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
         </div>
-        <button className="glass-card px-4 py-2 rounded-full hover:bg-secondary/80 transition-colors flex items-center gap-2">
-          <SlidersHorizontal className="h-4 w-4" />
-          Filters
-        </button>
+        <FilterDrawer onFiltersChange={onFiltersChange} />
       </div>
     </div>
   );
