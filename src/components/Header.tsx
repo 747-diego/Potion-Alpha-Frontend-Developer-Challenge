@@ -1,6 +1,7 @@
+
 import { Twitter, Sparkles, Share2, Trophy, Rocket } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import {
@@ -14,18 +15,22 @@ import Autoplay from 'embla-carousel-autoplay';
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
+  
+  const autoplayOptions = Autoplay({
+    delay: 3000,
+    playOnInit: true,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
+    stopOnFocusIn: false,
+    rootNode: (emblaRoot) => emblaRoot.parentElement,
+  });
+
   const [emblaRef] = useEmblaCarousel({ 
     align: "start",
     loop: true,
     duration: 20,
     skipSnaps: false,
-  }, [
-    Autoplay({
-      delay: 3000,
-      playOnInit: true,
-      stopOnInteraction: false,
-    })
-  ]);
+  }, [autoplayOptions]);
 
   const handleConnectX = () => {
     toast("🎉 Coming Soon!", {
