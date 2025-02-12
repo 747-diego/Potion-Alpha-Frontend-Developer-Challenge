@@ -61,5 +61,20 @@ export const mockTraders: Trader[] = [
     avgEntry: 168000,
     avgHold: "39m",
     realizedPNL: 17234
+  },
+  {
+    rank: 5,
+    name: "TheNomadEngineer",
+    walletAddress: "3Abnfo...ryMP32",
+    profilePicture: "https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg",
+    followers: 203,
+    twitterHandle: "@thenomadeng",
+    tokens: 7,
+    winRate: 44,
+    trades: { won: 74, total: 147 },
+    avgBuy: 500,
+    avgEntry: 150000,
+    avgHold: "15m",
+    realizedPNL: 10747
   }
 ];
