@@ -71,6 +71,8 @@ const FilterBar = ({
             <TooltipContent 
               className="bg-secondary/90 backdrop-blur-sm border-primary/20 animate-fade-in"
               side="bottom"
+              align="end"
+              sideOffset={5}
             >
               <p className="font-medium">✨ Coming Soon! ✨</p>
               <p className="text-sm text-muted-foreground">
