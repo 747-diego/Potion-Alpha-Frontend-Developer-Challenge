@@ -1,7 +1,7 @@
 
 import { Twitter, Sparkles, Share2, Trophy, Rocket } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import {
@@ -9,10 +9,27 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
+  const [api] = useEmblaCarousel({ 
+    axis: 'y',
+    loop: true,
+  });
+
+  useEffect(() => {
+    if (api) {
+      const autoplay = setInterval(() => {
+        api.scrollNext();
+      }, 5000); // Change slide every 5 seconds
+
+      return () => {
+        clearInterval(autoplay);
+      };
+    }
+  }, [api]);
 
   const handleConnectX = () => {
     toast("🎉 Coming Soon!", {
@@ -39,6 +56,7 @@ const Header = () => {
     <div>
       {showAlert && (
         <Carousel
+          ref={api}
           opts={{
             align: "start",
             loop: true,
