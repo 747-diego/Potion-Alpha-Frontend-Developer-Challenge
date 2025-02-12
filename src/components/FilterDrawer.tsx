@@ -12,6 +12,7 @@ import { Slider } from "./ui/slider";
 import { Label } from "./ui/label";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 
 interface FilterDrawerProps {
   onFiltersChange: (filters: Filters) => void;
@@ -52,6 +53,20 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
     onFiltersChange(defaultFilters);
   };
 
+  const getActiveFiltersCount = () => {
+    return Object.entries(filters).reduce((count, [key, value]) => {
+      if (key === 'maxFollowers' && value !== defaultFilters.maxFollowers) return count + 1;
+      if (key === 'minFollowers' && value !== defaultFilters.minFollowers) return count + 1;
+      if (key === 'minWinRate' && value !== defaultFilters.minWinRate) return count + 1;
+      if (key === 'minTokens' && value !== defaultFilters.minTokens) return count + 1;
+      if (key === 'minTrades' && value !== defaultFilters.minTrades) return count + 1;
+      if (key === 'minPNL' && value !== defaultFilters.minPNL) return count + 1;
+      return count;
+    }, 0);
+  };
+
+  const activeFiltersCount = getActiveFiltersCount();
+
   const FilterItem = ({
     label,
     field,
@@ -86,9 +101,17 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="glass-card px-4 py-2 rounded-full hover:bg-secondary/80 transition-colors flex items-center gap-2">
+        <button className="glass-card px-4 py-2 rounded-full hover:bg-secondary/80 transition-colors flex items-center gap-2 relative">
           <SlidersHorizontal className="h-4 w-4" />
           Filters
+          {activeFiltersCount > 0 && (
+            <Badge 
+              variant="default" 
+              className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+            >
+              {activeFiltersCount}
+            </Badge>
+          )}
         </button>
       </SheetTrigger>
       <SheetContent className="w-[400px]">
