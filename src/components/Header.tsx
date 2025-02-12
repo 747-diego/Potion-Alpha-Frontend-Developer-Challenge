@@ -17,6 +17,8 @@ const Header = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: "start",
     loop: true,
+    duration: 20,
+    skipSnaps: false,
   });
 
   useEffect(() => {
@@ -58,6 +60,12 @@ const Header = () => {
         <Carousel
           ref={emblaRef}
           className="w-full"
+          opts={{
+            align: "start",
+            loop: true,
+            duration: 20,
+            skipSnaps: false,
+          }}
         >
           <CarouselContent className="-mt-1">
             <CarouselItem>
