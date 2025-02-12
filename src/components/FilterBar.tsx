@@ -52,7 +52,7 @@ const FilterBar = ({ viewMode, setViewMode, timeFrame, setTimeFrame }: FilterBar
         )}
       </div>
       <div className="flex gap-4 items-center">
-        <div className="relative">
+        <div className="relative w-80">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
