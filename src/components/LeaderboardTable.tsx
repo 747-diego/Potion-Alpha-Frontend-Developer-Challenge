@@ -1,5 +1,5 @@
 
-import { Share2, ChevronDown, ChevronUp, Equal } from "lucide-react";
+import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
 import { formatNumber, formatUSD, formatWalletAddress } from "../utils/format";
@@ -188,7 +188,11 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-1 text-[#14F195]">
                     <span>{(trader.avgBuy / SOL_PRICE).toFixed(1)}</span>
-                    <Equal className="h-4 w-4" />
+                    <img 
+                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                      alt="SOL"
+                      className="h-4 w-4"
+                    />
                   </div>
                   <div className="text-muted-foreground">
                     {formatUSD(trader.avgBuy)}
