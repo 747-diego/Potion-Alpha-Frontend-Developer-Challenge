@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -33,7 +34,7 @@ const Profile = () => {
         <div className="flex gap-8 mb-8">
           {/* Left Column - Profile Info */}
           <div className="w-[320px]">
-            <div className="flex gap-6">
+            <div className="flex gap-6 mb-6">
               <img 
                 src={trader.profilePicture} 
                 alt={trader.name} 
@@ -44,6 +45,26 @@ const Profile = () => {
                 <span className="text-muted-foreground text-sm">
                   {formatWalletAddress(trader.walletAddress)}
                 </span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="glass-card p-4 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg">X Account</span>
+                  <div className="flex items-center gap-2">
+                    <span>@orangie</span>
+                    <span className="text-muted-foreground">279K followers</span>
+                  </div>
+                </div>
+              </div>
+              <div className="glass-card p-4 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg">Last Trade</span>
+                  <div className="flex items-center gap-2">
+                    <span>30 min ago</span>
+                    <ExternalLink className="h-4 w-4 text-primary" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -71,37 +92,19 @@ const Profile = () => {
 
             {/* Statistics Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="glass-card p-4 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">X Account</span>
-                  <div className="flex items-center gap-2">
-                    <span>@orangie</span>
-                    <span className="text-muted-foreground">279K followers</span>
-                  </div>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Tokens</span>
+                  <div className="text-2xl font-medium">{stats.tokens}</div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg">
+              <div className="glass-card p-6 rounded-lg">
                 <div className="flex flex-col gap-2">
                   <span className="text-muted-foreground text-sm">Win Rate</span>
                   <div className="text-2xl font-medium text-green-400">{stats.winRate}%</div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg">
-                <div className="flex flex-col gap-2">
-                  <span className="text-muted-foreground text-sm">Average Entry</span>
-                  <div className="text-2xl font-medium">{stats.averageEntry}</div>
-                </div>
-              </div>
-              <div className="glass-card p-4 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Last Trade</span>
-                  <div className="flex items-center gap-2">
-                    <span>30 min ago</span>
-                    <ExternalLink className="h-4 w-4 text-primary" />
-                  </div>
-                </div>
-              </div>
-              <div className="glass-card p-4 rounded-lg">
+              <div className="glass-card p-6 rounded-lg">
                 <div className="flex flex-col gap-2">
                   <span className="text-muted-foreground text-sm">Trades</span>
                   <div className="text-2xl font-medium">
@@ -111,10 +114,30 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg">
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Total Invested</span>
+                  <div className="text-2xl font-medium">{stats.totalInvested}</div>
+                </div>
+              </div>
+              <div className="glass-card p-6 rounded-lg">
                 <div className="flex flex-col gap-2">
                   <span className="text-muted-foreground text-sm">ROI</span>
                   <div className="text-2xl font-medium text-green-400">{stats.roi}</div>
+                </div>
+              </div>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Realized PNL</span>
+                  <div className="flex items-center gap-2 text-2xl font-medium">
+                    <span className="text-green-400">+{stats.realizedPNL.sol}</span>
+                    <img 
+                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                      alt="SOL"
+                      className="h-6 w-6"
+                    />
+                    <span className="text-muted-foreground text-xl">${stats.realizedPNL.usd}</span>
+                  </div>
                 </div>
               </div>
             </div>
