@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -46,20 +47,20 @@ const Profile = () => {
                 </span>
               </div>
             </div>
-            <div className="space-y-2 mt-auto">
-              <div className="glass-card p-4 rounded-lg">
-                <div className="flex flex-col">
-                  <div className="flex items-center justify-between mb-1">
+            <div className="space-y-4 mt-auto">
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between">
                     <span className="text-lg">X Account</span>
                     <span>@orangie</span>
                   </div>
-                  <div className="flex justify-end">
+                  <div className="flex justify-end mt-auto">
                     <span className="text-muted-foreground text-sm">279K followers</span>
                   </div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg">
-                <div className="flex items-center justify-between">
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
                   <span className="text-lg">Last Trade</span>
                   <div className="flex items-center gap-2">
                     <span>30 min ago</span>
@@ -93,51 +94,51 @@ const Profile = () => {
 
             {/* Statistics Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">Tokens</span>
-                  <div className="text-xl">{stats.tokens}</div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Tokens</span>
+                  <div className="text-lg">{stats.tokens}</div>
                 </div>
               </div>
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">Win Rate</span>
-                  <div className="text-xl text-green-400">{stats.winRate}%</div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Win Rate</span>
+                  <div className="text-lg text-green-400">{stats.winRate}%</div>
                 </div>
               </div>
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">Trades</span>
-                  <div className="text-xl">
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Trades</span>
+                  <div className="text-lg">
                     <span className="text-green-400">{stats.trades.won}</span>
                     <span className="text-muted-foreground mx-1">/</span>
                     <span>{stats.trades.total}</span>
                   </div>
                 </div>
               </div>
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">Total Invested</span>
-                  <div className="text-xl">{stats.totalInvested}</div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Total Invested</span>
+                  <div className="text-lg">{stats.totalInvested}</div>
                 </div>
               </div>
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">ROI</span>
-                  <div className="text-xl text-green-400">{stats.roi}</div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">ROI</span>
+                  <div className="text-lg text-green-400">{stats.roi}</div>
                 </div>
               </div>
-              <div className="glass-card p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">Realized PNL</span>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Realized PNL</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl text-green-400">+{stats.realizedPNL.sol}</span>
+                    <span className="text-lg text-green-400">+{stats.realizedPNL.sol}</span>
                     <img 
                       src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
                       alt="SOL"
-                      className="h-5 w-5"
+                      className="h-4 w-4"
                     />
-                    <span className="text-lg text-muted-foreground">${stats.realizedPNL.usd}</span>
+                    <span className="text-base text-muted-foreground">${stats.realizedPNL.usd}</span>
                   </div>
                 </div>
               </div>
