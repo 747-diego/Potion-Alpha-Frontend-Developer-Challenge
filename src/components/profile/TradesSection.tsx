@@ -1,3 +1,4 @@
+
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -25,14 +26,18 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   };
 
   const SortableHeader = ({ label, field }: { label: string; field: keyof Trade }) => (
-    <th className="p-4 cursor-pointer" onClick={() => handleSort(field)}>
-      <div className="flex items-center gap-1">
-        {label}
-        {sortConfig.key === field && (
-          sortConfig.direction === "asc" ? 
-            <ChevronUp className="w-4 h-4" /> : 
-            <ChevronDown className="w-4 h-4" />
-        )}
+    <th className="p-4 cursor-pointer hover:bg-secondary/20 transition-colors" onClick={() => handleSort(field)}>
+      <div className="flex items-center gap-2 text-sm">
+        <span>{label}</span>
+        <div className="w-4 h-4 inline-flex items-center">
+          {sortConfig.key === field ? (
+            sortConfig.direction === "asc" ? 
+              <ChevronUp className="w-4 h-4" /> : 
+              <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronDown className="w-4 h-4 opacity-20" />
+          )}
+        </div>
       </div>
     </th>
   );
