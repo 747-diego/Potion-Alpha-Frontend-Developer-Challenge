@@ -1,4 +1,3 @@
-
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -15,7 +14,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   const [sortConfig, setSortConfig] = useState<{
     key: keyof Trade | null;
     direction: "asc" | "desc";
-  }>({ key: null, direction: "asc" });
+  }>({ key: "lastTrade", direction: "desc" });
 
   const handleSort = (key: keyof Trade) => {
     setSortConfig((current) => ({
