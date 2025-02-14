@@ -33,7 +33,7 @@ const Profile = () => {
         {/* Profile Overview Section */}
         <div className="flex gap-8 mb-8">
           {/* Left Column - Profile Info */}
-          <div className="w-[320px]">
+          <div className="w-[320px] flex flex-col">
             <div className="flex gap-6 mb-6">
               <img 
                 src={trader.profilePicture} 
@@ -47,7 +47,7 @@ const Profile = () => {
                 </span>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 mt-auto">
               <div className="glass-card p-4 rounded-lg">
                 <div className="flex items-center justify-between">
                   <span className="text-lg">X Account</span>
