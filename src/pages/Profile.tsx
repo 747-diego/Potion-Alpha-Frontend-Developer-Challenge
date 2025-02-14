@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
 import { mockTraders } from "../data/mockTraders";
 import { Search, ChevronDown, Share2, ExternalLink } from "lucide-react";
+import { formatWalletAddress } from "../utils/format";
 
 const Profile = () => {
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("daily");
@@ -41,7 +42,7 @@ const Profile = () => {
               <div className="flex flex-col justify-center">
                 <h1 className="text-3xl font-bold mb-1">Orangie</h1>
                 <span className="text-muted-foreground text-sm">
-                  {trader.walletAddress}
+                  {formatWalletAddress(trader.walletAddress)}
                 </span>
               </div>
             </div>
