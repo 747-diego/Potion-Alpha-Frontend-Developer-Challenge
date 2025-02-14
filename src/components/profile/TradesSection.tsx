@@ -26,18 +26,21 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   };
 
   const SortableHeader = ({ label, field }: { label: string; field: keyof Trade }) => (
-    <th className="p-4 cursor-pointer hover:bg-secondary/20 transition-colors" onClick={() => handleSort(field)}>
-      <div className="flex items-center gap-2 text-sm">
+    <th 
+      className="p-4 cursor-pointer hover:text-white transition-colors"
+      onClick={() => handleSort(field)}
+    >
+      <div className="flex items-center gap-1">
         <span>{label}</span>
-        <div className="w-4 h-4 inline-flex items-center">
-          {sortConfig.key === field ? (
-            sortConfig.direction === "asc" ? 
-              <ChevronUp className="w-4 h-4" /> : 
-              <ChevronDown className="w-4 h-4" />
+        {sortConfig.key === field ? (
+          sortConfig.direction === "asc" ? (
+            <ChevronUp className="h-4 w-4 text-primary" />
           ) : (
-            <ChevronDown className="w-4 h-4 opacity-20" />
-          )}
-        </div>
+            <ChevronDown className="h-4 w-4 text-primary" />
+          )
+        ) : (
+          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        )}
       </div>
     </th>
   );
@@ -91,7 +94,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-secondary text-left">
+            <tr className="border-b border-secondary text-left text-muted-foreground">
               <SortableHeader label="Token" field="tokenName" />
               <SortableHeader label="Last Trade" field="lastTrade" />
               <SortableHeader label="Market Cap" field="marketCap" />
