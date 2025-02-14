@@ -1,8 +1,10 @@
+
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
 import { formatNumber, formatUSD, formatWalletAddress } from "../utils/format";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface LeaderboardTableProps {
   traders: Trader[];
@@ -22,12 +24,18 @@ type SortField = keyof Pick<
 > | "trades";
 
 const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
+  const navigate = useNavigate();
   const [sortField, setSortField] = useState<SortField>("rank");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
-  const copyWallet = (wallet: string) => {
+  const copyWallet = (e: React.MouseEvent, wallet: string) => {
+    e.stopPropagation();
     navigator.clipboard.writeText(wallet);
     toast.success("Wallet address copied to clipboard");
+  };
+
+  const navigateToProfile = (traderId: string) => {
+    navigate(`/profile/${traderId}`);
   };
 
   const handleSort = (field: SortField) => {
@@ -147,12 +155,18 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
                   <img
                     src={trader.profilePicture}
                     alt={trader.name}
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                    onClick={() => navigateToProfile(trader.walletAddress)}
                   />
                   <div>
-                    <div className="font-medium">{trader.name}</div>
+                    <div 
+                      className="font-medium cursor-pointer hover:text-primary transition-colors"
+                      onClick={() => navigateToProfile(trader.walletAddress)}
+                    >
+                      {trader.name}
+                    </div>
                     <button
-                      onClick={() => copyWallet(trader.walletAddress)}
+                      onClick={(e) => copyWallet(e, trader.walletAddress)}
                       className="text-muted-foreground hover:text-white text-sm transition-colors"
                     >
                       {formatWalletAddress(trader.walletAddress)}
