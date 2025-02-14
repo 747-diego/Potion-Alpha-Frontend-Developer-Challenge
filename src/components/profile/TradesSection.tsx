@@ -84,7 +84,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
-      <div className="p-4 flex justify-between items-center border-b border-secondary">
+      <div className="p-4 flex justify-between items-center border-b border-secondary bg-card/80 backdrop-blur-sm">
         <div className="flex items-center gap-4">
           <button className="px-6 py-2 rounded-full bg-primary text-white font-medium">
             Trades
