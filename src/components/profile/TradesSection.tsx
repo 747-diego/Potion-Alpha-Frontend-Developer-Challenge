@@ -1,3 +1,4 @@
+
 import { Search, Filter, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -83,7 +84,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b border-secondary">
+      <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <button className="px-6 py-2 rounded-full bg-primary text-white font-medium">
             Trades
