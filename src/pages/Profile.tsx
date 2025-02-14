@@ -4,7 +4,8 @@ import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
 import { mockTraders } from "../data/mockTraders";
 import { Search, ChevronDown, Share2, ExternalLink } from "lucide-react";
-import { formatWalletAddress } from "../utils/format";
+import { formatWalletAddress, formatNumber, formatUSD } from "../utils/format";
+import { mockTrades } from "../data/mockTrades";
 
 const Profile = () => {
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("daily");
@@ -220,21 +221,124 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Table header - we'll implement the full table in the next step */}
-          <div className="p-4 text-sm text-muted-foreground">
-            <div className="grid grid-cols-11 gap-4">
-              <div>Token</div>
-              <div>Last Trade</div>
-              <div>MC</div>
-              <div>Invested</div>
-              <div>Realized PNL</div>
-              <div>ROI</div>
-              <div>Trades</div>
-              <div>Holding</div>
-              <div>Avg Buy</div>
-              <div>Avg Sell</div>
-              <div>Share</div>
-            </div>
+          {/* Table Content */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-sm text-muted-foreground border-b border-secondary">
+                  <th className="p-4 text-left">Token</th>
+                  <th className="p-4 text-left">Last Trade</th>
+                  <th className="p-4 text-left">MC</th>
+                  <th className="p-4 text-left">Invested</th>
+                  <th className="p-4 text-left">Realized PNL</th>
+                  <th className="p-4 text-left">ROI</th>
+                  <th className="p-4 text-left">Trades</th>
+                  <th className="p-4 text-left">Holding</th>
+                  <th className="p-4 text-left">Avg Buy</th>
+                  <th className="p-4 text-left">Avg Sell</th>
+                  <th className="p-4 text-left">Share</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mockTrades.map((trade) => (
+                  <tr key={trade.id} className="border-b border-secondary">
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={trade.tokenImage}
+                          alt={trade.tokenName}
+                          className="w-8 h-8 rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium">{trade.tokenName}</div>
+                          <div className="text-sm text-muted-foreground">
+                            {trade.tokenSymbol}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 text-muted-foreground">{trade.lastTrade}</td>
+                    <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
+                    <td className="p-4">
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1">
+                          <span>{trade.invested.sol}</span>
+                          <img
+                            src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
+                            alt="SOL"
+                            className="h-4 w-4"
+                          />
+                        </div>
+                        <span className="text-sm text-muted-foreground">
+                          ${formatNumber(trade.invested.usd)}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1">
+                          <span className={trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}>
+                            {trade.realizedPNL.percentage >= 0 ? "+" : ""}{trade.realizedPNL.sol}
+                          </span>
+                          <img
+                            src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
+                            alt="SOL"
+                            className="h-4 w-4"
+                          />
+                        </div>
+                        <span className="text-sm text-muted-foreground">
+                          ${formatNumber(trade.realizedPNL.usd)}
+                        </span>
+                      </div>
+                    </td>
+                    <td className={`p-4 ${trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}`}>
+                      {trade.roi}
+                    </td>
+                    <td className="p-4">
+                      <span className="text-green-400">{trade.trades.won}</span>
+                      <span className="text-muted-foreground mx-1">/</span>
+                      <span>{trade.trades.total}</span>
+                    </td>
+                    <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                    <td className="p-4">
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1">
+                          <span>{trade.avgBuy.sol}</span>
+                          <img
+                            src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
+                            alt="SOL"
+                            className="h-4 w-4"
+                          />
+                        </div>
+                        <span className="text-sm text-muted-foreground">
+                          ${formatNumber(trade.avgBuy.usd)}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1">
+                          <span>{trade.avgSell.sol}</span>
+                          <img
+                            src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
+                            alt="SOL"
+                            className="h-4 w-4"
+                          />
+                        </div>
+                        <span className="text-sm text-muted-foreground">
+                          ${formatNumber(trade.avgSell.usd)}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <button className="p-2 hover:bg-secondary rounded-full transition-colors">
+                        <Share2 className="h-4 w-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </main>
@@ -243,3 +347,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
