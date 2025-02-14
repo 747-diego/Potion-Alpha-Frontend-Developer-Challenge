@@ -31,22 +31,22 @@ const Profile = () => {
       <main className="max-w-[1400px] mx-auto">
         {/* Profile Overview Section */}
         <div className="flex items-start gap-8 mb-8">
-          <div className="flex-shrink-0">
-            <img 
-              src={trader.profilePicture} 
-              alt={trader.name} 
-              className="w-24 h-24 rounded-full border-2 border-primary/20"
-            />
-          </div>
-          <div className="flex-grow">
-            <div className="flex items-center gap-4 mb-4">
-              <h1 className="text-2xl font-bold">Orangie</h1>
-              <span className="text-muted-foreground">
-                {trader.walletAddress}
-              </span>
+          <div>
+            <div className="flex gap-6 mb-6">
+              <img 
+                src={trader.profilePicture} 
+                alt={trader.name} 
+                className="w-24 h-24 rounded-full border-2 border-primary/20"
+              />
+              <div className="flex flex-col justify-center">
+                <h1 className="text-3xl font-bold mb-1">Orangie</h1>
+                <span className="text-muted-foreground text-sm">
+                  {trader.walletAddress}
+                </span>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-8">
-              <div className="glass-card p-4 rounded-lg">
+            <div className="grid gap-3">
+              <div className="glass-card p-4 rounded-lg w-[320px]">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">X Account</span>
                   <div className="flex items-center gap-2">
@@ -55,7 +55,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg">
+              <div className="glass-card p-4 rounded-lg w-[320px]">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Last Trade</span>
                   <div className="flex items-center gap-2">
