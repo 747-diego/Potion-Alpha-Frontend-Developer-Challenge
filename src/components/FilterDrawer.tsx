@@ -10,7 +10,7 @@ import {
 } from "./ui/sheet";
 import { Slider } from "./ui/slider";
 import { Label } from "./ui/label";
-import { Filter } from "lucide-react";
+import { Funnel } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
@@ -139,7 +139,7 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
     <Sheet>
       <SheetTrigger asChild>
         <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-white/10 text-muted-foreground hover:text-white transition-colors relative">
-          <Filter className="h-4 w-4" />
+          <Funnel className="h-4 w-4" />
           <span>Filters</span>
           {activeFiltersCount > 0 && (
             <Badge 
