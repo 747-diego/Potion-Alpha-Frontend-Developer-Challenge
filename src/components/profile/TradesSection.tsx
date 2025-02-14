@@ -1,7 +1,7 @@
 
 import { Trade } from "../../types/trade";
 import { useState } from "react";
-import { Filters } from "../FilterDrawer";
+import { TradeFilters } from "./TradeFilterDrawer";
 import { TradesHeader } from "./TradesHeader";
 import { TradesTable } from "./TradesTable";
 import { sortTrades, filterTrades } from "../../utils/tradeUtils";
@@ -18,11 +18,8 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     direction: "asc" | "desc";
   }>({ key: "lastTrade", direction: "asc" });
 
-  const [filters, setFilters] = useState<Filters>({
-    minFollowers: 0,
-    maxFollowers: 1000000,
+  const [filters, setFilters] = useState<TradeFilters>({
     minWinRate: 0,
-    minTokens: 0,
     minTrades: 0,
     minPNL: 0,
   });
@@ -35,7 +32,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     }));
   };
 
-  const handleFiltersChange = (newFilters: Filters) => {
+  const handleFiltersChange = (newFilters: TradeFilters) => {
     setFilters(newFilters);
   };
 

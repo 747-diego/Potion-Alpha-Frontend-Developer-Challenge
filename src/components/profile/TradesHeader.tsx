@@ -1,12 +1,11 @@
 
 import { Search } from "lucide-react";
-import { FilterDrawer } from "../FilterDrawer";
-import { Filters } from "../FilterDrawer";
+import { TradeFilterDrawer, TradeFilters } from "./TradeFilterDrawer";
 
 interface TradesHeaderProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
-  onFiltersChange: (filters: Filters) => void;
+  onFiltersChange: (filters: TradeFilters) => void;
 }
 
 export function TradesHeader({ searchQuery, onSearchChange, onFiltersChange }: TradesHeaderProps) {
@@ -31,10 +30,10 @@ export function TradesHeader({ searchQuery, onSearchChange, onFiltersChange }: T
             placeholder="Search by name or wallet"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-[400px] pl-10 pr-4 py-2 bg-background/80 rounded-full border border-white/10 text-sm placeholder:text-muted-foreground"
+            className="w-[400px] pl-10 pr-4 py-2 bg-transparent border border-white/10 rounded-full text-sm placeholder:text-muted-foreground"
           />
         </div>
-        <FilterDrawer onFiltersChange={onFiltersChange} />
+        <TradeFilterDrawer onFiltersChange={onFiltersChange} />
       </div>
     </div>
   );
