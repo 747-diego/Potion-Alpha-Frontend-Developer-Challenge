@@ -15,7 +15,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   const [sortConfig, setSortConfig] = useState<{
     key: keyof Trade | null;
     direction: "asc" | "desc";
-  }>({ key: "lastTrade", direction: "desc" });
+  }>({ key: "lastTrade", direction: "asc" }); // Changed to "asc"
 
   const handleSort = (key: keyof Trade) => {
     setSortConfig((current) => ({
