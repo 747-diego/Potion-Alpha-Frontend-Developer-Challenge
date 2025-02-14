@@ -1,3 +1,4 @@
+
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -44,11 +45,24 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     </th>
   );
 
+  const getTimeInMinutes = (timeString: string): number => {
+    const minutes = parseInt(timeString.match(/\d+/)?.[0] || "0");
+    if (timeString.includes("min")) return minutes;
+    if (timeString.includes("h")) return minutes * 60;
+    return minutes;
+  };
+
   const sortedTrades = [...trades].sort((a, b) => {
     if (!sortConfig.key) return 0;
 
     const aValue = a[sortConfig.key];
     const bValue = b[sortConfig.key];
+
+    if (sortConfig.key === "lastTrade") {
+      const aTime = getTimeInMinutes(a.lastTrade);
+      const bTime = getTimeInMinutes(b.lastTrade);
+      return sortConfig.direction === "asc" ? aTime - bTime : bTime - aTime;
+    }
 
     if (typeof aValue === "string" && typeof bValue === "string") {
       return sortConfig.direction === "asc"
