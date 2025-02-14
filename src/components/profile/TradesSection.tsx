@@ -1,4 +1,5 @@
-import { Search, Share2, ChevronDown, ChevronUp, Filter } from "lucide-react";
+
+import { Search, Filter, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
@@ -84,30 +85,31 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   return (
     <div className="glass-card rounded-lg overflow-hidden">
       <div className="p-4 flex justify-between items-center border-b border-secondary">
-        <div className="flex items-center gap-6">
-          <button className="px-4 py-2 rounded-lg bg-secondary text-white font-medium">
+        <div className="flex items-center gap-4">
+          <button className="px-6 py-2 rounded-full bg-primary text-white font-medium">
             Trades
           </button>
-          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
+          <button className="px-6 py-2 text-muted-foreground hover:text-white transition-colors">
             Tokens
           </button>
-          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
+          <button className="px-6 py-2 text-muted-foreground hover:text-white transition-colors">
             Groups
           </button>
         </div>
         <div className="flex items-center gap-4">
-          <div className="relative">
+          <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <input
               type="text"
-              placeholder="Search by token or contract address"
+              placeholder="Search by name or wallet"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-[400px] pl-10 pr-4 py-2 bg-background/50 rounded-lg border border-secondary text-sm"
+              className="w-[400px] pl-10 pr-4 py-2 bg-background/80 rounded-full border border-white/10 text-sm placeholder:text-muted-foreground"
             />
           </div>
-          <button className="p-2 hover:bg-secondary/50 rounded-lg transition-colors">
-            <Filter className="h-5 w-5 text-muted-foreground" />
+          <button className="flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 text-muted-foreground hover:text-white transition-colors">
+            <Filter className="h-4 w-4" />
+            Filters
           </button>
         </div>
       </div>
