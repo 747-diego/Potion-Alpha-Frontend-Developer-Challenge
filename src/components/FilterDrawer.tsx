@@ -77,6 +77,9 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
           return { min: 0, max: 1000 };
         case 'minPNL':
           return { min: 0, max: 1000000 };
+        case 'minFollowers':
+        case 'maxFollowers':
+          return { min: 0, max: 1000000 };
         default:
           return { min: 0, max: 0 };
       }
@@ -157,12 +160,36 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
         </SheetHeader>
         <div className="space-y-6 mt-6">
           <FilterItem
+            label="Minimum Followers"
+            field="minFollowers"
+            min={0}
+            max={1000000}
+            step={100}
+            value={filters.minFollowers}
+          />
+          <FilterItem
+            label="Maximum Followers"
+            field="maxFollowers"
+            min={0}
+            max={1000000}
+            step={100}
+            value={filters.maxFollowers}
+          />
+          <FilterItem
             label="Minimum Win Rate (%)"
             field="minWinRate"
             min={0}
             max={100}
             step={1}
             value={filters.minWinRate}
+          />
+          <FilterItem
+            label="Minimum Tokens"
+            field="minTokens"
+            min={0}
+            max={1000}
+            step={1}
+            value={filters.minTokens}
           />
           <FilterItem
             label="Minimum Trades"
