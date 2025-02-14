@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -30,8 +29,9 @@ const Profile = () => {
       <Header />
       <main className="max-w-[1400px] mx-auto">
         {/* Profile Overview Section */}
-        <div className="flex items-start gap-8 mb-8">
-          <div>
+        <div className="flex gap-8 mb-8">
+          {/* Left Column - Profile Info */}
+          <div className="w-[320px]">
             <div className="flex gap-6 mb-6">
               <img 
                 src={trader.profilePicture} 
@@ -46,7 +46,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="grid gap-3">
-              <div className="glass-card p-4 rounded-lg w-[320px]">
+              <div className="glass-card p-4 rounded-lg">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">X Account</span>
                   <div className="flex items-center gap-2">
@@ -55,7 +55,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="glass-card p-4 rounded-lg w-[320px]">
+              <div className="glass-card p-4 rounded-lg">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Last Trade</span>
                   <div className="flex items-center gap-2">
@@ -66,76 +66,79 @@ const Profile = () => {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Time Frame Tabs */}
-        <div className="flex gap-2 mb-8">
-          {(["daily", "weekly", "monthly", "all-time"] as TimeFrame[]).map(
-            (frame) => (
-              <button
-                key={frame}
-                onClick={() => setTimeFrame(frame)}
-                className={`px-4 py-2 rounded-full transition-colors ${
-                  timeFrame === frame
-                    ? "bg-primary text-white"
-                    : "text-muted-foreground hover:text-white"
-                }`}
-              >
-                {frame.charAt(0).toUpperCase() + frame.slice(1)}
-              </button>
-            )
-          )}
-        </div>
+          {/* Right Column - Stats */}
+          <div className="flex-1">
+            {/* Time Frame Tabs */}
+            <div className="flex gap-2 mb-8">
+              {(["daily", "weekly", "monthly", "all-time"] as TimeFrame[]).map(
+                (frame) => (
+                  <button
+                    key={frame}
+                    onClick={() => setTimeFrame(frame)}
+                    className={`px-6 py-3 rounded-xl transition-colors ${
+                      timeFrame === frame
+                        ? "bg-primary/20 text-white"
+                        : "text-muted-foreground hover:text-white"
+                    }`}
+                  >
+                    {frame.charAt(0).toUpperCase() + frame.slice(1)}
+                  </button>
+                )
+              )}
+            </div>
 
-        {/* Statistics Grid */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Tokens</span>
-              <div className="flex items-center gap-2">
-                <span>{stats.tokens}</span>
+            {/* Statistics Grid */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Tokens</span>
+                  <div className="text-2xl font-medium">{stats.tokens}</div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Win Rate</span>
-              <span className="text-green-400">{stats.winRate}%</span>
-            </div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Trades</span>
-              <div>
-                <span className="text-green-400">{stats.trades.won}</span>
-                <span className="text-muted-foreground mx-1">/</span>
-                <span>{stats.trades.total}</span>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Win Rate</span>
+                  <div className="text-2xl font-medium text-green-400">{stats.winRate}%</div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Total Invested</span>
-              <span>{stats.totalInvested}</span>
-            </div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">ROI</span>
-              <span className="text-green-400">{stats.roi}</span>
-            </div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Realized PNL</span>
-              <div className="flex items-center gap-2">
-                <span className="text-green-400">+{stats.realizedPNL.sol}</span>
-                <img 
-                  src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
-                  alt="SOL"
-                  className="h-4 w-4"
-                />
-                <span className="text-muted-foreground">${stats.realizedPNL.usd}</span>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Trades</span>
+                  <div className="text-2xl font-medium">
+                    <span className="text-green-400">{stats.trades.won}</span>
+                    <span className="text-muted-foreground mx-1">/</span>
+                    <span>{stats.trades.total}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Total Invested</span>
+                  <div className="text-2xl font-medium">
+                    {stats.totalInvested}
+                  </div>
+                </div>
+              </div>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">ROI</span>
+                  <div className="text-2xl font-medium text-green-400">{stats.roi}</div>
+                </div>
+              </div>
+              <div className="glass-card p-6 rounded-lg">
+                <div className="flex flex-col gap-2">
+                  <span className="text-muted-foreground text-sm">Realized PNL</span>
+                  <div className="flex items-center gap-2 text-2xl font-medium">
+                    <span className="text-green-400">+{stats.realizedPNL.sol}</span>
+                    <img 
+                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                      alt="SOL"
+                      className="h-6 w-6"
+                    />
+                    <span className="text-muted-foreground text-xl">${stats.realizedPNL.usd}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
