@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -34,15 +33,15 @@ const Profile = () => {
         <div className="flex gap-8 mb-8">
           {/* Left Column - Profile Info */}
           <div className="w-[320px] flex flex-col">
-            <div className="flex gap-6 mb-6">
+            <div className="flex gap-6 mb-8">
               <img 
                 src={trader.profilePicture} 
                 alt={trader.name} 
-                className="w-24 h-24 rounded-full border-2 border-primary/20"
+                className="w-28 h-28 rounded-full border-2 border-primary/20"
               />
               <div className="flex flex-col justify-center">
-                <h1 className="text-3xl font-bold mb-1">Orangie</h1>
-                <span className="text-muted-foreground text-sm">
+                <h1 className="text-4xl font-bold mb-2">Orangie</h1>
+                <span className="text-muted-foreground text-base">
                   {formatWalletAddress(trader.walletAddress)}
                 </span>
               </div>
