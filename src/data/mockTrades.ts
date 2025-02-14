@@ -416,5 +416,229 @@ export const mockTrades: Trade[] = [
       sol: 6.00,
       usd: 1380.0
     }
+  },
+  {
+    id: "14",
+    tokenName: "Helium",
+    tokenSymbol: "HNT",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/5665.png",
+    contractAddress: "hnT1y5X7hxUJpakZvDnrRYmBKWU4Lw8QWvf7ZJ1",
+    lastTrade: "8h ago",
+    marketCap: "$723.5M",
+    invested: {
+      sol: 92.4,
+      usd: 21252
+    },
+    realizedPNL: {
+      sol: 31.2,
+      usd: 7176,
+      percentage: 33.8
+    },
+    roi: "+33.8%",
+    trades: {
+      won: 16,
+      total: 20
+    },
+    holding: "7h 45m",
+    avgBuy: {
+      sol: 4.62,
+      usd: 1062.6
+    },
+    avgSell: {
+      sol: 6.18,
+      usd: 1421.4
+    }
+  },
+  {
+    id: "15",
+    tokenName: "Parcl Protocol",
+    tokenSymbol: "PARCL",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/23467.png",
+    contractAddress: "PARCLVWQpz8E4FHjbQapYVPooN5QopF8MQxLm8n5",
+    lastTrade: "9h ago",
+    marketCap: "$45.8M",
+    invested: {
+      sol: 28.6,
+      usd: 6578
+    },
+    realizedPNL: {
+      sol: 9.4,
+      usd: 2162,
+      percentage: 32.9
+    },
+    roi: "+32.9%",
+    trades: {
+      won: 7,
+      total: 9
+    },
+    holding: "3h 20m",
+    avgBuy: {
+      sol: 3.18,
+      usd: 731.4
+    },
+    avgSell: {
+      sol: 4.22,
+      usd: 970.6
+    }
+  },
+  {
+    id: "16",
+    tokenName: "Solend",
+    tokenSymbol: "SLND",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/14524.png",
+    contractAddress: "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC8x7F",
+    lastTrade: "10h ago",
+    marketCap: "$132.7M",
+    invested: {
+      sol: 63.8,
+      usd: 14674
+    },
+    realizedPNL: {
+      sol: -8.2,
+      usd: -1886,
+      percentage: -12.9
+    },
+    roi: "-12.9%",
+    trades: {
+      won: 4,
+      total: 8
+    },
+    holding: "4h 15m",
+    avgBuy: {
+      sol: 7.98,
+      usd: 1835.4
+    },
+    avgSell: {
+      sol: 6.95,
+      usd: 1598.5
+    }
+  },
+  {
+    id: "17",
+    tokenName: "DeFi Land",
+    tokenSymbol: "DFL",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/14012.png",
+    contractAddress: "DFLv2SNbACdZkbHJz6E8MxiVtKCuJ7V6CKgZ8F",
+    lastTrade: "11h ago",
+    marketCap: "$28.4M",
+    invested: {
+      sol: 42.6,
+      usd: 9798
+    },
+    realizedPNL: {
+      sol: 15.8,
+      usd: 3634,
+      percentage: 37.1
+    },
+    roi: "+37.1%",
+    trades: {
+      won: 9,
+      total: 11
+    },
+    holding: "5h 30m",
+    avgBuy: {
+      sol: 3.87,
+      usd: 890.1
+    },
+    avgSell: {
+      sol: 5.31,
+      usd: 1221.3
+    }
+  },
+  {
+    id: "18",
+    tokenName: "Genopets",
+    tokenSymbol: "GENE",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/14968.png",
+    contractAddress: "GENEtH8amKuYZaXzUWZuqkMW4JqJGnGqCk9K7E",
+    lastTrade: "12h ago",
+    marketCap: "$84.6M",
+    invested: {
+      sol: 75.4,
+      usd: 17342
+    },
+    realizedPNL: {
+      sol: 28.6,
+      usd: 6578,
+      percentage: 37.9
+    },
+    roi: "+37.9%",
+    trades: {
+      won: 13,
+      total: 16
+    },
+    holding: "6h 45m",
+    avgBuy: {
+      sol: 4.71,
+      usd: 1083.3
+    },
+    avgSell: {
+      sol: 6.49,
+      usd: 1492.7
+    }
+  },
+  {
+    id: "19",
+    tokenName: "Orca",
+    tokenSymbol: "ORCA",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/11165.png",
+    contractAddress: "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+    lastTrade: "13h ago",
+    marketCap: "$156.9M",
+    invested: {
+      sol: 58.2,
+      usd: 13386
+    },
+    realizedPNL: {
+      sol: 22.4,
+      usd: 5152,
+      percentage: 38.5
+    },
+    roi: "+38.5%",
+    trades: {
+      won: 11,
+      total: 14
+    },
+    holding: "7h 15m",
+    avgBuy: {
+      sol: 4.16,
+      usd: 956.8
+    },
+    avgSell: {
+      sol: 5.76,
+      usd: 1324.8
+    }
+  },
+  {
+    id: "20",
+    tokenName: "Serum",
+    tokenSymbol: "SRM",
+    tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/6187.png",
+    contractAddress: "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
+    lastTrade: "14h ago",
+    marketCap: "$245.3M",
+    invested: {
+      sol: 84.6,
+      usd: 19458
+    },
+    realizedPNL: {
+      sol: 32.8,
+      usd: 7544,
+      percentage: 38.8
+    },
+    roi: "+38.8%",
+    trades: {
+      won: 15,
+      total: 18
+    },
+    holding: "8h 30m",
+    avgBuy: {
+      sol: 4.70,
+      usd: 1081.0
+    },
+    avgSell: {
+      sol: 6.52,
+      usd: 1499.6
+    }
   }
 ];
