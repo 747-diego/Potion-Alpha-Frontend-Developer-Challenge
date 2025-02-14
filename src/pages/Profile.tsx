@@ -94,20 +94,20 @@ const Profile = () => {
             <div className="grid grid-cols-3 gap-4">
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">Tokens</span>
-                  <div className="text-2xl">{stats.tokens}</div>
+                  <span className="text-xl font-bold">Tokens</span>
+                  <div className="text-xl">{stats.tokens}</div>
                 </div>
               </div>
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">Win Rate</span>
-                  <div className="text-2xl text-green-400">{stats.winRate}%</div>
+                  <span className="text-xl font-bold">Win Rate</span>
+                  <div className="text-xl text-green-400">{stats.winRate}%</div>
                 </div>
               </div>
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">Trades</span>
-                  <div className="text-2xl">
+                  <span className="text-xl font-bold">Trades</span>
+                  <div className="text-xl">
                     <span className="text-green-400">{stats.trades.won}</span>
                     <span className="text-muted-foreground mx-1">/</span>
                     <span>{stats.trades.total}</span>
@@ -116,27 +116,27 @@ const Profile = () => {
               </div>
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">Total Invested</span>
-                  <div className="text-2xl">{stats.totalInvested}</div>
+                  <span className="text-xl font-bold">Total Invested</span>
+                  <div className="text-xl">{stats.totalInvested}</div>
                 </div>
               </div>
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">ROI</span>
-                  <div className="text-2xl text-green-400">{stats.roi}</div>
+                  <span className="text-xl font-bold">ROI</span>
+                  <div className="text-xl text-green-400">{stats.roi}</div>
                 </div>
               </div>
               <div className="glass-card p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold">Realized PNL</span>
+                  <span className="text-xl font-bold">Realized PNL</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl text-green-400">+{stats.realizedPNL.sol}</span>
+                    <span className="text-xl text-green-400">+{stats.realizedPNL.sol}</span>
                     <img 
                       src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
                       alt="SOL"
-                      className="h-6 w-6"
+                      className="h-5 w-5"
                     />
-                    <span className="text-xl text-muted-foreground">${stats.realizedPNL.usd}</span>
+                    <span className="text-lg text-muted-foreground">${stats.realizedPNL.usd}</span>
                   </div>
                 </div>
               </div>
