@@ -1,4 +1,4 @@
-import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, Share2, ChevronDown, ChevronUp, Filter } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
@@ -84,21 +84,30 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   return (
     <div className="glass-card rounded-lg overflow-hidden">
       <div className="p-4 flex justify-between items-center border-b border-secondary">
-        <h2 className="text-xl font-semibold">Trades</h2>
+        <div className="flex items-center gap-6">
+          <button className="px-4 py-2 rounded-lg bg-secondary text-white font-medium">
+            Trades
+          </button>
+          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
+            Tokens
+          </button>
+          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
+            Groups
+          </button>
+        </div>
         <div className="flex items-center gap-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <input
               type="text"
-              placeholder="Search tokens..."
+              placeholder="Search by token or contract address"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-background rounded-lg border border-secondary"
+              className="w-[400px] pl-10 pr-4 py-2 bg-background/50 rounded-lg border border-secondary text-sm"
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg">
-            <Share2 className="w-4 h-4" />
-            Share
+          <button className="p-2 hover:bg-secondary/50 rounded-lg transition-colors">
+            <Filter className="h-5 w-5 text-muted-foreground" />
           </button>
         </div>
       </div>
