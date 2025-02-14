@@ -102,8 +102,52 @@ const Profile = () => {
               </div>
               <div className="glass-card p-4 h-[76px] rounded-lg">
                 <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Average Buy</span>
+                  <div className="flex flex-col items-end">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{stats.averageBuy.sol}</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <span className="text-sm text-muted-foreground">${stats.averageBuy.usd}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Total Invested</span>
+                  <div className="flex flex-col items-end">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">100.2</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <span className="text-sm text-muted-foreground">{stats.totalInvested}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
                   <span className="text-lg font-semibold">Win Rate</span>
                   <div className="text-lg text-green-400">{stats.winRate}%</div>
+                </div>
+              </div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">Average Entry</span>
+                  <div className="text-lg">{stats.averageEntry}</div>
+                </div>
+              </div>
+              <div className="glass-card p-4 h-[76px] rounded-lg">
+                <div className="flex items-center justify-between h-full">
+                  <span className="text-lg font-semibold">ROI</span>
+                  <div className="text-lg text-green-400">{stats.roi}</div>
                 </div>
               </div>
               <div className="glass-card p-4 h-[76px] rounded-lg">
@@ -118,52 +162,23 @@ const Profile = () => {
               </div>
               <div className="glass-card p-4 h-[76px] rounded-lg">
                 <div className="flex items-center justify-between h-full">
-                  <span className="text-lg font-semibold">Average Buy</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">10.2</span>
-                    <img 
-                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
-                      alt="SOL"
-                      className="h-4 w-4"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="glass-card p-4 h-[76px] rounded-lg">
-                <div className="flex items-center justify-between h-full">
-                  <span className="text-lg font-semibold">Average Entry</span>
-                  <div className="text-lg">212K</div>
-                </div>
-              </div>
-              <div className="glass-card p-4 h-[76px] rounded-lg">
-                <div className="flex items-center justify-between h-full">
                   <span className="text-lg font-semibold">Average Hold</span>
-                  <div className="text-lg">32m</div>
-                </div>
-              </div>
-              <div className="glass-card p-4 h-[76px] rounded-lg">
-                <div className="flex items-center justify-between h-full">
-                  <span className="text-lg font-semibold">Total Invested</span>
-                  <div className="text-lg">{stats.totalInvested}</div>
-                </div>
-              </div>
-              <div className="glass-card p-4 h-[76px] rounded-lg">
-                <div className="flex items-center justify-between h-full">
-                  <span className="text-lg font-semibold">ROI</span>
-                  <div className="text-lg text-green-400">{stats.roi}</div>
+                  <div className="text-lg">{stats.averageHold}</div>
                 </div>
               </div>
               <div className="glass-card p-4 h-[76px] rounded-lg">
                 <div className="flex items-center justify-between h-full">
                   <span className="text-lg font-semibold">Realized PNL</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg text-green-400">+{stats.realizedPNL.sol}</span>
-                    <img 
-                      src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
-                      alt="SOL"
-                      className="h-4 w-4"
-                    />
-                    <span className="text-base text-muted-foreground">${stats.realizedPNL.usd}</span>
+                  <div className="flex flex-col items-end">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg text-green-400">+{stats.realizedPNL.sol}</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <span className="text-sm text-muted-foreground">${stats.realizedPNL.usd}</span>
                   </div>
                 </div>
               </div>
