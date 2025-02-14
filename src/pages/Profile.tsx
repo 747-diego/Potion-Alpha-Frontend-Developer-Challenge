@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -72,7 +71,7 @@ const Profile = () => {
           </div>
 
           {/* Right Column - Stats */}
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col">
             {/* Time Frame Tabs */}
             <div className="flex gap-2 mb-8">
               {(["daily", "weekly", "monthly", "all-time"] as TimeFrame[]).map(
@@ -93,7 +92,7 @@ const Profile = () => {
             </div>
 
             {/* Statistics Grid */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 mt-auto">
               <div className="glass-card p-4 h-[76px] rounded-lg">
                 <div className="flex items-center justify-between h-full">
                   <span className="text-lg font-semibold">Tokens</span>
