@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "../components/Header";
 import { TimeFrame } from "../types/trader";
@@ -49,12 +48,12 @@ const Profile = () => {
             </div>
             <div className="space-y-2 mt-auto">
               <div className="glass-card p-4 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg">X Account</span>
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-col">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-lg">X Account</span>
                     <span>@orangie</span>
-                    <span className="text-muted-foreground">279K followers</span>
                   </div>
+                  <span className="text-muted-foreground text-sm">279K followers</span>
                 </div>
               </div>
               <div className="glass-card p-4 rounded-lg">
