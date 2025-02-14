@@ -1,6 +1,6 @@
 
 import { Trade } from "../types/trade";
-import { Filters } from "../components/FilterDrawer";
+import { TradeFilters } from "../components/profile/TradeFilterDrawer";
 
 export const getTimeInMinutes = (timeString: string): number => {
   const minutes = parseInt(timeString.match(/\d+/)?.[0] || "0");
@@ -38,7 +38,7 @@ export const sortTrades = (
 export const filterTrades = (
   trades: Trade[],
   searchQuery: string,
-  filters: Filters
+  filters: TradeFilters
 ): Trade[] => {
   return trades.filter((trade) => {
     const searchMatch = 
