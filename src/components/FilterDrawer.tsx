@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   Sheet,
@@ -9,7 +10,7 @@ import {
 } from "./ui/sheet";
 import { Slider } from "./ui/slider";
 import { Label } from "./ui/label";
-import { SlidersHorizontal } from "lucide-react";
+import { Filter } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
@@ -56,12 +57,7 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
 
   const getActiveFiltersCount = () => {
     return Object.entries(filters).reduce((count, [key, value]) => {
-      if (key === 'maxFollowers' && value !== defaultFilters.maxFollowers) return count + 1;
-      if (key === 'minFollowers' && value !== defaultFilters.minFollowers) return count + 1;
-      if (key === 'minWinRate' && value !== defaultFilters.minWinRate) return count + 1;
-      if (key === 'minTokens' && value !== defaultFilters.minTokens) return count + 1;
-      if (key === 'minTrades' && value !== defaultFilters.minTrades) return count + 1;
-      if (key === 'minPNL' && value !== defaultFilters.minPNL) return count + 1;
+      if (value !== defaultFilters[key as keyof Filters]) return count + 1;
       return count;
     }, 0);
   };
@@ -74,16 +70,13 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
 
     const getMinMax = (field: keyof Filters) => {
       switch (field) {
-        case 'minFollowers':
-        case 'maxFollowers':
-          return { min: 0, max: 1000000 };
         case 'minWinRate':
           return { min: 0, max: 100 };
         case 'minTokens':
         case 'minTrades':
           return { min: 0, max: 1000 };
         case 'minPNL':
-          return { min: 0, max: 100000 };
+          return { min: 0, max: 1000000 };
         default:
           return { min: 0, max: 0 };
       }
@@ -145,8 +138,8 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="glass-card px-4 py-2 rounded-full hover:bg-secondary/80 transition-colors flex items-center gap-2 relative">
-          <SlidersHorizontal className="h-4 w-4" />
+        <button className="flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 text-muted-foreground hover:text-white transition-colors relative">
+          <Filter className="h-4 w-4" />
           Filters
           {activeFiltersCount > 0 && (
             <Badge 
@@ -164,36 +157,12 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
         </SheetHeader>
         <div className="space-y-6 mt-6">
           <FilterItem
-            label="Minimum Followers"
-            field="minFollowers"
-            min={0}
-            max={1000000}
-            step={1000}
-            value={filters.minFollowers}
-          />
-          <FilterItem
-            label="Maximum Followers"
-            field="maxFollowers"
-            min={0}
-            max={1000000}
-            step={1000}
-            value={filters.maxFollowers}
-          />
-          <FilterItem
             label="Minimum Win Rate (%)"
             field="minWinRate"
             min={0}
             max={100}
             step={1}
             value={filters.minWinRate}
-          />
-          <FilterItem
-            label="Minimum Tokens"
-            field="minTokens"
-            min={0}
-            max={1000}
-            step={1}
-            value={filters.minTokens}
           />
           <FilterItem
             label="Minimum Trades"
@@ -207,7 +176,7 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
             label="Minimum PNL (USD)"
             field="minPNL"
             min={0}
-            max={100000}
+            max={1000000}
             step={100}
             value={filters.minPNL}
           />

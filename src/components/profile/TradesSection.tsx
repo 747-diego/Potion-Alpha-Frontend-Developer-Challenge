@@ -3,6 +3,7 @@ import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
 import { toast } from "sonner";
+import { FilterDrawer, Filters } from "../FilterDrawer";
 
 interface TradesSectionProps {
   trades: Trade[];
@@ -15,6 +16,19 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     key: keyof Trade | null;
     direction: "asc" | "desc";
   }>({ key: "lastTrade", direction: "asc" });
+
+  const [filters, setFilters] = useState<Filters>({
+    minFollowers: 0,
+    maxFollowers: 1000000,
+    minWinRate: 0,
+    minTokens: 0,
+    minTrades: 0,
+    minPNL: 0,
+  });
+
+  const handleFiltersChange = (newFilters: Filters) => {
+    setFilters(newFilters);
+  };
 
   const handleSort = (key: keyof Trade) => {
     setSortConfig((current) => ({
@@ -72,9 +86,21 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     return 0;
   });
 
-  const filteredTrades = sortedTrades.filter((trade) =>
-    trade.tokenName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredTrades = sortedTrades.filter((trade) => {
+    const searchMatch = 
+      trade.tokenName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      trade.contractAddress.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const winRate = (trade.trades.won / trade.trades.total) * 100;
+    const pnlInUSD = trade.realizedPNL.usd;
+
+    return (
+      searchMatch &&
+      winRate >= filters.minWinRate &&
+      trade.trades.total >= filters.minTrades &&
+      pnlInUSD >= filters.minPNL
+    );
+  });
 
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
@@ -106,10 +132,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
               className="w-[400px] pl-10 pr-4 py-2 bg-background/80 rounded-full border border-white/10 text-sm placeholder:text-muted-foreground"
             />
           </div>
-          <button className="flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 text-muted-foreground hover:text-white transition-colors">
-            <Filter className="h-4 w-4" />
-            Filters
-          </button>
+          <FilterDrawer onFiltersChange={handleFiltersChange} />
         </div>
       </div>
 
