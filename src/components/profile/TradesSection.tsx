@@ -1,4 +1,3 @@
-
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -24,6 +23,19 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
         current.key === key && current.direction === "asc" ? "desc" : "asc",
     }));
   };
+
+  const SortableHeader = ({ label, field }: { label: string; field: keyof Trade }) => (
+    <th className="p-4 cursor-pointer" onClick={() => handleSort(field)}>
+      <div className="flex items-center gap-1">
+        {label}
+        {sortConfig.key === field && (
+          sortConfig.direction === "asc" ? 
+            <ChevronUp className="w-4 h-4" /> : 
+            <ChevronDown className="w-4 h-4" />
+        )}
+      </div>
+    </th>
+  );
 
   const sortedTrades = [...trades].sort((a, b) => {
     if (!sortConfig.key) return 0;
@@ -75,21 +87,16 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
         <table className="w-full">
           <thead>
             <tr className="border-b border-secondary text-left">
-              <th className="p-4">Token</th>
-              <th className="p-4 cursor-pointer" onClick={() => handleSort("lastTrade")}>
-                Last Trade
-                {sortConfig.key === "lastTrade" && (
-                  sortConfig.direction === "asc" ? <ChevronUp className="inline ml-1" /> : <ChevronDown className="inline ml-1" />
-                )}
-              </th>
-              <th className="p-4">Market Cap</th>
-              <th className="p-4">Invested</th>
-              <th className="p-4">Realized PNL</th>
-              <th className="p-4">ROI</th>
-              <th className="p-4">Trades</th>
-              <th className="p-4">Holding</th>
-              <th className="p-4">Avg. Buy</th>
-              <th className="p-4">Avg. Sell</th>
+              <SortableHeader label="Token" field="tokenName" />
+              <SortableHeader label="Last Trade" field="lastTrade" />
+              <SortableHeader label="Market Cap" field="marketCap" />
+              <SortableHeader label="Invested" field="invested" />
+              <SortableHeader label="Realized PNL" field="realizedPNL" />
+              <SortableHeader label="ROI" field="roi" />
+              <SortableHeader label="Trades" field="trades" />
+              <SortableHeader label="Holding" field="holding" />
+              <SortableHeader label="Avg. Buy" field="avgBuy" />
+              <SortableHeader label="Avg. Sell" field="avgSell" />
             </tr>
           </thead>
           <tbody>
