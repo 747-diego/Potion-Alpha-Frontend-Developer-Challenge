@@ -2,7 +2,7 @@ import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
-import { useToast } from "../../components/ui/use-toast";
+import { useToast } from "../../hooks/use-toast";
 
 interface TradesSectionProps {
   trades: Trade[];
