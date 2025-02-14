@@ -1,8 +1,8 @@
-
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
+import { useToast } from "../../components/ui/use-toast";
 
 interface TradesSectionProps {
   trades: Trade[];
@@ -16,6 +16,7 @@ type SortField = keyof Pick<
 > | "trades";
 
 const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionProps) => {
+  const { toast } = useToast();
   const [sortField, setSortField] = useState<SortField>("lastTrade");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
@@ -26,6 +27,15 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
       setSortField(field);
       setSortDirection("desc");
     }
+  };
+
+  const handleCopyAddress = (address: string) => {
+    navigator.clipboard.writeText(address);
+    toast({
+      title: "Address copied",
+      description: "Contract address has been copied to clipboard",
+      duration: 2000,
+    });
   };
 
   const filteredTrades = trades.filter((trade) => {
@@ -74,7 +84,6 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
         comparison = a.tokenName.localeCompare(b.tokenName);
         break;
       case "lastTrade":
-        // Convert "X min/hour ago" to minutes for comparison
         const getMinutes = (time: string) => {
           const value = parseInt(time);
           if (time.includes("h")) return value * 60;
@@ -83,7 +92,6 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
         comparison = getMinutes(a.lastTrade) - getMinutes(b.lastTrade);
         break;
       case "marketCap":
-        // Remove "$" and "B"/"M" and convert to millions
         const getMcValue = (mc: string) => {
           const value = parseFloat(mc.replace(/[$B]/g, ""));
           return mc.includes("B") ? value * 1000 : value;
@@ -207,7 +215,11 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
                     />
                     <div>
                       <div className="font-medium">{trade.tokenName}</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div 
+                        className="text-sm text-muted-foreground hover:text-white cursor-pointer transition-colors"
+                        onClick={() => handleCopyAddress(trade.contractAddress)}
+                        title="Click to copy"
+                      >
                         {formatWalletAddress(trade.contractAddress)}
                       </div>
                     </div>
