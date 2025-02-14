@@ -1,4 +1,3 @@
-
 import { Search } from "lucide-react";
 import { TimeFrame, ViewMode } from "../types/trader";
 import { FilterDrawer, Filters } from "./FilterDrawer";
