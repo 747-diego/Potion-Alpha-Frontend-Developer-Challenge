@@ -6,6 +6,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Bonk",
     tokenSymbol: "BONK",
     tokenImage: "https://cryptologos.cc/logos/bonk-bonk-logo.png",
+    contractAddress: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
     lastTrade: "2 min ago",
     marketCap: "$234.5M",
     invested: {
@@ -37,6 +38,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Famous Fox Federation",
     tokenSymbol: "FFF",
     tokenImage: "https://arweave.net/E8hAJDNzHWrwFJ1UP4yOcQHHUqFKrmbg9c8FaAf9okA",
+    contractAddress: "F4XFQyv94V7q7QVe7393Mm5SqmcjzkYQt7JoVJyJjZ4e",
     lastTrade: "15 min ago",
     marketCap: "$45.2M",
     invested: {
@@ -68,6 +70,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Mad Lads",
     tokenSymbol: "MLAD",
     tokenImage: "https://i.imgur.com/BoQY5Qb.png",
+    contractAddress: "J3dE9idnyG7Jp6Vs5ydqe5z5Z9wWmR5wNeGyjt9iQWzk",
     lastTrade: "1h ago",
     marketCap: "$156.7M",
     invested: {
@@ -99,6 +102,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Tensor",
     tokenSymbol: "TNSR",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/28344.png",
+    contractAddress: "TNSR9hb3UeaGTff6tBqtbQW9piYGeuVMkyfhnbzfhYq",
     lastTrade: "5 min ago",
     marketCap: "$89.3M",
     invested: {
@@ -130,6 +134,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Jupiter",
     tokenSymbol: "JUP",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/25968.png",
+    contractAddress: "JUP6LkbvG1xHSM9c1cDoNw9tk2zsjK3NxMgks9uHu7L",
     lastTrade: "18 min ago",
     marketCap: "$2.1B",
     invested: {
@@ -161,6 +166,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Kamino",
     tokenSymbol: "KMNO",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/28355.png",
+    contractAddress: "KMNO5pYRkW47ogZ9E9HRDxvCbtvm8F5czn839RjFUNG",
     lastTrade: "45 min ago",
     marketCap: "$42.8M",
     invested: {
@@ -192,6 +198,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Drift Protocol",
     tokenSymbol: "DRIFT",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/27966.png",
+    contractAddress: "DriftyQwertyUiop123456789DriftyQwertyU",
     lastTrade: "1h 15m ago",
     marketCap: "$156.4M",
     invested: {
@@ -223,6 +230,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Marinade",
     tokenSymbol: "MNDE",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/11181.png",
+    contractAddress: "MNDEFzGvMt87ueuHvVU9VcTqsTmwZvrGVjTbaxJYNxE",
     lastTrade: "2h ago",
     marketCap: "$78.5M",
     invested: {
@@ -254,6 +262,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Step Finance",
     tokenSymbol: "STEP",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/9443.png",
+    contractAddress: "StepExrTAiQeC5o9G64PPCiJ9S4xGuRUp3rEUL4ymV",
     lastTrade: "3h ago",
     marketCap: "$12.3M",
     invested: {
@@ -285,6 +294,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Star Atlas",
     tokenSymbol: "ATLAS",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/11212.png",
+    contractAddress: "ATLASXmbPQxBUY6iVfWqxR1H4kK9oomjn3JkUEo3Ckx",
     lastTrade: "4h ago",
     marketCap: "$183.7M",
     invested: {
@@ -316,6 +326,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Render",
     tokenSymbol: "RNDR",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/7887.png",
+    contractAddress: "RNDRfgx98gsjKeqomojwYt1ZS9f6Xp8K6rbQEqap9uL",
     lastTrade: "5h ago",
     marketCap: "$3.2B",
     invested: {
@@ -347,6 +358,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Pyth Network",
     tokenSymbol: "PYTH",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/27974.png",
+    contractAddress: "HZ1JovE3q9MGvj3tNZDyjjvbzciViccbiwZojyEcnvG",
     lastTrade: "6h ago",
     marketCap: "$698.4M",
     invested: {
@@ -378,6 +390,7 @@ export const mockTrades: Trade[] = [
     tokenName: "Raydium",
     tokenSymbol: "RAY",
     tokenImage: "https://s2.coinmarketcap.com/static/img/coins/64x64/8526.png",
+    contractAddress: "4k3DyjSE6e8iLDzcD2Bw9iGeqLhoJ8P77x7QSBzEqsH",
     lastTrade: "7h ago",
     marketCap: "$245.6M",
     invested: {

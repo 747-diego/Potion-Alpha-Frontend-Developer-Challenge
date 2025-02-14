@@ -27,6 +27,14 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     }
   };
 
+  const filteredTrades = trades.filter((trade) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      trade.tokenName.toLowerCase().includes(query) ||
+      trade.contractAddress.toLowerCase().includes(query)
+    );
+  });
+
   const TableHeader = ({
     children,
     field,
@@ -57,7 +65,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
     </div>
   );
 
-  const sortedTrades = [...trades].sort((a, b) => {
+  const sortedTrades = [...filteredTrades].sort((a, b) => {
     let comparison = 0;
     
     switch (sortField) {
@@ -133,7 +141,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
             <input
               type="text"
               placeholder="Search by token or contract address"
-              className="w-[300px] bg-secondary/50 rounded-full py-2 pl-10 pr-4 text-sm"
+              className="w-[300px] bg-secondary/50 rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-muted-foreground"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
             />

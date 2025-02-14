@@ -4,6 +4,7 @@ export interface Trade {
   tokenName: string;
   tokenSymbol: string;
   tokenImage: string;
+  contractAddress: string;
   lastTrade: string;
   marketCap: string;
   invested: {
@@ -30,4 +31,3 @@ export interface Trade {
     usd: number;
   };
 }
-
