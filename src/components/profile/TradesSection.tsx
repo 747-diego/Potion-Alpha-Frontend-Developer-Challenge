@@ -1,4 +1,3 @@
-
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
@@ -15,7 +14,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
   const [sortConfig, setSortConfig] = useState<{
     key: keyof Trade | null;
     direction: "asc" | "desc";
-  }>({ key: "lastTrade", direction: "asc" }); // Changed to "asc"
+  }>({ key: "lastTrade", direction: "asc" });
 
   const handleSort = (key: keyof Trade) => {
     setSortConfig((current) => ({
@@ -142,35 +141,81 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
                     </div>
                   </div>
                 </td>
-                <td className="p-4">{trade.lastTrade}</td>
-                <td className="p-4">{trade.marketCap}</td>
+                <td className="p-4 text-muted-foreground">{trade.lastTrade}</td>
+                <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
                 <td className="p-4">
-                  <div>{formatNumber(trade.invested.sol)} SOL</div>
-                  <div className="text-sm text-muted-foreground">
-                    ${formatNumber(trade.invested.usd)}
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1 text-[#14F195]">
+                      <span>{formatNumber(trade.invested.sol)}</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <div className="text-muted-foreground">
+                      ${formatNumber(trade.invested.usd)}
+                    </div>
                   </div>
                 </td>
                 <td className="p-4">
-                  <div>{formatNumber(trade.realizedPNL.sol)} SOL</div>
-                  <div className="text-sm text-muted-foreground">
-                    ${formatNumber(trade.realizedPNL.usd)}
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <span className={trade.realizedPNL.sol >= 0 ? "text-green-400" : "text-red-400"}>
+                        {trade.realizedPNL.sol >= 0 ? "+" : "-"}
+                        {formatNumber(Math.abs(trade.realizedPNL.sol))}
+                      </span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <div className="text-muted-foreground">
+                      {trade.realizedPNL.usd >= 0 ? "+" : "-"}
+                      ${formatNumber(Math.abs(trade.realizedPNL.usd))}
+                    </div>
                   </div>
                 </td>
-                <td className="p-4">{trade.roi}</td>
                 <td className="p-4">
-                  {trade.trades.won}/{trade.trades.total}
+                  <span className={trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}>
+                    {trade.roi}
+                  </span>
                 </td>
-                <td className="p-4">{trade.holding}</td>
                 <td className="p-4">
-                  <div>{formatNumber(trade.avgBuy.sol)} SOL</div>
-                  <div className="text-sm text-muted-foreground">
-                    ${formatNumber(trade.avgBuy.usd)}
+                  <span className="text-green-400">{trade.trades.won}</span>
+                  <span className="text-muted-foreground">/</span>
+                  <span>{trade.trades.total}</span>
+                </td>
+                <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                <td className="p-4">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1 text-[#14F195]">
+                      <span>{formatNumber(trade.avgBuy.sol)}</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <div className="text-muted-foreground">
+                      ${formatNumber(trade.avgBuy.usd)}
+                    </div>
                   </div>
                 </td>
                 <td className="p-4">
-                  <div>{formatNumber(trade.avgSell.sol)} SOL</div>
-                  <div className="text-sm text-muted-foreground">
-                    ${formatNumber(trade.avgSell.usd)}
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1 text-[#14F195]">
+                      <span>{formatNumber(trade.avgSell.sol)}</span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
+                    </div>
+                    <div className="text-muted-foreground">
+                      ${formatNumber(trade.avgSell.usd)}
+                    </div>
                   </div>
                 </td>
               </tr>
