@@ -1,3 +1,4 @@
+
 import { Search } from "lucide-react";
 import { TimeFrame, ViewMode } from "../types/trader";
 import { FilterDrawer, Filters } from "./FilterDrawer";
@@ -107,7 +108,7 @@ const FilterBar = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name or wallet"
-            className="w-full bg-secondary/50 border border-secondary rounded-full py-2 pl-12 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="w-full bg-transparent border border-secondary rounded-full py-2 pl-12 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
         </div>
         <FilterDrawer onFiltersChange={onFiltersChange} />
