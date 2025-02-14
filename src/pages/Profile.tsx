@@ -53,7 +53,9 @@ const Profile = () => {
                     <span className="text-lg">X Account</span>
                     <span>@orangie</span>
                   </div>
-                  <span className="text-muted-foreground text-sm">279K followers</span>
+                  <div className="flex justify-end">
+                    <span className="text-muted-foreground text-sm">279K followers</span>
+                  </div>
                 </div>
               </div>
               <div className="glass-card p-4 rounded-lg">
