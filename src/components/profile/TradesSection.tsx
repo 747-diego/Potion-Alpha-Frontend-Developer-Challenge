@@ -1,6 +1,7 @@
+
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
-import { formatNumber } from "../../utils/format";
+import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
 
 interface TradesSectionProps {
@@ -207,7 +208,7 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
                     <div>
                       <div className="font-medium">{trade.tokenName}</div>
                       <div className="text-sm text-muted-foreground">
-                        {trade.tokenSymbol}
+                        {formatWalletAddress(trade.contractAddress)}
                       </div>
                     </div>
                   </div>
