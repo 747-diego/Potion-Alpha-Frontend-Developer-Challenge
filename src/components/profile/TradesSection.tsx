@@ -1,8 +1,9 @@
+
 import { Search, Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { useState } from "react";
-import { useToast } from "../../hooks/use-toast";
+import { toast } from "sonner";
 
 interface TradesSectionProps {
   trades: Trade[];
@@ -10,156 +11,62 @@ interface TradesSectionProps {
   onSearchChange: (query: string) => void;
 }
 
-type SortField = keyof Pick<
-  Trade,
-  "tokenName" | "lastTrade" | "marketCap" | "invested" | "realizedPNL" | "roi" | "holding" | "avgBuy" | "avgSell"
-> | "trades";
-
 const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionProps) => {
-  const { toast } = useToast();
-  const [sortField, setSortField] = useState<SortField>("lastTrade");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [sortConfig, setSortConfig] = useState<{
+    key: keyof Trade | null;
+    direction: "asc" | "desc";
+  }>({ key: null, direction: "asc" });
 
-  const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortDirection("desc");
-    }
+  const handleSort = (key: keyof Trade) => {
+    setSortConfig((current) => ({
+      key,
+      direction:
+        current.key === key && current.direction === "asc" ? "desc" : "asc",
+    }));
   };
+
+  const sortedTrades = [...trades].sort((a, b) => {
+    if (!sortConfig.key) return 0;
+
+    const aValue = a[sortConfig.key];
+    const bValue = b[sortConfig.key];
+
+    if (typeof aValue === "string" && typeof bValue === "string") {
+      return sortConfig.direction === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    }
+
+    return 0;
+  });
+
+  const filteredTrades = sortedTrades.filter((trade) =>
+    trade.tokenName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
-    toast({
-      title: "Address copied",
-      description: "Contract address has been copied to clipboard",
-      duration: 2000,
-    });
+    toast.success("Address copied to clipboard");
   };
-
-  const filteredTrades = trades.filter((trade) => {
-    const query = searchQuery.toLowerCase();
-    return (
-      trade.tokenName.toLowerCase().includes(query) ||
-      trade.contractAddress.toLowerCase().includes(query)
-    );
-  });
-
-  const TableHeader = ({
-    children,
-    field,
-  }: {
-    children: React.ReactNode;
-    field?: SortField;
-  }) => (
-    <div
-      className={`flex items-center gap-1 ${
-        field ? "cursor-pointer hover:text-white" : ""
-      } transition-colors`}
-      onClick={() => field && handleSort(field)}
-    >
-      <span>{children}</span>
-      {field && (
-        <>
-          {sortField === field ? (
-            sortDirection === "asc" ? (
-              <ChevronUp className="h-4 w-4 text-primary" />
-            ) : (
-              <ChevronDown className="h-4 w-4 text-primary" />
-            )
-          ) : (
-            <ChevronDown className="h-4 w-4 text-muted-foreground" />
-          )}
-        </>
-      )}
-    </div>
-  );
-
-  const sortedTrades = [...filteredTrades].sort((a, b) => {
-    let comparison = 0;
-    
-    switch (sortField) {
-      case "tokenName":
-        comparison = a.tokenName.localeCompare(b.tokenName);
-        break;
-      case "lastTrade":
-        const getMinutes = (time: string) => {
-          const value = parseInt(time);
-          if (time.includes("h")) return value * 60;
-          return value;
-        };
-        comparison = getMinutes(a.lastTrade) - getMinutes(b.lastTrade);
-        break;
-      case "marketCap":
-        const getMcValue = (mc: string) => {
-          const value = parseFloat(mc.replace(/[$B]/g, ""));
-          return mc.includes("B") ? value * 1000 : value;
-        };
-        comparison = getMcValue(a.marketCap) - getMcValue(b.marketCap);
-        break;
-      case "invested":
-        comparison = a.invested.usd - b.invested.usd;
-        break;
-      case "realizedPNL":
-        comparison = a.realizedPNL.usd - b.realizedPNL.usd;
-        break;
-      case "roi":
-        comparison = parseFloat(a.roi) - parseFloat(b.roi);
-        break;
-      case "trades":
-        comparison = a.trades.total - b.trades.total;
-        break;
-      case "holding":
-        const getHoldingMinutes = (time: string) => {
-          const [hours, minutes] = time.split("h ");
-          return parseInt(hours) * 60 + (minutes ? parseInt(minutes) : 0);
-        };
-        comparison = getHoldingMinutes(a.holding) - getHoldingMinutes(b.holding);
-        break;
-      case "avgBuy":
-        comparison = a.avgBuy.usd - b.avgBuy.usd;
-        break;
-      case "avgSell":
-        comparison = a.avgSell.usd - b.avgSell.usd;
-        break;
-      default:
-        comparison = 0;
-    }
-
-    return sortDirection === "asc" ? comparison : -comparison;
-  });
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
-      <div className="p-4 border-b border-secondary flex items-center justify-between">
-        <div className="flex gap-4">
-          <button className="px-4 py-2 bg-primary text-white rounded-full">
-            Trades
-          </button>
-          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
-            Tokens
-          </button>
-          <button className="px-4 py-2 text-muted-foreground hover:text-white transition-colors">
-            Groups
-          </button>
-        </div>
+      <div className="p-4 flex justify-between items-center border-b border-secondary">
+        <h2 className="text-xl font-semibold">Trades</h2>
         <div className="flex items-center gap-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search by token or contract address"
-              className="w-[300px] bg-secondary/50 rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-muted-foreground"
+              placeholder="Search tokens..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
+              className="pl-10 pr-4 py-2 bg-background rounded-lg border border-secondary"
             />
           </div>
-          <button className="p-2 hover:bg-secondary rounded-full transition-colors relative">
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full text-[10px] flex items-center justify-center">
-              2
-            </div>
-            <Share2 className="h-4 w-4" />
+          <button className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg">
+            <Share2 className="w-4 h-4" />
+            Share
           </button>
         </div>
       </div>
@@ -167,44 +74,26 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-sm text-muted-foreground border-b border-secondary">
-              <th className="p-4 text-left">
-                <TableHeader field="tokenName">Token</TableHeader>
+            <tr className="border-b border-secondary text-left">
+              <th className="p-4">Token</th>
+              <th className="p-4 cursor-pointer" onClick={() => handleSort("lastTrade")}>
+                Last Trade
+                {sortConfig.key === "lastTrade" && (
+                  sortConfig.direction === "asc" ? <ChevronUp className="inline ml-1" /> : <ChevronDown className="inline ml-1" />
+                )}
               </th>
-              <th className="p-4 text-left">
-                <TableHeader field="lastTrade">Last Trade</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="marketCap">MC</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="invested">Invested</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="realizedPNL">Realized PNL</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="roi">ROI</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="trades">Trades</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="holding">Holding</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="avgBuy">Avg Buy</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader field="avgSell">Avg Sell</TableHeader>
-              </th>
-              <th className="p-4 text-left">
-                <TableHeader>Share</TableHeader>
-              </th>
+              <th className="p-4">Market Cap</th>
+              <th className="p-4">Invested</th>
+              <th className="p-4">Realized PNL</th>
+              <th className="p-4">ROI</th>
+              <th className="p-4">Trades</th>
+              <th className="p-4">Holding</th>
+              <th className="p-4">Avg. Buy</th>
+              <th className="p-4">Avg. Sell</th>
             </tr>
           </thead>
           <tbody>
-            {sortedTrades.map((trade) => (
+            {filteredTrades.map((trade) => (
               <tr key={trade.id} className="border-b border-secondary">
                 <td className="p-4">
                   <div className="flex items-center gap-3">
@@ -225,83 +114,36 @@ const TradesSection = ({ trades, searchQuery, onSearchChange }: TradesSectionPro
                     </div>
                   </div>
                 </td>
-                <td className="p-4 text-muted-foreground">{trade.lastTrade}</td>
-                <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
+                <td className="p-4">{trade.lastTrade}</td>
+                <td className="p-4">{trade.marketCap}</td>
                 <td className="p-4">
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1">
-                      <span>{trade.invested.sol}</span>
-                      <img
-                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
-                        alt="SOL"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      ${formatNumber(trade.invested.usd)}
-                    </span>
+                  <div>{formatNumber(trade.invested.sol)} SOL</div>
+                  <div className="text-sm text-muted-foreground">
+                    ${formatNumber(trade.invested.usd)}
                   </div>
                 </td>
                 <td className="p-4">
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1">
-                      <span className={trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}>
-                        {trade.realizedPNL.percentage >= 0 ? "+" : ""}{trade.realizedPNL.sol}
-                      </span>
-                      <img
-                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
-                        alt="SOL"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      ${formatNumber(trade.realizedPNL.usd)}
-                    </span>
+                  <div>{formatNumber(trade.realizedPNL.sol)} SOL</div>
+                  <div className="text-sm text-muted-foreground">
+                    ${formatNumber(trade.realizedPNL.usd)}
                   </div>
                 </td>
-                <td className={`p-4 ${trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}`}>
-                  {trade.roi}
-                </td>
+                <td className="p-4">{trade.roi}</td>
                 <td className="p-4">
-                  <span className="text-green-400">{trade.trades.won}</span>
-                  <span className="text-muted-foreground mx-1">/</span>
-                  <span>{trade.trades.total}</span>
+                  {trade.trades.won}/{trade.trades.total}
                 </td>
-                <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                <td className="p-4">{trade.holding}</td>
                 <td className="p-4">
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1">
-                      <span>{trade.avgBuy.sol}</span>
-                      <img
-                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
-                        alt="SOL"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      ${formatNumber(trade.avgBuy.usd)}
-                    </span>
+                  <div>{formatNumber(trade.avgBuy.sol)} SOL</div>
+                  <div className="text-sm text-muted-foreground">
+                    ${formatNumber(trade.avgBuy.usd)}
                   </div>
                 </td>
                 <td className="p-4">
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1">
-                      <span>{trade.avgSell.sol}</span>
-                      <img
-                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"
-                        alt="SOL"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      ${formatNumber(trade.avgSell.usd)}
-                    </span>
+                  <div>{formatNumber(trade.avgSell.sol)} SOL</div>
+                  <div className="text-sm text-muted-foreground">
+                    ${formatNumber(trade.avgSell.usd)}
                   </div>
-                </td>
-                <td className="p-4">
-                  <button className="p-2 hover:bg-secondary rounded-full transition-colors">
-                    <Share2 className="h-4 w-4" />
-                  </button>
                 </td>
               </tr>
             ))}
