@@ -157,9 +157,9 @@ const Header = () => {
             </CarouselItem>
 
             <CarouselItem>
-              <Alert className="mb-4 bg-[#0EA5E9]/5 border-[#0EA5E9]/20 flex items-center justify-between animate-fade-in">
+              <Alert className="mb-4 bg-primary/5 border-primary/20 flex items-center justify-between animate-fade-in">
                 <div className="flex items-center gap-2">
-                  <Bot className="h-4 w-4 text-[#0EA5E9] animate-pulse" />
+                  <Bot className="h-4 w-4 text-primary animate-pulse" />
                   <AlertDescription className="text-white flex items-center gap-2">
                     <span>Supercharge your trading with</span>
                     <span className="font-medium">Nova Trading Bot</span>
@@ -169,7 +169,7 @@ const Header = () => {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={handleNovaClick}
-                    className="text-xs px-3 py-1.5 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30 text-[#0EA5E9] rounded-full transition-colors"
+                    className="text-xs px-3 py-1.5 bg-primary/20 hover:bg-primary/30 text-primary rounded-full transition-colors"
                   >
                     Trade on Nova
                   </button>
