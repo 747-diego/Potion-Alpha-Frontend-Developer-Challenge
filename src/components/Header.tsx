@@ -187,7 +187,7 @@ const Header = () => {
       )}
       <header className="glass-card px-6 py-4 flex items-center justify-between mb-8">
         <div className="flex items-center gap-8">
-          <img src="/lovable-uploads/240c5e93-4b1a-442b-bdf6-5dd94c16e354.png" alt="Potion Leaderboard" className="h-10" />
+          <img src="/lovable-uploads/72b222aa-ea1a-43f5-acb1-b2ce7eda0713.png" alt="Potion Leaderboard" className="h-10" />
           <nav>
             <ul className="flex gap-8">
               <li>
