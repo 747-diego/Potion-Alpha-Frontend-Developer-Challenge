@@ -68,7 +68,7 @@ export const mockTraders: Trader[] = [
     walletAddress: "3Abnfow5Lu7nXabFqetW3pXPntHiQ4ivpDfVz8ryMP32",
     profilePicture: "https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg",
     followers: 203,
-    twitterHandle: "@nomadengineer",
+    twitterHandle: "@_nomadengineer",
     tokens: 7,
     winRate: 44,
     trades: { won: 74, total: 147 },
