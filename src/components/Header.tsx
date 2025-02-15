@@ -185,7 +185,7 @@ const Header = () => {
           </CarouselContent>
         </Carousel>
       )}
-      <header className="glass-card px-8 py-6 flex items-center justify-between mb-8 rounded-2xl shadow-lg border border-white/10 hover:border-primary/20 transition-colors duration-300">
+      <header className="glass-card px-8 py-6 flex items-center justify-between mb-8 rounded-2xl border border-white/10 hover:border-primary/20 transition-colors duration-300 bg-card/80 shadow-[inset_-12px_-12px_24px_rgba(255,255,255,0.04),inset_12px_12px_24px_rgba(0,0,0,0.2)] hover:shadow-[inset_-8px_-8px_16px_rgba(255,255,255,0.06),inset_8px_8px_16px_rgba(0,0,0,0.2)]">
         <div className="flex items-center gap-10">
           <img 
             src="/lovable-uploads/72b222aa-ea1a-43f5-acb1-b2ce7eda0713.png" 
