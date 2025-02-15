@@ -17,7 +17,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           className="w-28 h-28 rounded-full border-2 border-primary/20 shrink-0"
         />
         <div className="flex flex-col justify-center min-w-0">
-          <h1 className="text-4xl font-bold mb-2 truncate">{trader.name}</h1>
+          <h1 className="font-bold mb-2 text-[clamp(24px,4vw,36px)] leading-tight break-words">{trader.name}</h1>
           <span className="text-muted-foreground text-base truncate">
             {formatWalletAddress(trader.walletAddress)}
           </span>
