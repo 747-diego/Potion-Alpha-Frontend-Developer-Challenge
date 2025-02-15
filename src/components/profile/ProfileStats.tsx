@@ -27,7 +27,7 @@ const ProfileStats = ({ stats }: ProfileStatsProps) => {
           <span className="text-lg font-semibold">Average Buy</span>
           <div className="flex flex-col items-end">
             <div className="flex items-center gap-2">
-              <span className="text-lg">{stats.averageBuy.sol}</span>
+              <span className="text-lg">{stats.averageBuy.sol.toFixed(2)}</span>
               <img 
                 src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
                 alt="SOL"
@@ -43,7 +43,7 @@ const ProfileStats = ({ stats }: ProfileStatsProps) => {
           <span className="text-lg font-semibold">Total Invested</span>
           <div className="flex flex-col items-end">
             <div className="flex items-center gap-2">
-              <span className="text-lg">100.2</span>
+              <span className="text-lg">100.20</span>
               <img 
                 src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
                 alt="SOL"
@@ -93,7 +93,7 @@ const ProfileStats = ({ stats }: ProfileStatsProps) => {
           <span className="text-lg font-semibold">Realized PNL</span>
           <div className="flex flex-col items-end">
             <div className="flex items-center gap-2">
-              <span className="text-lg text-green-400">+{stats.realizedPNL.sol}</span>
+              <span className="text-lg text-green-400">+{stats.realizedPNL.sol.toFixed(2)}</span>
               <img 
                 src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
                 alt="SOL"
