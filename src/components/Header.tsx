@@ -1,4 +1,4 @@
-import { Twitter, Sparkles, Share2, Trophy, Rocket } from "lucide-react";
+import { Twitter, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -50,6 +50,10 @@ const Header = () => {
       description: "Follow NomadEngineer for daily trading insights!",
       duration: 2000,
     });
+  };
+
+  const handleNovaClick = () => {
+    window.open("https://tradeonnova.net/", "_blank");
   };
 
   return (
@@ -141,6 +145,33 @@ const Header = () => {
                     className="text-xs px-3 py-1.5 bg-[#22c55e]/20 hover:bg-[#22c55e]/30 text-[#22c55e] rounded-full transition-colors"
                   >
                     View Profile
+                  </button>
+                  <button
+                    onClick={() => setShowAlert(false)}
+                    className="text-muted-foreground hover:text-white transition-colors text-xs"
+                  >
+                    Dismiss
+                  </button>
+                </div>
+              </Alert>
+            </CarouselItem>
+
+            <CarouselItem>
+              <Alert className="mb-4 bg-[#0EA5E9]/5 border-[#0EA5E9]/20 flex items-center justify-between animate-fade-in">
+                <div className="flex items-center gap-2">
+                  <Bot className="h-4 w-4 text-[#0EA5E9] animate-pulse" />
+                  <AlertDescription className="text-white flex items-center gap-2">
+                    <span>Supercharge your trading with</span>
+                    <span className="font-medium">Nova Trading Bot</span>
+                    <span>🤖</span>
+                  </AlertDescription>
+                </div>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={handleNovaClick}
+                    className="text-xs px-3 py-1.5 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30 text-[#0EA5E9] rounded-full transition-colors"
+                  >
+                    Trade on Nova
                   </button>
                   <button
                     onClick={() => setShowAlert(false)}
