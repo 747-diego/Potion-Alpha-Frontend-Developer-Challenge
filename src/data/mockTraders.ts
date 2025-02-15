@@ -6,7 +6,7 @@ export const mockTraders: Trader[] = [
     rank: 1,
     name: "Orangie",
     walletAddress: "6sdE9CXMKmigKKdLPzZJJwdEscaYbRdD4Sca",
-    profilePicture: "https://pbs.twimg.com/profile_images/1733745726933610496/0br00yGa_400x400.jpg",
+    profilePicture: "https://pbs.twimg.com/profile_images/1884094483127521280/g0VvBBaY_400x400.jpg",
     followers: 279000,
     twitterHandle: "@orangie",
     tokens: 104,
