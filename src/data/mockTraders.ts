@@ -36,7 +36,7 @@ export const mockTraders: Trader[] = [
     rank: 3,
     name: "Cupsey",
     walletAddress: "9nM4R7XpH2VxcB5kQnP8F2VzNjXpH2Vxc",
-    profilePicture: "https://pbs.twimg.com/profile_images/1744672377315483648/CoSvo-Tn_400x400.jpg",
+    profilePicture: "https://pbs.twimg.com/profile_images/1878584793249583104/WMH0-IGY_400x400.jpg",
     followers: 156000,
     twitterHandle: "@cryptoCups",
     tokens: 89,
