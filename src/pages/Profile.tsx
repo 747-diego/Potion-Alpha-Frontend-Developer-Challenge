@@ -12,18 +12,16 @@ import TradesSection from "../components/profile/TradesSection";
 import { toast } from "sonner";
 
 const Profile = () => {
-  const { id } = useParams(); // Get the wallet address from URL
+  const { id } = useParams();
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("daily");
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Find the trader by their wallet address
   const trader = mockTraders.find(t => t.walletAddress === id);
 
-  // If trader not found, show error
   if (!trader) {
     toast.error("Trader not found");
     return (
-      <div className="min-h-screen bg-background p-6">
+      <div className="min-h-screen bg-background p-4">
         <Header />
         <main className="max-w-[1400px] mx-auto">
           <div className="text-center mt-20">
@@ -35,7 +33,6 @@ const Profile = () => {
     );
   }
   
-  // Mock data for the statistics based on the current trader
   const stats = {
     tokens: trader.tokens,
     winRate: trader.winRate,
@@ -52,15 +49,11 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background p-3 sm:p-4">
       <Header />
       <main className="max-w-[1400px] mx-auto">
-        {/* Profile Overview Section */}
-        <div className="flex gap-8 mb-8">
-          {/* Left Column - Profile Info */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8">
           <ProfileHeader trader={trader} />
-
-          {/* Right Column - Stats */}
           <div className="flex-1 flex flex-col">
             <TimeFrameSelector 
               selectedTimeFrame={timeFrame}
@@ -69,8 +62,6 @@ const Profile = () => {
             <ProfileStats stats={stats} />
           </div>
         </div>
-
-        {/* Trades Section */}
         <TradesSection 
           trades={mockTrades}
           searchQuery={searchQuery}
@@ -82,4 +73,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
