@@ -1,10 +1,26 @@
+
 import { Trader } from '../types/trader';
 
 export const mockTraders: Trader[] = [
   {
     rank: 1,
-    name: "Cobie",
+    name: "Orangie",
     walletAddress: "6sdE9CXMKmigKKdLPzZJJwdEscaYbRdD4Sca",
+    profilePicture: "https://pbs.twimg.com/profile_images/1733745726933610496/0br00yGa_400x400.jpg",
+    followers: 279000,
+    twitterHandle: "@orangie",
+    tokens: 104,
+    winRate: 74,
+    trades: { won: 201, total: 321 },
+    avgBuy: 2346,
+    avgEntry: 212000,
+    avgHold: "32m",
+    realizedPNL: 23276
+  },
+  {
+    rank: 2,
+    name: "Cobie",
+    walletAddress: "3hF8P2WZzkL9WqbNvM4RQx7Y8SmKpRFkL9Wqb",
     profilePicture: "https://pbs.twimg.com/profile_images/1719696148985552896/7eZ7WiNt_400x400.jpg",
     followers: 774000,
     twitterHandle: "@cobie",
@@ -17,9 +33,9 @@ export const mockTraders: Trader[] = [
     realizedPNL: 52276
   },
   {
-    rank: 2,
+    rank: 3,
     name: "Cupsey",
-    walletAddress: "3hF8P2WZzkL9WqbNvM4RQx7Y8SmKpRFkL9Wqb",
+    walletAddress: "9nM4R7XpH2VxcB5kQnP8F2VzNjXpH2Vxc",
     profilePicture: "https://pbs.twimg.com/profile_images/1744672377315483648/CoSvo-Tn_400x400.jpg",
     followers: 156000,
     twitterHandle: "@cryptoCups",
@@ -32,9 +48,9 @@ export const mockTraders: Trader[] = [
     realizedPNL: 39845
   },
   {
-    rank: 3,
+    rank: 4,
     name: "DegenSpartan",
-    walletAddress: "9nM4R7XpH2VxcB5kQnP8F2VzNjXpH2Vxc",
+    walletAddress: "5kL2J8tN7YmpKvS4Q9X3ZtR2P8tN7Ymp",
     profilePicture: "https://pbs.twimg.com/profile_images/1478899646512062464/9bPSkPsR_400x400.jpg",
     followers: 258000,
     twitterHandle: "@DegenSpartan",
@@ -45,21 +61,6 @@ export const mockTraders: Trader[] = [
     avgEntry: 295000,
     avgHold: "38m",
     realizedPNL: 41567
-  },
-  {
-    rank: 4,
-    name: "TradeQueen",
-    walletAddress: "5kL2J8tN7YmpKvS4Q9X3ZtR2P8tN7Ymp",
-    profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=4",
-    followers: 82000,
-    twitterHandle: "@tradequeen",
-    tokens: 45,
-    winRate: 65,
-    trades: { won: 124, total: 191 },
-    avgBuy: 1756,
-    avgEntry: 168000,
-    avgHold: "39m",
-    realizedPNL: 17234
   },
   {
     rank: 5,
@@ -227,3 +228,4 @@ export const mockTraders: Trader[] = [
     realizedPNL: 18456
   }
 ];
+
