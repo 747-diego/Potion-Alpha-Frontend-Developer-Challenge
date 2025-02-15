@@ -185,12 +185,12 @@ const Header = () => {
           </CarouselContent>
         </Carousel>
       )}
-      <header className="glass-card px-6 py-4 flex items-center justify-between mb-8">
-        <div className="flex items-center gap-8">
+      <header className="glass-card px-8 py-6 flex items-center justify-between mb-8 rounded-2xl shadow-lg border border-white/10 hover:border-primary/20 transition-colors duration-300">
+        <div className="flex items-center gap-10">
           <img 
             src="/lovable-uploads/72b222aa-ea1a-43f5-acb1-b2ce7eda0713.png" 
             alt="Potion Leaderboard" 
-            className="h-16 animate-fade-in hover:scale-105 transition-transform duration-300" 
+            className="h-20 animate-fade-in hover:scale-105 transition-transform duration-300" 
           />
           <nav>
             <ul className="flex gap-8">
@@ -216,11 +216,11 @@ const Header = () => {
           <a href="#" className="text-muted-foreground hover:text-white transition-colors">
             <Twitter className="h-5 w-5" />
           </a>
-          <button className="glass-card p-0.5 rounded-full hover:bg-secondary/80 transition-colors">
+          <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
             <img 
               src={userProfile?.profilePicture} 
               alt="Profile" 
-              className="h-7 w-7 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
             />
           </button>
         </div>
