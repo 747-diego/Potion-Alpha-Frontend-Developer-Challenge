@@ -1,3 +1,4 @@
+
 import { Twitter, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -75,8 +76,7 @@ const Header = () => {
                 <div className="flex items-center gap-2">
                   <Bot className="h-4 w-4 text-primary animate-pulse" />
                   <AlertDescription className="text-white flex items-center gap-2">
-                    <span>Supercharge your trading with</span>
-                    <span className="font-medium">Nova Trading Bot</span>
+                    <span>Seamlessly trade any token on Solana with total control.</span>
                     <span>🤖</span>
                   </AlertDescription>
                 </div>
