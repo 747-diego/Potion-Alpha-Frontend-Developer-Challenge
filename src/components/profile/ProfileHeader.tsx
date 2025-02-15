@@ -14,11 +14,11 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
         <img 
           src={trader.profilePicture} 
           alt={trader.name} 
-          className="w-28 h-28 rounded-full border-2 border-primary/20"
+          className="w-28 h-28 rounded-full border-2 border-primary/20 shrink-0"
         />
-        <div className="flex flex-col justify-center">
-          <h1 className="text-4xl font-bold mb-2">{trader.name}</h1>
-          <span className="text-muted-foreground text-base">
+        <div className="flex flex-col justify-center min-w-0">
+          <h1 className="text-4xl font-bold mb-2 truncate">{trader.name}</h1>
+          <span className="text-muted-foreground text-base truncate">
             {formatWalletAddress(trader.walletAddress)}
           </span>
         </div>
@@ -28,7 +28,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between">
               <span className="text-lg">X Account</span>
-              <span>{trader.twitterHandle}</span>
+              <span className="truncate ml-2">{trader.twitterHandle}</span>
             </div>
             <div className="flex justify-end mt-auto">
               <span className="text-muted-foreground text-sm">{(trader.followers / 1000).toFixed(0)}K followers</span>
@@ -50,4 +50,3 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
 };
 
 export default ProfileHeader;
-
