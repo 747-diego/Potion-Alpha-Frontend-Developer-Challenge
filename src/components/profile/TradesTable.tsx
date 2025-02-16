@@ -2,7 +2,7 @@ import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { formatLastTradeTime } from "../../utils/tradeUtils";
 import { toast } from "sonner";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Share2 } from "lucide-react";
 
 interface TradesTableProps {
   trades: Trade[];
@@ -17,6 +17,13 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
     toast.success("Address copied to clipboard");
+  };
+
+  const handleShare = (trade: Trade) => {
+    const tweetText = `Check out this ${trade.tokenName} trade! ROI: ${trade.roi} 🚀`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    window.open(tweetUrl, '_blank');
+    toast.success("Opening X/Twitter share dialog");
   };
 
   const SortableHeader = ({ label, field }: { label: string; field: keyof Trade }) => (
@@ -55,6 +62,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
               <SortableHeader label="Holding" field="holding" />
               <SortableHeader label="Avg. Buy" field="avgBuy" />
               <SortableHeader label="Avg. Sell" field="avgSell" />
+              <th className="p-4 text-muted-foreground">Share</th>
             </tr>
           </thead>
           <tbody>
@@ -157,6 +165,14 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                       ${formatNumber(trade.avgSell.usd)}
                     </div>
                   </div>
+                </td>
+                <td className="p-4">
+                  <button
+                    className="p-2 rounded-full hover:bg-secondary transition-colors"
+                    onClick={() => handleShare(trade)}
+                  >
+                    <Share2 className="h-4 w-4" />
+                  </button>
                 </td>
               </tr>
             ))}
