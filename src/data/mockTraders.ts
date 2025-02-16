@@ -1,3 +1,4 @@
+
 import { Trader } from '../types/trader';
 
 export const mockTraders: Trader[] = [
@@ -37,7 +38,7 @@ export const mockTraders: Trader[] = [
     walletAddress: "9nM4R7XpH2VxcB5kQnP8F2VzNjXpH2Vxc",
     profilePicture: "https://pbs.twimg.com/profile_images/1878584793249583104/WMH0-IGY_400x400.jpg",
     followers: 156000,
-    twitterHandle: "@cryptoCups",
+    twitterHandle: "@Cupseyy",
     tokens: 89,
     winRate: 78,
     trades: { won: 198, total: 262 },
