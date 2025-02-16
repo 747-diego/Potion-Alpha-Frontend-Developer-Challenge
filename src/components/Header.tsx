@@ -74,8 +74,8 @@ const Header = () => {
   };
 
   const handlePrizes = () => {
-    toast("Coming Soon!", {
-      description: "The Prizes section will be available in the next update.",
+    toast("🪅 Coming Soon! 🎊", {
+      description: "The Prizes section will be available in the next update. 🎯🎉",
       duration: 2000,
     });
   };
