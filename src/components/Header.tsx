@@ -1,3 +1,4 @@
+
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
+import confetti from 'canvas-confetti';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -74,6 +76,14 @@ const Header = () => {
   };
 
   const handlePrizes = () => {
+    // Trigger confetti animation
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.1 },
+      colors: ['#8B5CF6', '#D946EF', '#22c55e', '#0EA5E9', '#F97316'],
+    });
+
     toast("🪅 Coming Soon! 🎊", {
       description: "The Prizes section will be available in the next update. 🎯🎉",
       duration: 2000,
