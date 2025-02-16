@@ -1,4 +1,4 @@
-import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
+import { X, Sparkles, Share2, Trophy, Rocket, Bot, Menu } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -7,10 +7,18 @@ import { Button } from "@/components/ui/button";
 import { useWallet } from "../contexts/WalletContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { useIsMobile } from "../hooks/use-mobile";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
 import confetti from 'canvas-confetti';
@@ -18,8 +26,10 @@ import confetti from 'canvas-confetti';
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { 
     isConnected, 
     isXConnected, 
@@ -47,6 +57,7 @@ const Header = () => {
   const handleProfileClick = () => {
     if (isConnected && isXConnected && userProfile) {
       navigate(`/profile/${userProfile.walletAddress}`);
+      setIsOpen(false);
     }
   };
 
@@ -102,6 +113,12 @@ const Header = () => {
   };
 
   const defaultProfilePicture = "https://api.dicebear.com/7.x/pixel-art/svg?seed=potion-trader&colors=8B5CF6,9B87F5,D946EF";
+
+  const navigationItems = [
+    { label: "Leaderboards", path: "/", onClick: () => setIsOpen(false) },
+    { label: "Learn", onClick: () => { handleLearn(); setIsOpen(false); } },
+    { label: "Prizes", onClick: () => { handlePrizes(); setIsOpen(false); } },
+  ];
 
   return (
     <div className="pt-2">
@@ -239,74 +256,155 @@ const Header = () => {
               className="h-20 animate-fade-in hover:scale-105 transition-transform duration-300" 
             />
           </Link>
-          <nav>
-            <ul className="flex gap-8">
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-white hover:text-primary transition-colors"
-                >
-                  Leaderboards
-                </Link>
-              </li>
-              <li>
-                <button 
-                  onClick={handleLearn}
-                  className="text-muted-foreground hover:text-white transition-colors"
-                >
-                  Learn
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={handlePrizes}
-                  className="text-muted-foreground hover:text-white transition-colors"
-                >
-                  Prizes
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="flex items-center gap-6">
-          {isConnected && (
-            isXConnected ? (
-              <a 
-                href="https://x.com/_NomadEngineer" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-muted-foreground hover:text-white transition-colors text-sm"
-              >
-                {xUsername}
-              </a>
-            ) : (
-              <Button 
-                onClick={connectX}
-                variant="outline" 
-                className="text-white"
-              >
-                Connect X
-              </Button>
-            )
+          {!isMobile && (
+            <nav>
+              <ul className="flex gap-8">
+                {navigationItems.map((item, index) => (
+                  <li key={index}>
+                    {item.path ? (
+                      <Link 
+                        to={item.path} 
+                        className="text-white hover:text-primary transition-colors"
+                        onClick={item.onClick}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <button 
+                        onClick={item.onClick}
+                        className="text-muted-foreground hover:text-white transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
           )}
-          {isConnected ? (
-            <button 
-              onClick={handleProfileClick}
-              className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
-            >
-              <img 
-                src={isXConnected ? userProfile?.profilePicture : defaultProfilePicture} 
-                alt="Profile" 
-                className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
-              />
-            </button>
+        </div>
+
+        <div className="flex items-center gap-6">
+          {isMobile ? (
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] bg-background/95 backdrop-blur-xl border-white/10">
+                <SheetHeader>
+                  <SheetTitle className="text-white">Navigation</SheetTitle>
+                </SheetHeader>
+                <div className="mt-8 flex flex-col gap-6">
+                  {navigationItems.map((item, index) => (
+                    <div key={index} className="px-2">
+                      {item.path ? (
+                        <Link 
+                          to={item.path} 
+                          className="text-lg text-white hover:text-primary transition-colors"
+                          onClick={item.onClick}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button 
+                          onClick={item.onClick}
+                          className="text-lg text-muted-foreground hover:text-white transition-colors"
+                        >
+                          {item.label}
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  
+                  <div className="border-t border-white/10 pt-6">
+                    {isConnected ? (
+                      <div className="flex flex-col gap-4">
+                        {isXConnected ? (
+                          <a 
+                            href="https://x.com/_NomadEngineer" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-muted-foreground hover:text-white transition-colors text-sm px-2"
+                          >
+                            {xUsername}
+                          </a>
+                        ) : (
+                          <Button 
+                            onClick={() => { connectX(); setIsOpen(false); }}
+                            variant="outline" 
+                            className="text-white"
+                          >
+                            Connect X
+                          </Button>
+                        )}
+                        <button 
+                          onClick={handleProfileClick}
+                          className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/10 transition-all duration-300"
+                        >
+                          <img 
+                            src={isXConnected ? userProfile?.profilePicture : defaultProfilePicture} 
+                            alt="Profile" 
+                            className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20" 
+                          />
+                          <span className="text-white">Profile</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <Button 
+                        onClick={() => { connectWallet(); setIsOpen(false); }}
+                        className="w-full bg-primary hover:bg-primary/90 text-white font-medium"
+                      >
+                        Connect Wallet
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           ) : (
-            <Button 
-              onClick={connectWallet}
-              className="bg-primary hover:bg-primary/90 text-white font-medium"
-            >
-              Connect Wallet
-            </Button>
+            <>
+              {isConnected && (
+                isXConnected ? (
+                  <a 
+                    href="https://x.com/_NomadEngineer" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-muted-foreground hover:text-white transition-colors text-sm"
+                  >
+                    {xUsername}
+                  </a>
+                ) : (
+                  <Button 
+                    onClick={connectX}
+                    variant="outline" 
+                    className="text-white"
+                  >
+                    Connect X
+                  </Button>
+                )
+              )}
+              {isConnected ? (
+                <button 
+                  onClick={handleProfileClick}
+                  className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                >
+                  <img 
+                    src={isXConnected ? userProfile?.profilePicture : defaultProfilePicture} 
+                    alt="Profile" 
+                    className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
+                  />
+                </button>
+              ) : (
+                <Button 
+                  onClick={connectWallet}
+                  className="bg-primary hover:bg-primary/90 text-white font-medium"
+                >
+                  Connect Wallet
+                </Button>
+              )}
+            </>
           )}
         </div>
       </header>
