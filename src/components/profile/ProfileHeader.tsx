@@ -1,6 +1,6 @@
 
 import { formatWalletAddress } from "../../utils/format";
-import { ExternalLink, Copy, X } from "lucide-react";
+import { ExternalLink, Copy } from "lucide-react";
 import { Trader } from "../../types/trader";
 import { useIsMobile } from "../../hooks/use-mobile";
 import { toast } from "sonner";
@@ -91,7 +91,11 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
             <span className="text-lg">Last Trade</span>
             <div className="flex items-center gap-2">
               <span>30 min ago</span>
-              <X className="h-4 w-4 text-primary" />
+              <img 
+                src="/lovable-uploads/cf4fb773-5d5a-4bb1-ab14-b6a2220eac76.png" 
+                alt="BullX" 
+                className="h-4 w-4"
+              />
             </div>
           </div>
         </div>
