@@ -1,6 +1,6 @@
-
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
+import { formatLastTradeTime } from "../../utils/tradeUtils";
 import { toast } from "sonner";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -79,7 +79,9 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     </div>
                   </div>
                 </td>
-                <td className="p-4 text-muted-foreground">{trade.lastTrade}</td>
+                <td className="p-4 text-muted-foreground">
+                  {formatLastTradeTime(trade.lastTrade)}
+                </td>
                 <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
                 <td className="p-4">
                   <div className="flex flex-col gap-1">

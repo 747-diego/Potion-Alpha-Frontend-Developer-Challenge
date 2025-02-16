@@ -4,9 +4,25 @@ import { TradeFilters } from "../components/profile/TradeFilterDrawer";
 
 export const getTimeInMinutes = (timeString: string): number => {
   const minutes = parseInt(timeString.match(/\d+/)?.[0] || "0");
+  if (timeString.includes("sec")) return 0;
   if (timeString.includes("min")) return minutes;
   if (timeString.includes("h")) return minutes * 60;
   return minutes;
+};
+
+export const formatLastTradeTime = (timeString: string): string => {
+  const match = timeString.match(/(\d+)\s*(sec|min|h)/);
+  if (!match) return timeString;
+
+  const value = parseInt(match[1]);
+  const unit = match[2];
+
+  if (unit === 'sec') {
+    return `${value} sec ago`;
+  } else if (unit === 'min') {
+    return `${value} min ago`;
+  }
+  return timeString;
 };
 
 export const sortTrades = (
