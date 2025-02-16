@@ -78,8 +78,8 @@ const AlertContent = ({
       <div className="flex items-center gap-2">
         <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} ${colorClasses.text} animate-pulse`} />
         <AlertDescription className="text-white flex items-center gap-2">
-          <span className={isMobile ? 'text-base' : 'text-lg'}>{description}</span>
-          {description.includes("Weekly Featured Trader") && (
+          <span className={isMobile ? 'text-xs' : 'text-lg'}>{description}</span>
+          {description.includes("Featured Trader") && (
             <Avatar className={`${isMobile ? 'h-5 w-5' : 'h-6 w-6'}`}>
               <AvatarImage src="https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg" />
               <AvatarFallback>NE</AvatarFallback>
@@ -163,7 +163,7 @@ export const AlertCarousel = ({
     },
     {
       icon: Trophy,
-      description: `Weekly Featured Trader: ${isMobile ? 'NomadEngineer' : 'NomadEngineer'}`,
+      description: isMobile ? "Featured Trader: Nomad Engineer" : "Weekly Featured Trader: NomadEngineer",
       actionLabel: "View Profile",
       onAction: handleSponsorClick,
       color: "[#22c55e]"
