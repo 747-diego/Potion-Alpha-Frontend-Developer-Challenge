@@ -5,7 +5,7 @@ const Loader = () => {
       <div className="relative w-48 h-48">
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/10 via-purple-500/5 to-purple-600/10 animate-pulse blur-md" />
         <img 
-          src="/lovable-uploads/6b510c44-79be-42a1-9624-21e432d6c0cc.png"
+          src="/lovable-uploads/dfc88021-e615-4486-aadb-d0f2f08c7401.png"
           alt="Loading..."
           className="w-full h-full relative z-10"
         />
