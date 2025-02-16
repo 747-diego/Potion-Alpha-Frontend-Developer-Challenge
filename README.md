@@ -1,5 +1,5 @@
 
-# Potion Alpha Frontend Developer Challenge
+# [Potion Alpha Frontend Developer Challenge](https://docs.potionvision.com/frontend-developer-challenge-2025-02)
 
 A real-time analytics dashboard for tracking and analyzing Solana trading activities. The application provides detailed insights into trading patterns, performance metrics, and trader profiles.
 
