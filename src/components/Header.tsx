@@ -1,3 +1,4 @@
+
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -70,8 +71,8 @@ const Header = () => {
   const handleLearn = () => {
     const newWindow = window.open("http://docs.potionleaderboard.com/", "_blank", "noopener,noreferrer");
     if (newWindow) {
-      newWindow.blur();
       window.focus();
+      newWindow.blur();
     }
     toast("📚 Documentation opened in new tab", {
       description: "Continue browsing while reading the docs!",
