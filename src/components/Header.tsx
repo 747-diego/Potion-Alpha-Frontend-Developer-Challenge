@@ -18,9 +18,13 @@ const Header = () => {
   const navigate = useNavigate();
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
-  const [isTwitterConnected, setIsTwitterConnected] = useState(false);
-  const [xUsername, setXUsername] = useState("@NomadEngineer");
-  const { isConnected, connectWallet } = useWallet();
+  const { 
+    isConnected, 
+    isXConnected, 
+    xUsername,
+    connectWallet, 
+    connectX 
+  } = useWallet();
   
   const autoplayOptions = Autoplay({
     delay: 3000,
@@ -38,17 +42,8 @@ const Header = () => {
     skipSnaps: false,
   }, [autoplayOptions]);
 
-  const handleConnectX = () => {
-    setIsTwitterConnected(true);
-    setXUsername("@NomadEngineer"); // In a real app, this would come from X/Twitter API
-    toast("🎉 X Connected!", {
-      description: "Your X account has been linked successfully!",
-      duration: 2000,
-    });
-  };
-
   const handleProfileClick = () => {
-    if (isConnected && isTwitterConnected && userProfile) {
+    if (isConnected && isXConnected && userProfile) {
       navigate(`/profile/${userProfile.walletAddress}`);
     }
   };
@@ -125,7 +120,7 @@ const Header = () => {
                 </div>
                 <div className="flex items-center gap-4">
                   <button
-                    onClick={handleConnectX}
+                    onClick={connectX}
                     className="text-xs px-3 py-1.5 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30 text-[#0EA5E9] rounded-full transition-colors"
                   >
                     Connect X
@@ -229,7 +224,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-6">
           {isConnected && (
-            isTwitterConnected ? (
+            isXConnected ? (
               <a 
                 href="https://x.com/_NomadEngineer" 
                 target="_blank" 
@@ -240,7 +235,7 @@ const Header = () => {
               </a>
             ) : (
               <Button 
-                onClick={handleConnectX}
+                onClick={connectX}
                 variant="outline" 
                 className="text-white"
               >
@@ -254,7 +249,7 @@ const Header = () => {
               className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
             >
               <img 
-                src={isTwitterConnected ? userProfile?.profilePicture : defaultProfilePicture} 
+                src={isXConnected ? userProfile?.profilePicture : defaultProfilePicture} 
                 alt="Profile" 
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
               />

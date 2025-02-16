@@ -6,15 +6,21 @@ import { toast } from "sonner";
 
 interface WalletContextType {
   isConnected: boolean;
+  isXConnected: boolean;
+  xUsername: string;
   connectWallet: () => void;
   disconnectWallet: () => void;
   showConnectModal: () => void;
+  connectX: () => void;
+  disconnectX: () => void;
 }
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
 export function WalletProvider({ children }: { children: ReactNode }) {
   const [isConnected, setIsConnected] = useState(false);
+  const [isXConnected, setIsXConnected] = useState(false);
+  const [xUsername, setXUsername] = useState("@NomadEngineer");
   const [showModal, setShowModal] = useState(false);
 
   const connectWallet = () => {
@@ -25,7 +31,24 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
   const disconnectWallet = () => {
     setIsConnected(false);
+    setIsXConnected(false);
+    setXUsername("");
     toast.info("Wallet disconnected");
+  };
+
+  const connectX = () => {
+    setIsXConnected(true);
+    setXUsername("@NomadEngineer");
+    toast("🎉 X Connected!", {
+      description: "Your X account has been linked successfully!",
+      duration: 2000,
+    });
+  };
+
+  const disconnectX = () => {
+    setIsXConnected(false);
+    setXUsername("");
+    toast.info("X account disconnected");
   };
 
   const showConnectModal = () => {
@@ -36,9 +59,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     <WalletContext.Provider 
       value={{ 
         isConnected, 
+        isXConnected,
+        xUsername,
         connectWallet, 
         disconnectWallet,
-        showConnectModal 
+        showConnectModal,
+        connectX,
+        disconnectX
       }}
     >
       {children}
