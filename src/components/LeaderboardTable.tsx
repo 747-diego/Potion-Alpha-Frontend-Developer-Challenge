@@ -1,3 +1,4 @@
+
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -62,8 +63,8 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
   };
 
   const formatMobileName = (name: string) => {
-    if (isMobile && name.length > 6) {
-      return `${name.slice(0, 6)}...`;
+    if (isMobile && name.length > 5) {
+      return `${name.slice(0, 5)}...`;
     }
     return name;
   };
