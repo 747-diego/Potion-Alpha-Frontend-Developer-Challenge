@@ -1,4 +1,3 @@
-
 import { Trade } from "../types/trade";
 
 const tokenInfo = [
