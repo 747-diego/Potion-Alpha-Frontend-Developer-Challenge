@@ -16,6 +16,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
+  const defaultProfile = mockTraders.find(trader => trader.name === "CryptoWizard");
   const [showAlert, setShowAlert] = useState(true);
   const [isTwitterConnected, setIsTwitterConnected] = useState(false);
   const { isConnected, connectWallet } = useWallet();
@@ -237,7 +238,7 @@ const Header = () => {
           {isConnected ? (
             <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <img 
-                src={isTwitterConnected ? userProfile?.profilePicture : "/placeholder.svg"} 
+                src={isTwitterConnected ? userProfile?.profilePicture : defaultProfile?.profilePicture} 
                 alt="Profile" 
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
               />
