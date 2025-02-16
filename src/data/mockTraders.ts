@@ -1,3 +1,4 @@
+
 import { Trader } from '../types/trader';
 
 export const mockTraders: Trader[] = [
@@ -230,7 +231,7 @@ export const mockTraders: Trader[] = [
     rank: 16,
     name: "traderluck",
     walletAddress: "8mN7YmpKvS4Q9X3ZtR2L9P2XpKvS4Q",
-    profilePicture: "/lovable-uploads/240c5e93-4b1a-442b-bdf6-5dd94c16e354.png",
+    profilePicture: "https://images.unsplash.com/photo-1439886183900-e79ec0057170",
     followers: 32000,
     twitterHandle: "@traderluck",
     tokens: 29,
@@ -242,3 +243,4 @@ export const mockTraders: Trader[] = [
     realizedPNL: 11234
   }
 ];
+
