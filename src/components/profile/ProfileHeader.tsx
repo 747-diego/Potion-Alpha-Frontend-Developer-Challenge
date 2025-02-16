@@ -17,14 +17,27 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
       : followers.toString();
   };
 
+  const getTwitterUrl = (handle: string) => {
+    // Remove @ symbol if present
+    const cleanHandle = handle.startsWith('@') ? handle.substring(1) : handle;
+    return `https://x.com/${cleanHandle}`;
+  };
+
   return (
     <div className={`${isMobile ? 'w-full' : 'w-[360px]'} flex flex-col`}>
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8">
-        <img 
-          src={trader.profilePicture} 
-          alt={trader.name} 
-          className="w-24 h-24 sm:w-24 sm:h-24 rounded-full border-2 border-primary/20 shrink-0 mx-auto sm:mx-0"
-        />
+        <a 
+          href={getTwitterUrl(trader.twitterHandle)} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block cursor-pointer transition-opacity hover:opacity-80"
+        >
+          <img 
+            src={trader.profilePicture} 
+            alt={trader.name} 
+            className="w-24 h-24 sm:w-24 sm:h-24 rounded-full border-2 border-primary/20 shrink-0 mx-auto sm:mx-0"
+          />
+        </a>
         <div className="flex flex-col justify-center min-w-0 text-center sm:text-left">
           <h1 className="font-bold mb-2 text-[length:var(--dynamic-text-size,36px)] whitespace-nowrap px-2 sm:px-0"
               style={{
