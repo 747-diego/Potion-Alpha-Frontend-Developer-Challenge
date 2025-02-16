@@ -18,6 +18,7 @@ const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
   const [isTwitterConnected, setIsTwitterConnected] = useState(false);
+  const [xUsername, setXUsername] = useState("@NomadEngineer");
   const { isConnected, connectWallet } = useWallet();
   
   const autoplayOptions = Autoplay({
@@ -38,6 +39,7 @@ const Header = () => {
 
   const handleConnectX = () => {
     setIsTwitterConnected(true);
+    setXUsername("@NomadEngineer"); // In a real app, this would come from X/Twitter API
     toast("🎉 X Connected!", {
       description: "Your X account has been linked successfully!",
       duration: 2000,
@@ -221,8 +223,8 @@ const Header = () => {
         <div className="flex items-center gap-6">
           {isConnected && (
             isTwitterConnected ? (
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                <X className="h-5 w-5" />
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">
+                {xUsername}
               </a>
             ) : (
               <Button 
