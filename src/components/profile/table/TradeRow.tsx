@@ -34,7 +34,7 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
 
   return (
     <tr className="border-b border-secondary">
-      <td className="sticky left-0 bg-background/80 backdrop-blur-sm z-10 p-4">
+      <td className={`${isMobile ? 'sticky left-0 bg-background/80 backdrop-blur-sm' : ''} p-4`}>
         <div className="flex items-center gap-3">
           <img
             src={trade.tokenImage}
@@ -144,8 +144,8 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
       )}
       <td className="p-4">
         <button
-          className="p-2 rounded-full hover:bg-secondary transition-colors"
           onClick={() => handleShare(trade)}
+          className="p-2 rounded-full hover:bg-secondary transition-colors"
         >
           <Share2 className="h-4 w-4" />
         </button>
