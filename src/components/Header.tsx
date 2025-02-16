@@ -216,9 +216,11 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex items-center gap-6">
-          <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-            <Twitter className="h-5 w-5" />
-          </a>
+          {isConnected && (
+            <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+              <Twitter className="h-5 w-5" />
+            </a>
+          )}
           {isConnected ? (
             <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <img 
