@@ -72,6 +72,7 @@ const Header = () => {
     const newWindow = window.open("http://docs.potionleaderboard.com/", "_blank", "noopener,noreferrer");
     if (newWindow) {
       window.focus();
+      window.blur();
       newWindow.blur();
     }
     toast("📚 Documentation opened in new tab", {
