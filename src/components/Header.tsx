@@ -16,7 +16,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
-  const defaultProfile = mockTraders.find(trader => trader.name === "CryptoWizard");
+  const defaultProfile = mockTraders.find(trader => trader.name === "Orangie"); // Changed to use an existing trader
   const [showAlert, setShowAlert] = useState(true);
   const [isTwitterConnected, setIsTwitterConnected] = useState(false);
   const { isConnected, connectWallet } = useWallet();
