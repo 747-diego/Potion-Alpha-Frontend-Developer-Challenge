@@ -231,7 +231,7 @@ export const mockTraders: Trader[] = [
     rank: 16,
     name: "traderluck",
     walletAddress: "8mN7YmpKvS4Q9X3ZtR2L9P2XpKvS4Q",
-    profilePicture: "/lovable-uploads/59b69e8a-784c-4524-a98c-1b877d871640.png",
+    profilePicture: "/lovable-uploads/771e0a34-22ee-44b8-85be-14cee233aa64.png",
     followers: 32000,
     twitterHandle: "@traderluck",
     tokens: 29,
