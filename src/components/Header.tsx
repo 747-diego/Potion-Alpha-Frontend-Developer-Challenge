@@ -67,8 +67,8 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    toast("Coming Soon!", {
-      description: "The Learn section will be available in the next update.",
+    toast("📚 Coming Soon! 🎓", {
+      description: "The Learn section will be available in the next update. 🧠✏️",
       duration: 2000,
     });
   };
