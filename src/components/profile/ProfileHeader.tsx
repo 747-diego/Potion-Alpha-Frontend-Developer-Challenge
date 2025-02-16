@@ -21,9 +21,20 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
   const getTwitterUrl = (handle: string) => {
     // Remove @ symbol if present
     const cleanHandle = handle.startsWith('@') ? handle.substring(1) : handle;
-    return isMobile 
-      ? `twitter://user?screen_name=${cleanHandle}`
-      : `https://x.com/${cleanHandle}`;
+    
+    // Check if running on iOS or Android
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipad|ipod/.test(userAgent);
+    const isAndroid = /android/.test(userAgent);
+    
+    if (isMobile) {
+      if (isIOS) {
+        return `twitter://user?screen_name=${cleanHandle}`;
+      } else if (isAndroid) {
+        return `intent://user?screen_name=${cleanHandle}#Intent;package=com.twitter.android;scheme=twitter;end`;
+      }
+    }
+    return `https://x.com/${cleanHandle}`;
   };
 
   const handleCopyAddress = async () => {
@@ -37,6 +48,13 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
     }
   };
 
+  const handleTwitterClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault();
+      window.location.href = getTwitterUrl(trader.twitterHandle);
+    }
+  };
+
   return (
     <div className={`${isMobile ? 'w-full' : 'w-[360px]'} flex flex-col`}>
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8">
@@ -44,6 +62,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           href={getTwitterUrl(trader.twitterHandle)} 
           target="_blank" 
           rel="noopener noreferrer"
+          onClick={handleTwitterClick}
           className="block cursor-pointer transition-opacity hover:opacity-80"
         >
           <img 
@@ -74,6 +93,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           href={getTwitterUrl(trader.twitterHandle)}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleTwitterClick}
           className="block glass-card p-4 h-[76px] rounded-lg cursor-pointer hover:bg-primary/5 transition-colors group"
         >
           <div className="flex items-center justify-between h-full">
