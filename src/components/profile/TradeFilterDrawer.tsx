@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sheet,
   SheetContent,
@@ -34,6 +34,18 @@ const defaultFilters: TradeFilters = {
 export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
   const [filters, setFilters] = useState<TradeFilters>(defaultFilters);
   const [editingValue, setEditingValue] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenTradeFilters = () => {
+      setOpen(true);
+    };
+
+    window.addEventListener('openTradeFilters', handleOpenTradeFilters);
+    return () => {
+      window.removeEventListener('openTradeFilters', handleOpenTradeFilters);
+    };
+  }, []);
 
   const handleFilterChange = (key: keyof TradeFilters, value: number | number[]) => {
     const newFilters = {
@@ -129,7 +141,7 @@ export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
   );
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-white/10 text-muted-foreground hover:text-white transition-colors relative">
           <SlidersHorizontal className="h-4 w-4" />

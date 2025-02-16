@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sheet,
   SheetContent,
@@ -40,6 +39,18 @@ const defaultFilters: Filters = {
 export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [editingValue, setEditingValue] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenLeaderboardFilters = () => {
+      setOpen(true);
+    };
+
+    window.addEventListener('openLeaderboardFilters', handleOpenLeaderboardFilters);
+    return () => {
+      window.removeEventListener('openLeaderboardFilters', handleOpenLeaderboardFilters);
+    };
+  }, []);
 
   const handleFilterChange = (key: keyof Filters, value: number | number[]) => {
     const newFilters = {
@@ -139,7 +150,7 @@ export function FilterDrawer({ onFiltersChange }: FilterDrawerProps) {
   );
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-white/10 text-muted-foreground hover:text-white transition-colors relative">
           <SlidersHorizontal className="h-4 w-4" />
