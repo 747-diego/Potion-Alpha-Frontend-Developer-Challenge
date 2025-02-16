@@ -52,7 +52,7 @@ const Profile = () => {
     <div className="min-h-screen bg-background p-3 sm:p-4">
       <Header />
       <main className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mb-8">
           <ProfileHeader trader={trader} />
           <div className="flex-1 flex flex-col">
             <TimeFrameSelector 

@@ -1,4 +1,3 @@
-
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { formatLastTradeTime } from "../../utils/tradeUtils";
@@ -7,6 +6,7 @@ import { ChevronDown, ChevronUp, Share2 } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { mockTraders } from "../../data/mockTraders";
 import { useIsMobile } from "../../hooks/use-mobile";
+import { useEffect, useState } from "react";
 
 interface TradesTableProps {
   trades: Trade[];
@@ -21,6 +21,20 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
   const { id } = useParams();
   const trader = mockTraders.find(t => t.walletAddress === id);
   const isMobile = useIsMobile();
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsCompact(window.innerWidth < 1150);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
@@ -55,9 +69,6 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
     </th>
   );
 
-  // Mobile view columns to show
-  const mobileColumns = ['tokenName', 'invested', 'roi'];
-
   return (
     <div className="glass-card rounded-lg overflow-hidden">
       <div className="overflow-x-auto">
@@ -66,14 +77,18 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
             <tr className="border-b border-secondary text-left text-muted-foreground">
               <SortableHeader label="Token" field="tokenName" />
               {!isMobile && <SortableHeader label="Last Trade" field="lastTrade" />}
-              {!isMobile && <SortableHeader label="Market Cap" field="marketCap" />}
+              {!isCompact && <SortableHeader label="Market Cap" field="marketCap" />}
               <SortableHeader label="Invested" field="invested" />
-              {!isMobile && <SortableHeader label="Realized PNL" field="realizedPNL" />}
+              {!isCompact && <SortableHeader label="Realized PNL" field="realizedPNL" />}
               <SortableHeader label="ROI" field="roi" />
-              {!isMobile && (
+              {!isCompact && (
                 <>
                   <SortableHeader label="Trades" field="trades" />
                   <SortableHeader label="Holding" field="holding" />
+                </>
+              )}
+              {!isCompact && !isMobile && (
+                <>
                   <SortableHeader label="Avg. Buy" field="avgBuy" />
                   <SortableHeader label="Avg. Sell" field="avgSell" />
                 </>
@@ -108,7 +123,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     {formatLastTradeTime(trade.lastTrade)}
                   </td>
                 )}
-                {!isMobile && (
+                {!isCompact && (
                   <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
                 )}
                 <td className="p-4">
@@ -126,7 +141,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     </div>
                   </div>
                 </td>
-                {!isMobile && (
+                {!isCompact && (
                   <td className="p-4">
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1">
@@ -152,7 +167,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     {trade.roi}
                   </span>
                 </td>
-                {!isMobile && (
+                {!isCompact && (
                   <>
                     <td className="p-4">
                       <span className="text-green-400">{trade.trades.won}</span>
@@ -160,6 +175,10 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                       <span>{trade.trades.total}</span>
                     </td>
                     <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                  </>
+                )}
+                {!isCompact && !isMobile && (
+                  <>
                     <td className="p-4">
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-1 text-[#14F195]">
