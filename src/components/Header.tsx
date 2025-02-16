@@ -17,6 +17,7 @@ import Autoplay from 'embla-carousel-autoplay';
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
+  const [isTwitterConnected, setIsTwitterConnected] = useState(false);
   const { isConnected, connectWallet } = useWallet();
   
   const autoplayOptions = Autoplay({
@@ -36,8 +37,9 @@ const Header = () => {
   }, [autoplayOptions]);
 
   const handleConnectX = () => {
-    toast("🎉 Coming Soon!", {
-      description: "X account integration will be available shortly!",
+    setIsTwitterConnected(true);
+    toast("🎉 Twitter Connected!", {
+      description: "Your Twitter account has been linked successfully!",
       duration: 2000,
     });
   };
@@ -217,14 +219,25 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-6">
           {isConnected && (
-            <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-              <Twitter className="h-5 w-5" />
-            </a>
+            isTwitterConnected ? (
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+            ) : (
+              <Button 
+                onClick={handleConnectX}
+                variant="outline" 
+                className="text-white gap-2"
+              >
+                <Twitter className="h-4 w-4" />
+                Connect Twitter
+              </Button>
+            )
           )}
           {isConnected ? (
             <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <img 
-                src={userProfile?.profilePicture} 
+                src={isTwitterConnected ? userProfile?.profilePicture : "/placeholder.svg"} 
                 alt="Profile" 
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
               />
