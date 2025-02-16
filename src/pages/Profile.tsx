@@ -10,6 +10,8 @@ import TimeFrameSelector from "../components/profile/TimeFrameSelector";
 import ProfileStats from "../components/profile/ProfileStats";
 import TradesSection from "../components/profile/TradesSection";
 import { toast } from "sonner";
+import { Share2 } from "lucide-react";
+import { Button } from "../components/ui/button";
 
 const Profile = () => {
   const { id } = useParams();
@@ -32,6 +34,13 @@ const Profile = () => {
       </div>
     );
   }
+
+  const handleShare = () => {
+    const tweetText = `Check out ${trader.name}'s trading profile! Win Rate: ${trader.winRate}% 🚀`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    window.open(tweetUrl, '_blank');
+    toast.success("Opening X/Twitter share dialog");
+  };
   
   const stats = {
     tokens: trader.tokens,
@@ -55,10 +64,21 @@ const Profile = () => {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8">
           <ProfileHeader trader={trader} />
           <div className="flex-1 flex flex-col">
-            <TimeFrameSelector 
-              selectedTimeFrame={timeFrame}
-              onTimeFrameChange={setTimeFrame}
-            />
+            <div className="flex justify-between items-center mb-4">
+              <TimeFrameSelector 
+                selectedTimeFrame={timeFrame}
+                onTimeFrameChange={setTimeFrame}
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleShare}
+                className="gap-2"
+              >
+                <Share2 className="h-4 w-4" />
+                Share
+              </Button>
+            </div>
             <ProfileStats stats={stats} />
           </div>
         </div>
