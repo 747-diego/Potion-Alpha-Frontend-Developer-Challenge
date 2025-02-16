@@ -149,7 +149,7 @@ export const AlertCarousel = ({
     {
       icon: Rocket,
       description: `New Feature: Smart Filtering ${isMobile ? '' : '🎯 Find what matters most!'}`,
-      actionLabel: "Try",
+      actionLabel: "Try Feature",
       onAction: handleNewFeature,
       color: "[#F97316]"
     },
