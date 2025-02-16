@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -141,6 +140,19 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
     return sortDirection === "asc" ? comparison : -comparison;
   });
 
+  const getRankStyle = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return "bg-[#F97316] text-white"; // Gold
+      case 2:
+        return "bg-[#9F9EA1] text-white"; // Silver
+      case 3:
+        return "bg-[#CD7F32] text-white"; // Bronze
+      default:
+        return "bg-secondary text-muted-foreground";
+    }
+  };
+
   return (
     <div className="glass-card rounded-lg overflow-hidden">
       <div className={`overflow-x-auto ${isMobile ? 'scrollbar-hide' : ''}`}>
@@ -184,7 +196,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
             {sortedTraders.map((trader) => (
               <tr key={trader.rank} className="animate-fade-in">
                 <td className={`${isMobile ? 'sticky left-0 bg-background/80 backdrop-blur-sm z-10' : ''}`}>
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary text-sm">
+                  <span className={`flex items-center justify-center w-6 h-6 rounded-full ${getRankStyle(trader.rank)} transition-colors`}>
                     {trader.rank}
                   </span>
                 </td>
