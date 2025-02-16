@@ -27,7 +27,7 @@ const Header = () => {
     connectWallet, 
     connectX 
   } = useWallet();
-  
+
   const autoplayOptions = Autoplay({
     delay: 3000,
     playOnInit: true,
@@ -65,10 +65,13 @@ const Header = () => {
   };
 
   const handleSponsorClick = () => {
-    toast("🏆 Featured Trader!", {
-      description: "Follow NomadEngineer for daily trading insights!",
-      duration: 2000,
-    });
+    if (userProfile) {
+      navigate(`/profile/${userProfile.walletAddress}`);
+      toast("🏆 Featured Trader!", {
+        description: "Follow NomadEngineer for daily trading insights!",
+        duration: 2000,
+      });
+    }
   };
 
   const handleNovaClick = () => {
