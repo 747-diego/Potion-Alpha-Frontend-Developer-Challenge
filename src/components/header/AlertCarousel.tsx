@@ -93,7 +93,7 @@ export const AlertCarousel = ({
   const alerts = [
     {
       icon: Bot,
-      description: "The Fastest All-In-One Trading Platform on Solana",
+      description: isMobile ? "Trade on Nova" : "The Fastest All-In-One Trading Platform on Solana",
       actionLabel: isMobile ? "Trade" : "Trade on Nova",
       onAction: handleNovaClick,
       color: "primary"
