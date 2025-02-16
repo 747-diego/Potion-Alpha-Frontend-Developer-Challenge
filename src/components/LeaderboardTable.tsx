@@ -1,3 +1,4 @@
+
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -193,7 +194,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                         onClick={(e) => copyWallet(e, trader.walletAddress)}
                         className="text-muted-foreground hover:text-white text-sm transition-colors"
                       >
-                        {formatWalletAddress(trader.walletAddress)}
+                        {formatWalletAddress(trader.walletAddress, isMobile)}
                       </button>
                     </div>
                   </div>

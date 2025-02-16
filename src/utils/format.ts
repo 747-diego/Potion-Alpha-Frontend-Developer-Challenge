@@ -18,7 +18,7 @@ export const formatUSD = (num: number) => {
   }).format(num);
 };
 
-export const formatWalletAddress = (address: string) => {
+export const formatWalletAddress = (address: string, isMobile = false) => {
   if (address.includes('...')) return address;
-  return `${address.slice(0, 6)}...${address.slice(-6)}`;
+  return isMobile ? `...${address.slice(-3)}` : `${address.slice(0, 6)}...${address.slice(-6)}`;
 };
