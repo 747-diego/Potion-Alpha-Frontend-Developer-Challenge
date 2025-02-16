@@ -1,4 +1,3 @@
-
 # Potion Leaderboard
 
 ![Potion Leaderboard Hero Image](public/og-image.png)
@@ -282,4 +281,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 > 💡 **Note**: For all screenshots, use high-quality images that clearly demonstrate the feature or component being discussed. Recommended locations are marked with "Screenshot Suggestion" comments throughout the README.
-
