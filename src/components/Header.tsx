@@ -1,4 +1,3 @@
-
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -69,10 +68,7 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    toast("📚 Coming Soon! 🎓", {
-      description: "The Learn section will be available in the next update. 🧠✏️",
-      duration: 2000,
-    });
+    window.open("http://docs.potionleaderboard.com/", "_blank");
   };
 
   const handlePrizes = () => {
