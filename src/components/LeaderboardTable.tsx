@@ -1,3 +1,4 @@
+
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -50,6 +51,13 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
         setSortDirection("asc");
       }
     });
+  };
+
+  const formatEntryValue = (value: number) => {
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(0)}k`;
+    }
+    return value.toString();
   };
 
   const TableHeader = ({
@@ -217,7 +225,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                   </div>
                 </div>
               </td>
-              <td>{formatUSD(trader.avgEntry)}</td>
+              <td>{formatEntryValue(trader.avgEntry)}</td>
               <td>{trader.avgHold}</td>
               <td>
                 <div className="flex flex-col gap-1">
@@ -254,3 +262,4 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
 };
 
 export default LeaderboardTable;
+
