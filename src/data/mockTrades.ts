@@ -1,11 +1,12 @@
+
 import { Trade } from "../types/trade";
 
 const tokenInfo = [
   {
-    name: "Bonk",
-    symbol: "BONK",
-    image: "https://cryptologos.cc/logos/bonk-bonk-logo.png",
-    contract: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    name: "GIGA",
+    symbol: "GIGA",
+    image: "https://i.imgur.com/Nwrdw8E.png",
+    contract: "GiGAxxBkEuqE6PsQvHotezNha7M9kBvmDn4njUkGe86B",
     marketCap: "$234.5M"
   },
   {
