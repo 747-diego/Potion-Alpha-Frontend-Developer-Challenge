@@ -68,7 +68,15 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    window.open("http://docs.potionleaderboard.com/", "_blank");
+    const newWindow = window.open("http://docs.potionleaderboard.com/", "_blank", "noopener,noreferrer");
+    if (newWindow) {
+      newWindow.blur();
+      window.focus();
+    }
+    toast("📚 Documentation opened in new tab", {
+      description: "Continue browsing while reading the docs!",
+      duration: 2000,
+    });
   };
 
   const handlePrizes = () => {
