@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -60,6 +59,13 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
       return `${(value / 1000).toFixed(0)}k`;
     }
     return value.toString();
+  };
+
+  const formatMobileName = (name: string) => {
+    if (isMobile && name.length > 6) {
+      return `${name.slice(0, 6)}...`;
+    }
+    return name;
   };
 
   const TableHeader = ({
@@ -188,7 +194,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                         className="font-medium cursor-pointer hover:text-primary transition-colors whitespace-nowrap"
                         onClick={() => navigateToProfile(trader.walletAddress)}
                       >
-                        {trader.name}
+                        {formatMobileName(trader.name)}
                       </div>
                       <button
                         onClick={(e) => copyWallet(e, trader.walletAddress)}
