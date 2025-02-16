@@ -52,14 +52,16 @@ const Profile = () => {
     <div className="min-h-screen bg-background p-3 sm:p-4">
       <Header />
       <main className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mb-8">
-          <ProfileHeader trader={trader} />
-          <div className="flex-1 flex flex-col">
-            <TimeFrameSelector 
-              selectedTimeFrame={timeFrame}
-              onTimeFrameChange={setTimeFrame}
-            />
-            <ProfileStats stats={stats} />
+        <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 mb-8">
+          <div className="flex flex-col lg:flex-row xl:flex-col gap-4 lg:gap-6">
+            <ProfileHeader trader={trader} />
+            <div className="flex-1 xl:flex-none flex flex-col min-w-0">
+              <TimeFrameSelector 
+                selectedTimeFrame={timeFrame}
+                onTimeFrameChange={setTimeFrame}
+              />
+              <ProfileStats stats={stats} />
+            </div>
           </div>
         </div>
         <TradesSection 
