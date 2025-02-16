@@ -1,4 +1,3 @@
-
 import { Twitter, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -16,7 +15,6 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
-  const defaultProfile = mockTraders.find(trader => trader.name === "Orangie"); // Changed to use an existing trader
   const [showAlert, setShowAlert] = useState(true);
   const [isTwitterConnected, setIsTwitterConnected] = useState(false);
   const { isConnected, connectWallet } = useWallet();
@@ -238,7 +236,7 @@ const Header = () => {
           {isConnected ? (
             <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <img 
-                src={isTwitterConnected ? userProfile?.profilePicture : defaultProfile?.profilePicture} 
+                src={isTwitterConnected ? userProfile?.profilePicture : "/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png"} 
                 alt="Profile" 
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
               />
