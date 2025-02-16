@@ -82,7 +82,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
               <SortableHeader label="Realized PNL" field="realizedPNL" />
               <SortableHeader label="ROI" field="roi" />
               <SortableHeader label="Trades" field="trades" />
-              <SortableHeader label="Holding" field="holding" />
+              {!hideAdvancedColumns && <SortableHeader label="Holding" field="holding" />}
               {!hideAdvancedColumns && (
                 <>
                   <SortableHeader label="Avg. Buy" field="avgBuy" />
@@ -164,7 +164,9 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                   <span className="text-muted-foreground">/</span>
                   <span>{trade.trades.total}</span>
                 </td>
-                <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                {!hideAdvancedColumns && (
+                  <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                )}
                 {!hideAdvancedColumns && (
                   <>
                     <td className="p-4">
