@@ -231,7 +231,7 @@ export const mockTraders: Trader[] = [
     rank: 16,
     name: "traderluck",
     walletAddress: "8mN7YmpKvS4Q9X3ZtR2L9P2XpKvS4Q",
-    profilePicture: "https://avatars.dicebear.com/api/pixel-art/traderluck.svg",
+    profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=traderluck",
     followers: 32000,
     twitterHandle: "@traderluck",
     tokens: 29,
