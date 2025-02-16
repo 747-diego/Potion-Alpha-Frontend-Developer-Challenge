@@ -257,7 +257,10 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                 </div>
               </td>
               <td>
-                <button className="p-2 rounded-full hover:bg-secondary transition-colors">
+                <button 
+                  className="p-2 rounded-full hover:bg-secondary transition-colors"
+                  onClick={(e) => handleShare(e, trader)}
+                >
                   <Share2 className="h-4 w-4" />
                 </button>
               </td>
