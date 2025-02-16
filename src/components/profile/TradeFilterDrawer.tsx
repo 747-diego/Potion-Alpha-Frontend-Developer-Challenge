@@ -14,6 +14,7 @@ import { SlidersHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Input } from "../ui/input";
+import { useIsMobile } from "../../hooks/use-mobile";
 
 interface TradeFilterDrawerProps {
   onFiltersChange: (filters: TradeFilters) => void;
@@ -35,6 +36,7 @@ export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
   const [filters, setFilters] = useState<TradeFilters>(defaultFilters);
   const [editingValue, setEditingValue] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleOpenTradeFilters = () => {
@@ -109,7 +111,7 @@ export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
   }) => (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
-        <Label>{label}</Label>
+        <Label className="text-sm sm:text-base">{label}</Label>
         {editingValue === field ? (
           <Input
             type="number"
@@ -156,11 +158,14 @@ export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
           )}
         </button>
       </SheetTrigger>
-      <SheetContent className="w-[400px]">
+      <SheetContent 
+        className={`${isMobile ? 'w-full' : 'w-[400px]'} bg-background/95 backdrop-blur-md border-white/10`}
+        side={isMobile ? "bottom" : "right"}
+      >
         <SheetHeader>
-          <SheetTitle>Filter Trades</SheetTitle>
+          <SheetTitle className="text-xl font-semibold">Filter Trades</SheetTitle>
         </SheetHeader>
-        <div className="space-y-6 mt-6">
+        <div className={`space-y-6 mt-6 ${isMobile ? 'pb-20' : ''}`}>
           <FilterItem
             label="Minimum Win Rate (%)"
             field="minWinRate"
@@ -186,7 +191,7 @@ export function TradeFilterDrawer({ onFiltersChange }: TradeFilterDrawerProps) {
             value={filters.minPNL}
           />
         </div>
-        <SheetFooter className="absolute bottom-0 left-0 right-0 p-6 border-t">
+        <SheetFooter className={`${isMobile ? 'fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-md border-t border-white/10' : 'absolute bottom-0 left-0 right-0 p-6 border-t'}`}>
           <Button 
             variant="outline" 
             onClick={handleClearFilters}
