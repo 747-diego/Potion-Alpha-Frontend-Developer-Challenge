@@ -68,9 +68,7 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    const newWindow = window.open('http://docs.potionleaderboard.com/', '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.blur();
-    window.focus();
+    window.open('http://docs.potionleaderboard.com/', '_blank', 'noopener,noreferrer');
     
     toast("📚 Documentation opened in new tab", {
       description: "Continue browsing while reading the docs!",
