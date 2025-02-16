@@ -15,7 +15,7 @@ function App() {
     // Simulate initial loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3300); // Updated to 3.3 seconds (3300ms)
+    }, 3000); // Updated to 3 seconds (3000ms)
 
     return () => clearTimeout(timer);
   }, []);
