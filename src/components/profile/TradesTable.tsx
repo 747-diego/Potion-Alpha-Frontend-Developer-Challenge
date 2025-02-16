@@ -1,3 +1,4 @@
+
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { formatLastTradeTime } from "../../utils/tradeUtils";
@@ -44,8 +45,14 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
   const handleShare = (trade: Trade) => {
     const traderName = trader ? trader.name : "This trader";
     const tweetText = `${traderName} just spent ${formatNumber(trade.invested.sol)} SOL on ${trade.tokenName}! ROI: ${trade.roi} 🚀`;
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-    window.open(tweetUrl, '_blank');
+    const encodedText = encodeURIComponent(tweetText);
+    
+    if (isMobile) {
+      window.location.href = `twitter://post?text=${encodedText}`;
+    } else {
+      window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank');
+    }
+    
     toast.success("Opening X/Twitter share dialog");
   };
 
