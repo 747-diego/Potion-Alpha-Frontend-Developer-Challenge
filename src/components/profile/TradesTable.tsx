@@ -1,8 +1,11 @@
+
 import { Trade } from "../../types/trade";
 import { formatNumber, formatWalletAddress } from "../../utils/format";
 import { formatLastTradeTime } from "../../utils/tradeUtils";
 import { toast } from "sonner";
 import { ChevronDown, ChevronUp, Share2 } from "lucide-react";
+import { useParams } from "react-router-dom";
+import { mockTraders } from "../../data/mockTraders";
 
 interface TradesTableProps {
   trades: Trade[];
@@ -14,13 +17,17 @@ interface TradesTableProps {
 }
 
 export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
+  const { id } = useParams();
+  const trader = mockTraders.find(t => t.walletAddress === id);
+
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
     toast.success("Address copied to clipboard");
   };
 
   const handleShare = (trade: Trade) => {
-    const tweetText = `Check out this ${trade.tokenName} trade! ROI: ${trade.roi} 🚀`;
+    const traderName = trader ? trader.name : "This trader";
+    const tweetText = `${traderName} just spent ${formatNumber(trade.invested.sol)} SOL on ${trade.tokenName}! ROI: ${trade.roi} 🚀`;
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
     window.open(tweetUrl, '_blank');
     toast.success("Opening X/Twitter share dialog");
