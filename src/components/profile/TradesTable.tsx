@@ -21,11 +21,11 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
   const { id } = useParams();
   const trader = mockTraders.find(t => t.walletAddress === id);
   const isMobile = useIsMobile();
-  const [isCompact, setIsCompact] = useState(false);
+  const [hideAdvancedColumns, setHideAdvancedColumns] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsCompact(window.innerWidth < 1150);
+      setHideAdvancedColumns(window.innerWidth < 1150);
     };
 
     handleResize(); // Initial check
@@ -77,17 +77,13 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
             <tr className="border-b border-secondary text-left text-muted-foreground">
               <SortableHeader label="Token" field="tokenName" />
               {!isMobile && <SortableHeader label="Last Trade" field="lastTrade" />}
-              {!isCompact && <SortableHeader label="Market Cap" field="marketCap" />}
+              <SortableHeader label="Market Cap" field="marketCap" />
               <SortableHeader label="Invested" field="invested" />
-              {!isCompact && <SortableHeader label="Realized PNL" field="realizedPNL" />}
+              <SortableHeader label="Realized PNL" field="realizedPNL" />
               <SortableHeader label="ROI" field="roi" />
-              {!isCompact && (
-                <>
-                  <SortableHeader label="Trades" field="trades" />
-                  <SortableHeader label="Holding" field="holding" />
-                </>
-              )}
-              {!isCompact && !isMobile && (
+              <SortableHeader label="Trades" field="trades" />
+              <SortableHeader label="Holding" field="holding" />
+              {!hideAdvancedColumns && (
                 <>
                   <SortableHeader label="Avg. Buy" field="avgBuy" />
                   <SortableHeader label="Avg. Sell" field="avgSell" />
@@ -123,9 +119,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     {formatLastTradeTime(trade.lastTrade)}
                   </td>
                 )}
-                {!isCompact && (
-                  <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
-                )}
+                <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
                 <td className="p-4">
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-1 text-[#14F195]">
@@ -141,43 +135,37 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
                     </div>
                   </div>
                 </td>
-                {!isCompact && (
-                  <td className="p-4">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-1">
-                        <span className={trade.realizedPNL.sol >= 0 ? "text-green-400" : "text-red-400"}>
-                          {trade.realizedPNL.sol >= 0 ? "+" : "-"}
-                          {formatNumber(Math.abs(trade.realizedPNL.sol))}
-                        </span>
-                        <img 
-                          src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
-                          alt="SOL"
-                          className="h-4 w-4"
-                        />
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {trade.realizedPNL.usd >= 0 ? "+" : "-"}
-                        ${formatNumber(Math.abs(trade.realizedPNL.usd))}
-                      </div>
+                <td className="p-4">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <span className={trade.realizedPNL.sol >= 0 ? "text-green-400" : "text-red-400"}>
+                        {trade.realizedPNL.sol >= 0 ? "+" : "-"}
+                        {formatNumber(Math.abs(trade.realizedPNL.sol))}
+                      </span>
+                      <img 
+                        src="/lovable-uploads/bdddbcfe-82a1-4cb4-b201-9dab6f50d5a3.png" 
+                        alt="SOL"
+                        className="h-4 w-4"
+                      />
                     </div>
-                  </td>
-                )}
+                    <div className="text-sm text-muted-foreground">
+                      {trade.realizedPNL.usd >= 0 ? "+" : "-"}
+                      ${formatNumber(Math.abs(trade.realizedPNL.usd))}
+                    </div>
+                  </div>
+                </td>
                 <td className="p-4">
                   <span className={trade.realizedPNL.percentage >= 0 ? "text-green-400" : "text-red-400"}>
                     {trade.roi}
                   </span>
                 </td>
-                {!isCompact && (
-                  <>
-                    <td className="p-4">
-                      <span className="text-green-400">{trade.trades.won}</span>
-                      <span className="text-muted-foreground">/</span>
-                      <span>{trade.trades.total}</span>
-                    </td>
-                    <td className="p-4 text-muted-foreground">{trade.holding}</td>
-                  </>
-                )}
-                {!isCompact && !isMobile && (
+                <td className="p-4">
+                  <span className="text-green-400">{trade.trades.won}</span>
+                  <span className="text-muted-foreground">/</span>
+                  <span>{trade.trades.total}</span>
+                </td>
+                <td className="p-4 text-muted-foreground">{trade.holding}</td>
+                {!hideAdvancedColumns && (
                   <>
                     <td className="p-4">
                       <div className="flex flex-col gap-1">
