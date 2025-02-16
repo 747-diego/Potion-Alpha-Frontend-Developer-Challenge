@@ -57,7 +57,14 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
       </td>
       {!isMobile && (
         <td className="p-4 text-muted-foreground">
-          {formatLastTradeTime(trade.lastTrade)}
+          <a 
+            href="https://solscan.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            {formatLastTradeTime(trade.lastTrade)}
+          </a>
         </td>
       )}
       <td className="p-4 text-muted-foreground">{trade.marketCap}</td>
