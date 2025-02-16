@@ -1,4 +1,3 @@
-
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -6,6 +5,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "../contexts/WalletContext";
+import { useNavigate } from "react-router-dom";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +15,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
 
 const Header = () => {
+  const navigate = useNavigate();
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
   const [isTwitterConnected, setIsTwitterConnected] = useState(false);
@@ -44,6 +45,12 @@ const Header = () => {
       description: "Your X account has been linked successfully!",
       duration: 2000,
     });
+  };
+
+  const handleProfileClick = () => {
+    if (isConnected && isTwitterConnected && userProfile) {
+      navigate(`/profile/${userProfile.walletAddress}`);
+    }
   };
 
   const handleNewFeature = () => {
@@ -242,7 +249,10 @@ const Header = () => {
             )
           )}
           {isConnected ? (
-            <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <button 
+              onClick={handleProfileClick}
+              className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+            >
               <img 
                 src={isTwitterConnected ? userProfile?.profilePicture : defaultProfilePicture} 
                 alt="Profile" 
