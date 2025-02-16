@@ -1,3 +1,4 @@
+
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -65,7 +66,7 @@ const Header = () => {
 
   return (
     <div className="pt-2">
-      {showAlert && (
+      {isConnected && showAlert && (
         <Carousel
           ref={emblaRef}
           className="w-full"
