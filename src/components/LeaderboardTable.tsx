@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -106,15 +105,8 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
       const encodedText = encodeURIComponent(tweetText);
       
       if (isMobile) {
-        // Try to open Twitter app first
         window.location.href = `twitter://post?text=${encodedText}`;
-        
-        // Fallback to web URL after a short delay if app doesn't open
-        setTimeout(() => {
-          window.location.href = `https://twitter.com/intent/tweet?text=${encodedText}`;
-        }, 500);
       } else {
-        // On desktop, use the regular web URL
         window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank');
       }
       
