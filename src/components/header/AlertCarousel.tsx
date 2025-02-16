@@ -1,3 +1,4 @@
+
 import { Bot, Sparkles, Trophy, Rocket } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
@@ -163,7 +164,7 @@ export const AlertCarousel = ({
     {
       icon: Trophy,
       description: `Weekly Featured Trader: ${isMobile ? 'NomadEngineer' : 'NomadEngineer'}`,
-      actionLabel: "View",
+      actionLabel: "View Profile",
       onAction: handleSponsorClick,
       color: "[#22c55e]"
     }
