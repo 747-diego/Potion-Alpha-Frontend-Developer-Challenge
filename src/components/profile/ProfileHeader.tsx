@@ -11,6 +11,12 @@ interface ProfileHeaderProps {
 const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
   const isMobile = useIsMobile();
 
+  const formatFollowers = (followers: number) => {
+    return followers >= 1000 
+      ? `${(followers / 1000).toFixed(0)}K` 
+      : followers.toString();
+  };
+
   return (
     <div className={`${isMobile ? 'w-full' : 'w-[360px]'} flex flex-col`}>
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8">
@@ -40,7 +46,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
               <span className="truncate ml-2 max-w-[150px]">{trader.twitterHandle}</span>
             </div>
             <div className="flex justify-end mt-auto">
-              <span className="text-muted-foreground text-sm">{(trader.followers / 1000).toFixed(0)}K followers</span>
+              <span className="text-muted-foreground text-sm">{formatFollowers(trader.followers)} followers</span>
             </div>
           </div>
         </div>
