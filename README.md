@@ -1,69 +1,146 @@
-# Welcome to your Lovable project
 
-## Project info
+# Solana Trading Analytics Dashboard
 
-**URL**: https://lovable.dev/projects/d2b080e8-76d3-4a12-b0c4-a11d12b5c900
+A real-time analytics dashboard for tracking and analyzing Solana trading activities. The application provides detailed insights into trading patterns, performance metrics, and trader profiles.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Trader Profiles**: Detailed trader information with X integration and wallet details
+- **Trade Analytics**: Comprehensive trade history with key metrics like ROI, PNL, and win rates
+- **Mobile Responsive**: Fully responsive design that works across all devices
+- **Deep Integration**: 
+  - X App deep linking for mobile devices
+  - Solscan integration for transaction verification
+  - Real-time data updates
 
-**Use Lovable**
+## Design Decisions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d2b080e8-76d3-4a12-b0c4-a11d12b5c900) and start prompting.
+### 1. User Interface
+- Implemented a dark theme for better visibility of financial data
+- Used glass-card design for important metrics to create visual hierarchy
+- Responsive design with mobile-first approach
+- Collapsible columns on mobile for better data presentation
 
-Changes made via Lovable will be committed automatically to this repo.
+### 2. Performance
+- Implemented efficient data formatting utilities
+- Used optimized image loading for trader profiles
+- Responsive table design with horizontal scrolling on mobile
 
-**Use your preferred IDE**
+### 3. Integration Points
+- X/Twitter deep linking for both iOS and Android
+- Solscan integration for transaction verification
+- Clipboard integration for wallet addresses
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Testing the Functionality
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Profile Navigation**
+   - Visit a trader profile
+   - Verify all metrics are displayed correctly
+   - Test wallet address copy functionality
 
-Follow these steps:
+2. **Mobile Testing**
+   - X App Integration:
+     - Click on profile picture or X card
+     - Should open X app on mobile devices
+     - Should open X website on desktop
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Trade Table**
+   - Verify sorting functionality
+   - Test Solscan links
+   - Check share functionality
+   - Verify responsive behavior on different screen sizes
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Data Interaction**
+   - Test search functionality
+   - Verify time frame selector
+   - Check filter functionality
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Deployment Guide
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Staging Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Build the Application**
+   ```bash
+   npm run build
+   ```
 
-**Use GitHub Codespaces**
+2. **Deployment Options**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+   Using Netlify:
+   - Connect your GitHub repository
+   - Set build command: `npm run build`
+   - Set publish directory: `dist`
+   - Deploy to staging URL
 
-## What technologies are used for this project?
+   Using Vercel:
+   - Import your GitHub repository
+   - Automatic detection of build settings
+   - Deploy to staging environment
 
-This project is built with .
+### Production Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. **Pre-deployment Checklist**
+   - Run all tests
+   - Check console for warnings/errors
+   - Verify all integrations
+   - Test on multiple devices
 
-## How can I deploy this project?
+2. **Deployment Process**
+   - Same as staging, but use production environment
+   - Set up custom domain if needed
+   - Configure SSL certificate
 
-Simply open [Lovable](https://lovable.dev/projects/d2b080e8-76d3-4a12-b0c4-a11d12b5c900) and click on Share -> Publish.
+3. **Post-deployment**
+   - Verify all functionality in production
+   - Monitor error rates
+   - Check analytics integration
 
-## I want to use a custom domain - is that possible?
+## Browser Support
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Chrome (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Edge (latest version)
+- Mobile browsers (iOS Safari, Chrome for Android)
+
+## Technical Stack
+
+- React + TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- shadcn/ui for UI components
+- Lucide React for icons
+
+## Known Limitations
+
+- Deep linking behavior may vary based on installed apps
+- Some features require modern browser capabilities
+- Rate limits may apply to external API integrations
+
+## Future Improvements
+
+- Add real-time WebSocket updates
+- Implement more detailed transaction history
+- Add portfolio analysis tools
+- Enhance mobile experience with native-like features
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+MIT License - See LICENSE file for details
