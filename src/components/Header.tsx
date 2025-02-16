@@ -4,6 +4,8 @@ import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { useWallet } from "../contexts/WalletContext";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +17,7 @@ import Autoplay from 'embla-carousel-autoplay';
 const Header = () => {
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
+  const { isConnected, connectWallet } = useWallet();
   
   const autoplayOptions = Autoplay({
     delay: 3000,
@@ -216,13 +219,22 @@ const Header = () => {
           <a href="#" className="text-muted-foreground hover:text-white transition-colors">
             <Twitter className="h-5 w-5" />
           </a>
-          <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            <img 
-              src={userProfile?.profilePicture} 
-              alt="Profile" 
-              className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
-            />
-          </button>
+          {isConnected ? (
+            <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <img 
+                src={userProfile?.profilePicture} 
+                alt="Profile" 
+                className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
+              />
+            </button>
+          ) : (
+            <Button 
+              onClick={connectWallet}
+              className="bg-primary hover:bg-primary/90 text-white font-medium"
+            >
+              Connect Wallet
+            </Button>
+          )}
         </div>
       </header>
     </div>
