@@ -223,7 +223,12 @@ const Header = () => {
         <div className="flex items-center gap-6">
           {isConnected && (
             isTwitterConnected ? (
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">
+              <a 
+                href="https://x.com/_NomadEngineer" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-muted-foreground hover:text-white transition-colors text-sm"
+              >
                 {xUsername}
               </a>
             ) : (
