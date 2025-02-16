@@ -1,8 +1,9 @@
+
 import { Trade } from "../types/trade";
 
 const tokenInfo = [
   {
-    name: "GIGA",
+    name: "GIGA CHAD",
     symbol: "GIGA",
     image: "https://i.imgur.com/Nwrdw8E.png",
     contract: "GiGAxxBkEuqE6PsQvHotezNha7M9kBvmDn4njUkGe86B",
@@ -14,13 +15,6 @@ const tokenInfo = [
     image: "https://s2.coinmarketcap.com/static/img/coins/64x64/25968.png",
     contract: "JUP6LkbvG1xHSM9c1cDoNw9tk2zsjK3NxMgks9uHu7L",
     marketCap: "$2.1B"
-  },
-  {
-    name: "Famous Fox Federation",
-    symbol: "FFF",
-    image: "https://arweave.net/E8hAJDNzHWrwFJ1UP4yOcQHHUqFKrmbg9c8FaAf9okA",
-    contract: "F4XFQyv94V7q7QVe7393Mm5SqmcjzkYQt7JoVJyJjZ4e",
-    marketCap: "$45.2M"
   },
   {
     name: "Mad Lads",
@@ -175,20 +169,16 @@ function generateMockTrade(id: string, tokenData: typeof tokenInfo[0]): Trade {
     usd: Math.round(invested.sol * 230 * (1 + pnlPercentage/100) / totalTrades)
   };
 
-  // Generate more realistic last trade times
   const now = new Date();
-  const randomTimeAgo = Math.floor(Math.random() * 14400); // Random seconds up to 4 hours ago
+  const randomTimeAgo = Math.floor(Math.random() * 14400);
   let lastTrade: string;
   
   if (randomTimeAgo < 60) {
-    // Less than a minute ago
     lastTrade = `${randomTimeAgo} sec ago`;
   } else if (randomTimeAgo < 3600) {
-    // Less than an hour ago
     const minutes = Math.floor(randomTimeAgo / 60);
     lastTrade = `${minutes} min ago`;
   } else {
-    // Hours ago
     const hours = Math.floor(randomTimeAgo / 3600);
     lastTrade = `${hours}h ago`;
   }
