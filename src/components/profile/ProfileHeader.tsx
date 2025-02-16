@@ -1,8 +1,9 @@
 
 import { formatWalletAddress } from "../../utils/format";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Copy } from "lucide-react";
 import { Trader } from "../../types/trader";
 import { useIsMobile } from "../../hooks/use-mobile";
+import { toast } from "sonner";
 
 interface ProfileHeaderProps {
   trader: Trader;
@@ -21,6 +22,17 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
     // Remove @ symbol if present
     const cleanHandle = handle.startsWith('@') ? handle.substring(1) : handle;
     return `https://x.com/${cleanHandle}`;
+  };
+
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(trader.walletAddress);
+      toast("Address copied to clipboard!", {
+        duration: 2000,
+      });
+    } catch (err) {
+      toast.error("Failed to copy address");
+    }
   };
 
   return (
@@ -46,9 +58,13 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           >
             {trader.name}
           </h1>
-          <span className="text-muted-foreground text-base truncate px-2 sm:px-0">
-            {formatWalletAddress(trader.walletAddress)}
-          </span>
+          <button
+            onClick={handleCopyAddress}
+            className="text-muted-foreground text-base truncate px-2 sm:px-0 hover:text-primary flex items-center gap-2 mx-auto sm:mx-0 transition-colors"
+          >
+            <span>{formatWalletAddress(trader.walletAddress)}</span>
+            <Copy className="h-4 w-4" />
+          </button>
         </div>
       </div>
       <div className="space-y-4 mt-auto w-full">
