@@ -2,26 +2,38 @@
 import { Trade } from "../types/trade";
 import { TradeFilters } from "../components/profile/TradeFilterDrawer";
 
-export const getTimeInMinutes = (timeString: string): number => {
-  const minutes = parseInt(timeString.match(/\d+/)?.[0] || "0");
-  if (timeString.includes("sec")) return 0;
-  if (timeString.includes("min")) return minutes;
-  if (timeString.includes("h")) return minutes * 60;
-  return minutes;
-};
-
-export const formatLastTradeTime = (timeString: string): string => {
+export const getTimeInSeconds = (timeString: string): number => {
   const match = timeString.match(/(\d+)\s*(sec|min|h)/);
-  if (!match) return timeString;
+  if (!match) return 0;
 
   const value = parseInt(match[1]);
   const unit = match[2];
 
-  if (unit === 'sec') {
-    return `${value} sec ago`;
-  } else if (unit === 'min') {
-    return `${value} min ago`;
+  if (unit === 'sec') return value;
+  if (unit === 'min') return value * 60;
+  if (unit === 'h') return value * 3600;
+  return 0;
+};
+
+export const getTimeInMinutes = (timeString: string): number => {
+  return Math.floor(getTimeInSeconds(timeString) / 60);
+};
+
+export const formatLastTradeTime = (timeString: string): string => {
+  const seconds = getTimeInSeconds(timeString);
+  
+  if (seconds < 60) {
+    return `${seconds} sec ago`;
+  } else if (seconds < 3600) {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} min ago`;
+  } 
+  
+  const match = timeString.match(/(\d+)\s*(h)/);
+  if (match) {
+    return `${match[1]}h ago`;
   }
+  
   return timeString;
 };
 
@@ -36,8 +48,8 @@ export const sortTrades = (
     const bValue = b[sortConfig.key];
 
     if (sortConfig.key === "lastTrade") {
-      const aTime = getTimeInMinutes(a.lastTrade);
-      const bTime = getTimeInMinutes(b.lastTrade);
+      const aTime = getTimeInSeconds(a.lastTrade);
+      const bTime = getTimeInSeconds(b.lastTrade);
       return sortConfig.direction === "asc" ? aTime - bTime : bTime - aTime;
     }
 
