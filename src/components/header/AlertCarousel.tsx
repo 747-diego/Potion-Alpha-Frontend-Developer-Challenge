@@ -74,7 +74,7 @@ const AlertContent = ({
   const colorClasses = getColorClasses(color);
   
   return (
-    <Alert className={`mb-4 ${colorClasses.bg} ${colorClasses.border} flex items-center justify-between ${isMobile ? 'px-3 py-2' : 'px-4 py-3'} animate-fade-in`}>
+    <Alert className={`mb-4 ${colorClasses.bg} ${colorClasses.border} flex items-center justify-between ${isMobile ? 'px-3 py-2.5' : 'px-4 py-3.5'} animate-fade-in`}>
       <div className="flex items-center gap-2">
         <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} ${colorClasses.text} animate-pulse`} />
         <AlertDescription className="text-white flex items-center gap-2">
