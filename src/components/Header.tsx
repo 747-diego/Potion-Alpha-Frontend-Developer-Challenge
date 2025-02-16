@@ -1,4 +1,3 @@
-
 import { Twitter, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -62,7 +61,7 @@ const Header = () => {
     window.open("https://tradeonnova.net/", "_blank");
   };
 
-  const defaultProfilePicture = "https://api.dicebear.com/7.x/pixel-art/svg?seed=default-trader";
+  const defaultProfilePicture = "https://api.dicebear.com/7.x/pixel-art/svg?seed=potion-trader&backgroundColor=b6e3f4";
 
   return (
     <div className="pt-2">
@@ -259,4 +258,3 @@ const Header = () => {
 };
 
 export default Header;
-
