@@ -25,11 +25,11 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
     
     if (isMobile) {
       window.location.href = `twitter://post?text=${encodedText}`;
+      toast.success("Sharing on X");
     } else {
       window.open(`https://twitter.com/intent/tweet?text=${encodedText}`, '_blank');
+      toast.success("Opening X/Twitter share dialog");
     }
-    
-    toast.success("Opening X/Twitter share dialog");
   };
 
   return (
