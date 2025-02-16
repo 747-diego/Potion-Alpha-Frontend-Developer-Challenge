@@ -64,7 +64,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
 
   const formatMobileName = (name: string) => {
     if (isMobile && name.length > 5) {
-      return `${name.slice(0, 5)}...`;
+      return name.slice(0, 5);
     }
     return name;
   };
