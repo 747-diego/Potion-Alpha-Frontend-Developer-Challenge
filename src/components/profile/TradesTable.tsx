@@ -43,7 +43,7 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
       <div className="flex items-center gap-1">
         <span>{label}</span>
         {sortConfig.key === field ? (
-          sortDirection === "asc" ? (
+          sortConfig.direction === "asc" ? (
             <ChevronUp className="h-4 w-4 text-primary" />
           ) : (
             <ChevronDown className="h-4 w-4 text-primary" />
