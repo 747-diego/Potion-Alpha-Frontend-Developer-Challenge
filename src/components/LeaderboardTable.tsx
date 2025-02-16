@@ -1,3 +1,4 @@
+
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -142,14 +143,14 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[800px]">
+      <div className={`overflow-x-auto ${isMobile ? 'scrollbar-hide' : ''}`}>
+        <table className={`w-full ${isMobile ? 'min-w-[800px]' : ''}`}>
           <thead>
             <tr className="border-b border-secondary">
-              <th className="sticky left-0 bg-background/80 backdrop-blur-sm z-10">
+              <th className={`${isMobile ? 'sticky left-0 bg-background/80 backdrop-blur-sm z-10' : ''}`}>
                 <TableHeader field="rank">Rank</TableHeader>
               </th>
-              <th className="sticky left-[64px] bg-background/80 backdrop-blur-sm z-10">
+              <th className={`${isMobile ? 'sticky left-[64px] bg-background/80 backdrop-blur-sm z-10' : ''}`}>
                 <TableHeader field="name">Trader</TableHeader>
               </th>
               <th>
@@ -182,12 +183,12 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
           <tbody>
             {sortedTraders.map((trader) => (
               <tr key={trader.rank} className="animate-fade-in">
-                <td className="sticky left-0 bg-background/80 backdrop-blur-sm z-10">
+                <td className={`${isMobile ? 'sticky left-0 bg-background/80 backdrop-blur-sm z-10' : ''}`}>
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary text-sm">
                     {trader.rank}
                   </span>
                 </td>
-                <td className="sticky left-[64px] bg-background/80 backdrop-blur-sm z-10">
+                <td className={`${isMobile ? 'sticky left-[64px] bg-background/80 backdrop-blur-sm z-10' : ''}`}>
                   <div className="flex items-center gap-3">
                     <img
                       src={trader.profilePicture}
@@ -195,7 +196,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                       className="w-8 h-8 rounded-full cursor-pointer hover:ring-2 hover:ring-primary transition-all"
                       onClick={() => navigateToProfile(trader.walletAddress)}
                     />
-                    <div className={isMobile ? "hidden" : ""}>
+                    <div>
                       <div 
                         className="font-medium cursor-pointer hover:text-primary transition-colors whitespace-nowrap"
                         onClick={() => navigateToProfile(trader.walletAddress)}
