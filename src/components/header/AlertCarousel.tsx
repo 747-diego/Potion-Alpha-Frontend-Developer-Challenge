@@ -80,7 +80,7 @@ const AlertContent = ({
         <AlertDescription className="text-white flex items-center gap-2">
           <span className={isMobile ? 'text-base' : 'text-lg'}>{description}</span>
           {description.includes("Weekly Featured Trader") && (
-            <Avatar className={`${isMobile ? 'h-4 w-4' : 'h-5 w-5'}`}>
+            <Avatar className={`${isMobile ? 'h-5 w-5' : 'h-6 w-6'}`}>
               <AvatarImage src="https://pbs.twimg.com/profile_images/581598147119480832/XG7Qa1hr_400x400.jpg" />
               <AvatarFallback>NE</AvatarFallback>
             </Avatar>
