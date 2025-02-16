@@ -1,4 +1,3 @@
-
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -228,9 +227,8 @@ const Header = () => {
               <Button 
                 onClick={handleConnectX}
                 variant="outline" 
-                className="text-white gap-2"
+                className="text-white"
               >
-                <X className="h-4 w-4" />
                 Connect X
               </Button>
             )
