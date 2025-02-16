@@ -92,10 +92,14 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
   const handleShare = (e: React.MouseEvent, trader: Trader) => {
     e.stopPropagation();
     onProtectedAction(() => {
-      window.open('/lovable-uploads/90a84d53-b620-4f92-b90e-664fd5e5db6e.png', '_blank');
-      toast.success("Opening share card");
+      const tweetText = `Check out ${trader.name}'s trading profile! Win Rate: ${trader.winRate}% 🚀`;
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+      window.open(tweetUrl, '_blank');
+      toast.success("Opening X/Twitter share dialog");
     });
   };
+
+  const SOL_PRICE = 100;
 
   const sortedTraders = [...traders].sort((a, b) => {
     let comparison = 0;
@@ -120,8 +124,6 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
 
     return sortDirection === "asc" ? comparison : -comparison;
   });
-
-  const SOL_PRICE = 100;
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
