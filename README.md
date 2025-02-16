@@ -1,72 +1,71 @@
 
-# [Potion Alpha Frontend Developer Challenge](https://docs.potionvision.com/frontend-developer-challenge-2025-02)
+# Potion Leaderboard
 
-### **Overview & Background**
+![Potion Leaderboard Hero Image](public/og-image.png)
 
-**About Potion Leaderboard:**
+A gamified platform where Solana memecoin traders compete, showcase performance, and win rewards. Track real-time trading metrics, explore trader profiles, and compete on daily, weekly, and monthly leaderboards.
 
-Potion Leaderboard is a gamified platform where every Solana memecoin trader—from beginner to expert—competes, showcases their performance, and wins rewards. The platform's first MVP includes a public Leaderboards page (with Daily, Weekly, Monthly, and All-Time views) that lists traders' wallets, performance metrics, profile details, and social connections.
+[View Live Demo](#) | [Report Bug](#) | [Request Feature](#)
 
-**Challenge Goal:**
+## 📖 Table of Contents
+- [About The Project](#about-the-project)
+  - [Key Features](#key-features)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Project Structure](#project-structure)
+  - [Core Components](#core-components)
+  - [Pages](#pages)
+  - [Utilities](#utilities)
+- [Features & Usage](#features--usage)
+  - [Wallet Connection](#wallet-connection)
+  - [Leaderboard Navigation](#leaderboard-navigation)
+  - [Trader Profiles](#trader-profiles)
+  - [Trade Analytics](#trade-analytics)
+- [Testing Guide](#testing-guide)
+- [UI Components](#ui-components)
+- [Contributing](#contributing)
+- [License](#license)
 
-Create a responsive, visually compelling Leaderboard page that fetches and displays trader data from a mock API. This page should mimic the look and feel outlined in the [figma designs](https://www.figma.com/proto/4UbpftRYpuL5SczCjk9eOW/Potion-Leaderboard?node-id=21-5&p=f&t=ApOpU9XiygjA2oYR-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1) provided and incorporate core UI interactions such as search and filtering.
+## 🎯 About The Project
 
-## Features
+> 💡 **Screenshot Suggestion**: Add a screenshot of the main leaderboard page here showing the key UI elements like the leaderboard table, filters, and time frame selector.
 
-- **Trader Profiles**: Detailed trader information with X integration and wallet details
-- **Trade Analytics**: Comprehensive trade history with key metrics like ROI, PNL, and win rates
-- **Mobile Responsive**: Fully responsive design that works across all devices
-- **Deep Integration**: 
-  - X App deep linking for mobile devices
-  - Solscan integration for transaction verification
-  - Real-time data updates
+Potion Leaderboard revolutionizes how traders track and compare performance in the Solana memecoin ecosystem. This platform provides comprehensive trading metrics, social integration, and competitive features in an intuitive interface.
 
-## Design Decisions
+### Key Features
 
-### 1. User Interface
-- Implemented a dark theme for better visibility of financial data
-- Used glass-card design for important metrics to create visual hierarchy
-- Responsive design with mobile-first approach
-- Collapsible columns on mobile for better data presentation
+- 📊 Real-time performance tracking
+- 🏆 Daily, weekly, and monthly competitions
+- 👥 Detailed trader profiles
+- 📱 Fully responsive design
+- 🔍 Advanced filtering & search
+- 🔗 Social media integration
+- 💰 Comprehensive trade analytics
 
-### 2. Performance
-- Implemented efficient data formatting utilities
-- Used optimized image loading for trader profiles
-- Responsive table design with horizontal scrolling on mobile
+### Built With
 
-### 3. Integration Points
-- X/Twitter deep linking for both iOS and Android
-- Solscan integration for transaction verification
-- Clipboard integration for wallet addresses
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- Lucide React Icons
 
-## Testing the Functionality
+## 🚀 Getting Started
 
-1. **Profile Navigation**
-   - Visit a trader profile
-   - Verify all metrics are displayed correctly
-   - Test wallet address copy functionality
+### Prerequisites
 
-2. **Mobile Testing**
-   - X App Integration:
-     - Click on profile picture or X card
-     - Should open X app on mobile devices
-     - Should open X website on desktop
+- Node.js (v18+)
+- npm or yarn
+- Git
 
-3. **Trade Table**
-   - Verify sorting functionality
-   - Test Solscan links
-   - Check share functionality
-   - Verify responsive behavior on different screen sizes
+### Installation
 
-4. **Data Interaction**
-   - Test search functionality
-   - Verify time frame selector
-   - Check filter functionality
-
-## Deployment Guide
-
-### Local Development
 ```bash
+# Clone the repository
+git clone [repository-url]
+
 # Install dependencies
 npm install
 
@@ -74,81 +73,213 @@ npm install
 npm run dev
 ```
 
-### Staging Deployment
+## 📁 Project Structure
 
-1. **Build the Application**
-   ```bash
-   npm run build
-   ```
+### Core Components
 
-2. **Deployment Options**
+#### `src/components/`
 
-   Using Netlify:
-   - Connect your GitHub repository
-   - Set build command: `npm run build`
-   - Set publish directory: `dist`
-   - Deploy to staging URL
+> 💡 **Screenshot Suggestion**: Add component screenshots in their respective sections to show their appearance and functionality
 
-   Using Vercel:
-   - Import your GitHub repository
-   - Automatic detection of build settings
-   - Deploy to staging environment
+##### Header (`Header.tsx`)
+- Main navigation component
+- Handles wallet connection
+- Manages X/Twitter integration
+- Responsive mobile menu
+- Profile management
 
-### Production Deployment
+```typescript
+// Key features:
+- Wallet connection status management
+- Social media integration
+- Responsive navigation
+- Profile picture display
+```
 
-1. **Pre-deployment Checklist**
-   - Run all tests
-   - Check console for warnings/errors
-   - Verify all integrations
-   - Test on multiple devices
+##### FilterBar (`FilterBar.tsx`)
+- Time frame selection (Daily/Weekly/Monthly/All-time)
+- View mode switching (Traders/Groups)
+- Search functionality
+- Advanced filtering system
 
-2. **Deployment Process**
-   - Same as staging, but use production environment
-   - Set up custom domain if needed
-   - Configure SSL certificate
+```typescript
+// Notable functionality:
+- Advanced search capabilities
+- Time frame management
+- Responsive design adaptations
+```
 
-3. **Post-deployment**
-   - Verify all functionality in production
-   - Monitor error rates
-   - Check analytics integration
+##### LeaderboardTable (`LeaderboardTable.tsx`)
+- Displays trader rankings
+- Sortable columns
+- Performance metrics
+- Mobile-responsive layout
+- Share functionality
 
-## Browser Support
+##### Profile Components
+- `ProfileHeader.tsx`: Trader identity and social links
+- `ProfileStats.tsx`: Performance metrics display
+- `TradesSection.tsx`: Detailed trade history
+- `TimeFrameSelector.tsx`: Time period filtering
 
-- Chrome (latest 2 versions)
-- Firefox (latest 2 versions)
-- Safari (latest 2 versions)
-- Edge (latest version)
-- Mobile browsers (iOS Safari, Chrome for Android)
+### Pages
 
-## Technical Stack
+#### `src/pages/`
 
-- React + TypeScript
-- Vite for build tooling
-- Tailwind CSS for styling
-- shadcn/ui for UI components
-- Lucide React for icons
+##### Index Page (`Index.tsx`)
+- Main leaderboard view
+- Handles trader filtering
+- Manages view modes
+- Implements wallet protection
 
-## Known Limitations
+##### Profile Page (`Profile.tsx`)
+- Individual trader profiles
+- Trade history
+- Performance metrics
+- Social integration
 
-- Deep linking behavior may vary based on installed apps
-- Some features require modern browser capabilities
-- Rate limits may apply to external API integrations
+### Utilities
 
-## Future Improvements
+#### `src/utils/`
+- `format.ts`: Number and address formatting
+- `tradeUtils.ts`: Trade calculations and sorting
 
-- Add real-time WebSocket updates
-- Implement more detailed transaction history
-- Add portfolio analysis tools
-- Enhance mobile experience with native-like features
+## 🎮 Features & Usage
 
-## Contributing
+### Wallet Connection
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+To access protected features:
 
-## License
+1. Click "Connect Wallet" in the header
+2. Select your wallet provider
+3. Approve the connection
+4. (Optional) Connect X/Twitter account
 
-MIT License - See LICENSE file for details
+> 💡 **Screenshot Suggestion**: Add a screenshot of the wallet connection flow
+
+### Leaderboard Navigation
+
+Time Frame Selection:
+- Daily (24h performance)
+- Weekly (7-day metrics)
+- Monthly (30-day stats)
+- All-time (Complete history)
+
+Filtering:
+1. Click the "Filters" button
+2. Adjust parameters:
+   - Min/Max followers
+   - Win rate threshold
+   - Minimum trades
+   - PNL requirements
+
+Search:
+- Use the search bar for wallet addresses or usernames
+- Results update in real-time
+
+### Trader Profiles
+
+Access detailed trader information:
+
+1. Click on any trader row in the leaderboard
+2. View comprehensive stats:
+   - Win rate
+   - Total trades
+   - Average position size
+   - PNL metrics
+3. Explore trade history
+4. Connect via social media
+
+> 💡 **Screenshot Suggestion**: Add a screenshot of a trader profile page
+
+### Trade Analytics
+
+Each profile includes:
+
+- ROI calculations
+- Win/loss ratios
+- Average hold times
+- Position sizing metrics
+- Trade frequency analysis
+
+## 🧪 Testing Guide
+
+### 1. Wallet Integration
+```bash
+# Test wallet connection:
+1. Click "Connect Wallet"
+2. Verify connection status
+3. Check profile picture update
+4. Test disconnect functionality
+```
+
+### 2. Leaderboard Functionality
+```bash
+# Test sorting:
+1. Click column headers
+2. Verify sort direction
+3. Check data accuracy
+
+# Test filtering:
+1. Open filter drawer
+2. Apply various combinations
+3. Verify results
+4. Test reset functionality
+```
+
+### 3. Profile Navigation
+```bash
+# Test profile access:
+1. Click trader rows
+2. Verify data loading
+3. Check social links
+4. Test back navigation
+```
+
+### 4. Mobile Responsiveness
+```bash
+# Test on multiple devices:
+1. Check table scrolling
+2. Verify menu functionality
+3. Test filter drawer
+4. Verify profile layout
+```
+
+## 🎨 UI Components
+
+### Glass Card Design
+```typescript
+// Styling class for glass effect
+className="glass-card rounded-lg border border-white/10 
+          hover:border-primary/20 transition-colors"
+```
+
+### Responsive Table
+```typescript
+// Mobile optimization
+const isMobile = useIsMobile();
+// Conditional rendering based on screen size
+```
+
+### Animations
+- Fade-in effects
+- Hover transitions
+- Loading states
+- Smooth scrolling
+
+## 🤝 Contributing
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+> 💡 **Note**: For all screenshots, use high-quality images that clearly demonstrate the feature or component being discussed. Recommended locations are marked with "Screenshot Suggestion" comments throughout the README.
+
