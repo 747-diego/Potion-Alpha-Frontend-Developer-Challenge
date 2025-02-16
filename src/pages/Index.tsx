@@ -48,7 +48,7 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background p-3 sm:p-4">
       <Header />
       <main className="max-w-[1400px] mx-auto">
         <FilterBar
