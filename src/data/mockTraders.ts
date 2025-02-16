@@ -1,4 +1,3 @@
-
 import { Trader } from '../types/trader';
 
 export const mockTraders: Trader[] = [
@@ -226,21 +225,5 @@ export const mockTraders: Trader[] = [
     avgEntry: 182000,
     avgHold: "38m",
     realizedPNL: 18456
-  },
-  {
-    rank: 16,
-    name: "traderluck",
-    walletAddress: "8mN7YmpKvS4Q9X3ZtR2L9P2XpKvS4Q",
-    profilePicture: "https://api.dicebear.com/7.x/pixel-art/svg?seed=traderluck",
-    followers: 32000,
-    twitterHandle: "@traderluck",
-    tokens: 29,
-    winRate: 61,
-    trades: { won: 78, total: 128 },
-    avgBuy: 1234,
-    avgEntry: 125000,
-    avgHold: "28m",
-    realizedPNL: 11234
   }
 ];
-
