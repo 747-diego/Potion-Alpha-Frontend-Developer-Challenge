@@ -54,6 +54,74 @@ const Header = () => {
     skipSnaps: false,
   }, [autoplayOptions]);
 
+  const AlertContent = ({ 
+    icon: Icon, 
+    description, 
+    actionLabel, 
+    onAction, 
+    color 
+  }: { 
+    icon: any, 
+    description: string, 
+    actionLabel: string, 
+    onAction: () => void,
+    color: string 
+  }) => (
+    <Alert className={`mb-4 bg-${color}/5 border-${color}/20 flex items-center justify-between ${isMobile ? 'px-3 py-2' : 'px-4 py-3'} animate-fade-in`}>
+      <div className="flex items-center gap-2">
+        <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} text-${color} animate-pulse`} />
+        <AlertDescription className="text-white flex items-center gap-2">
+          <span className={isMobile ? 'text-xs' : 'text-sm'}>{description}</span>
+        </AlertDescription>
+      </div>
+      <div className="flex items-center gap-2 sm:gap-4">
+        <button
+          onClick={onAction}
+          className={`text-xs px-2 sm:px-3 py-1 sm:py-1.5 bg-${color}/20 hover:bg-${color}/30 text-${color} rounded-full transition-colors`}
+        >
+          {actionLabel}
+        </button>
+        <button
+          onClick={() => setShowAlert(false)}
+          className="text-muted-foreground hover:text-white transition-colors text-xs"
+        >
+          {isMobile ? '×' : 'Dismiss'}
+        </button>
+      </div>
+    </Alert>
+  );
+
+  const alerts = [
+    {
+      icon: Bot,
+      description: "Seamlessly trade any token on Solana with total control.",
+      actionLabel: isMobile ? "Trade" : "Trade on Nova",
+      onAction: handleNovaClick,
+      color: "primary"
+    },
+    {
+      icon: Sparkles,
+      description: "Share your trading journey on X",
+      actionLabel: "Connect X",
+      onAction: connectX,
+      color: "[#0EA5E9]"
+    },
+    {
+      icon: Rocket,
+      description: `New Feature: Smart Filtering ${isMobile ? '' : '🎯 Find what matters most!'}`,
+      actionLabel: "Try",
+      onAction: handleNewFeature,
+      color: "[#F97316]"
+    },
+    {
+      icon: Trophy,
+      description: `Weekly Featured: ${isMobile ? 'NomadEngineer' : 'NomadEngineer - Follow for daily trading insights!'}`,
+      actionLabel: "View",
+      onAction: handleSponsorClick,
+      color: "[#22c55e]"
+    }
+  ];
+
   const handleProfileClick = () => {
     if (isConnected && isXConnected && userProfile) {
       navigate(`/profile/${userProfile.walletAddress}`);
@@ -134,116 +202,11 @@ const Header = () => {
           }}
         >
           <CarouselContent>
-            <CarouselItem>
-              <Alert className="mb-4 bg-primary/5 border-primary/20 flex items-center justify-between animate-fade-in">
-                <div className="flex items-center gap-2">
-                  <Bot className="h-4 w-4 text-primary animate-pulse" />
-                  <AlertDescription className="text-white flex items-center gap-2">
-                    <span>Seamlessly trade any token on Solana with total control.</span>
-                    <span>🤖</span>
-                  </AlertDescription>
-                </div>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={handleNovaClick}
-                    className="text-xs px-3 py-1.5 bg-primary/20 hover:bg-primary/30 text-primary rounded-full transition-colors"
-                  >
-                    Trade on Nova
-                  </button>
-                  <button
-                    onClick={() => setShowAlert(false)}
-                    className="text-muted-foreground hover:text-white transition-colors text-xs"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </Alert>
-            </CarouselItem>
-
-            <CarouselItem>
-              <Alert className="mb-4 bg-[#0EA5E9]/5 border-[#0EA5E9]/20 flex items-center justify-between animate-fade-in">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-[#0EA5E9] animate-pulse" />
-                  <AlertDescription className="text-white flex items-center gap-2">
-                    <span>Share your trading journey on</span>
-                    <span className="font-medium">X</span>
-                    <Share2 className="h-4 w-4 text-[#0EA5E9] inline" />
-                  </AlertDescription>
-                </div>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={connectX}
-                    className="text-xs px-3 py-1.5 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30 text-[#0EA5E9] rounded-full transition-colors"
-                  >
-                    Connect X
-                  </button>
-                  <button
-                    onClick={() => setShowAlert(false)}
-                    className="text-muted-foreground hover:text-white transition-colors text-xs"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </Alert>
-            </CarouselItem>
-
-            <CarouselItem>
-              <Alert className="mb-4 bg-[#F97316]/5 border-[#F97316]/20 flex items-center justify-between animate-fade-in">
-                <div className="flex items-center gap-2">
-                  <Rocket className="h-4 w-4 text-[#F97316] animate-pulse" />
-                  <AlertDescription className="text-white flex items-center gap-2">
-                    <span>New Feature:</span>
-                    <span className="font-medium">Smart Filtering</span>
-                    <span>🎯 Find what matters most!</span>
-                  </AlertDescription>
-                </div>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={handleNewFeature}
-                    className="text-xs px-3 py-1.5 bg-[#F97316]/20 hover:bg-[#F97316]/30 text-[#F97316] rounded-full transition-colors"
-                  >
-                    Try Filters
-                  </button>
-                  <button
-                    onClick={() => setShowAlert(false)}
-                    className="text-muted-foreground hover:text-white transition-colors text-xs"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </Alert>
-            </CarouselItem>
-
-            <CarouselItem>
-              <Alert className="mb-4 bg-[#22c55e]/5 border-[#22c55e]/20 flex items-center justify-between animate-fade-in">
-                <div className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4 text-[#22c55e] animate-pulse" />
-                  <AlertDescription className="text-white flex items-center gap-2">
-                    <span>Weekly Featured Trader:</span>
-                    <span className="font-medium">NomadEngineer</span>
-                    <img 
-                      src={userProfile?.profilePicture}
-                      alt="NomadEngineer"
-                      className="h-5 w-5 rounded-full inline-block"
-                    />
-                  </AlertDescription>
-                </div>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={handleSponsorClick}
-                    className="text-xs px-3 py-1.5 bg-[#22c55e]/20 hover:bg-[#22c55e]/30 text-[#22c55e] rounded-full transition-colors"
-                  >
-                    View Profile
-                  </button>
-                  <button
-                    onClick={() => setShowAlert(false)}
-                    className="text-muted-foreground hover:text-white transition-colors text-xs"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </Alert>
-            </CarouselItem>
+            {alerts.map((alert, index) => (
+              <CarouselItem key={index}>
+                <AlertContent {...alert} />
+              </CarouselItem>
+            ))}
           </CarouselContent>
         </Carousel>
       )}
