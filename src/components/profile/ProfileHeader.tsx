@@ -21,7 +21,9 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
   const getTwitterUrl = (handle: string) => {
     // Remove @ symbol if present
     const cleanHandle = handle.startsWith('@') ? handle.substring(1) : handle;
-    return `https://x.com/${cleanHandle}`;
+    return isMobile 
+      ? `twitter://user?screen_name=${cleanHandle}`
+      : `https://x.com/${cleanHandle}`;
   };
 
   const handleCopyAddress = async () => {
