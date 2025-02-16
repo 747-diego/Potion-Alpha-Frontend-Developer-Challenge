@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -190,7 +189,7 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
                       className="w-8 h-8 rounded-full cursor-pointer hover:ring-2 hover:ring-primary transition-all"
                       onClick={() => navigateToProfile(trader.walletAddress)}
                     />
-                    <div>
+                    <div className={isMobile ? "hidden" : ""}>
                       <div 
                         className="font-medium cursor-pointer hover:text-primary transition-colors whitespace-nowrap"
                         onClick={() => navigateToProfile(trader.walletAddress)}
