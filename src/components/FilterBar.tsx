@@ -19,6 +19,7 @@ interface FilterBarProps {
   onFiltersChange: (filters: Filters) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  isWalletConnected: boolean;
 }
 
 const FilterBar = ({
@@ -29,6 +30,7 @@ const FilterBar = ({
   onFiltersChange,
   searchQuery,
   setSearchQuery,
+  isWalletConnected,
 }: FilterBarProps) => {
   const [isWiggling, setIsWiggling] = useState(false);
 

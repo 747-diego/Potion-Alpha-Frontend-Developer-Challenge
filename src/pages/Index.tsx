@@ -6,11 +6,13 @@ import LeaderboardTable from "../components/LeaderboardTable";
 import { TimeFrame, ViewMode } from "../types/trader";
 import { mockTraders } from "../data/mockTraders";
 import { Filters } from "../components/FilterDrawer";
+import { useWallet } from "../contexts/WalletContext";
 
 const Index = () => {
   const [viewMode, setViewMode] = useState<ViewMode>("traders");
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("daily");
   const [searchQuery, setSearchQuery] = useState("");
+  const { showConnectModal, isConnected } = useWallet();
   const [filters, setFilters] = useState<Filters>({
     minFollowers: 0,
     maxFollowers: 1000000,
@@ -19,6 +21,14 @@ const Index = () => {
     minTrades: 0,
     minPNL: 0,
   });
+
+  const handleProtectedAction = (action: () => void) => {
+    if (!isConnected) {
+      showConnectModal();
+      return;
+    }
+    action();
+  };
 
   const filteredTraders = mockTraders.filter((trader) => {
     const matchesSearch = searchQuery
@@ -43,14 +53,19 @@ const Index = () => {
       <main className="max-w-[1400px] mx-auto">
         <FilterBar
           viewMode={viewMode}
-          setViewMode={setViewMode}
+          setViewMode={(mode) => handleProtectedAction(() => setViewMode(mode))}
           timeFrame={timeFrame}
-          setTimeFrame={setTimeFrame}
-          onFiltersChange={setFilters}
+          setTimeFrame={(frame) => handleProtectedAction(() => setTimeFrame(frame))}
+          onFiltersChange={(f) => handleProtectedAction(() => setFilters(f))}
           searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          setSearchQuery={(query) => handleProtectedAction(() => setSearchQuery(query))}
+          isWalletConnected={isConnected}
         />
-        <LeaderboardTable traders={filteredTraders} />
+        <LeaderboardTable 
+          traders={filteredTraders} 
+          isWalletConnected={isConnected}
+          onProtectedAction={handleProtectedAction}
+        />
       </main>
     </div>
   );

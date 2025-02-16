@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -8,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 interface LeaderboardTableProps {
   traders: Trader[];
+  isWalletConnected: boolean;
+  onProtectedAction: (action: () => void) => void;
 }
 
 type SortField = keyof Pick<
@@ -23,7 +24,7 @@ type SortField = keyof Pick<
   | "realizedPNL"
 > | "trades";
 
-const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
+const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: LeaderboardTableProps) => {
   const navigate = useNavigate();
   const [sortField, setSortField] = useState<SortField>("rank");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -35,16 +36,20 @@ const LeaderboardTable = ({ traders }: LeaderboardTableProps) => {
   };
 
   const navigateToProfile = (traderId: string) => {
-    navigate(`/profile/${traderId}`);
+    onProtectedAction(() => {
+      navigate(`/profile/${traderId}`);
+    });
   };
 
   const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortDirection("asc");
-    }
+    onProtectedAction(() => {
+      if (sortField === field) {
+        setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+      } else {
+        setSortField(field);
+        setSortDirection("asc");
+      }
+    });
   };
 
   const TableHeader = ({
