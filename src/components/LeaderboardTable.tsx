@@ -1,4 +1,3 @@
-
 import { Share2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Trader } from "../types/trader";
@@ -90,6 +89,14 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
     </div>
   );
 
+  const handleShare = (e: React.MouseEvent, trader: Trader) => {
+    e.stopPropagation();
+    onProtectedAction(() => {
+      window.open('/lovable-uploads/90a84d53-b620-4f92-b90e-664fd5e5db6e.png', '_blank');
+      toast.success("Opening share card");
+    });
+  };
+
   const sortedTraders = [...traders].sort((a, b) => {
     let comparison = 0;
     
@@ -114,7 +121,6 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
     return sortDirection === "asc" ? comparison : -comparison;
   });
 
-  // Assuming 1 SOL = $100 for this example
   const SOL_PRICE = 100;
 
   return (
@@ -262,4 +268,3 @@ const LeaderboardTable = ({ traders, isWalletConnected, onProtectedAction }: Lea
 };
 
 export default LeaderboardTable;
-
