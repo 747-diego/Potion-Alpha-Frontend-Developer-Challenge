@@ -1,3 +1,4 @@
+
 import { Bot, Sparkles, Trophy, Rocket } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
@@ -5,6 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from 'embla-carousel-autoplay';
@@ -77,6 +79,12 @@ const AlertContent = ({
         <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} ${colorClasses.text} animate-pulse`} />
         <AlertDescription className="text-white flex items-center gap-2">
           <span className={isMobile ? 'text-xs' : 'text-sm'}>{description}</span>
+          {description.includes("Weekly Featured Trader") && (
+            <Avatar className={`${isMobile ? 'h-4 w-4' : 'h-5 w-5'}`}>
+              <AvatarImage src="/lovable-uploads/771e0a34-22ee-44b8-85be-14cee233aa64.png" />
+              <AvatarFallback>NE</AvatarFallback>
+            </Avatar>
+          )}
         </AlertDescription>
       </div>
       <div className="flex items-center gap-2 sm:gap-4">
@@ -155,7 +163,7 @@ export const AlertCarousel = ({
     },
     {
       icon: Trophy,
-      description: `Weekly Featured: ${isMobile ? 'NomadEngineer' : 'NomadEngineer - Follow for daily trading insights!'}`,
+      description: `Weekly Featured Trader: ${isMobile ? 'NomadEngineer' : 'NomadEngineer'}`,
       actionLabel: "View",
       onAction: handleSponsorClick,
       color: "[#22c55e]"
