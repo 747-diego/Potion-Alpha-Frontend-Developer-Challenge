@@ -175,13 +175,31 @@ function generateMockTrade(id: string, tokenData: typeof tokenInfo[0]): Trade {
     usd: Math.round(invested.sol * 230 * (1 + pnlPercentage/100) / totalTrades)
   };
 
+  // Generate more realistic last trade times
+  const now = new Date();
+  const randomTimeAgo = Math.floor(Math.random() * 14400); // Random seconds up to 4 hours ago
+  let lastTrade: string;
+  
+  if (randomTimeAgo < 60) {
+    // Less than a minute ago
+    lastTrade = `${randomTimeAgo} sec ago`;
+  } else if (randomTimeAgo < 3600) {
+    // Less than an hour ago
+    const minutes = Math.floor(randomTimeAgo / 60);
+    lastTrade = `${minutes} min ago`;
+  } else {
+    // Hours ago
+    const hours = Math.floor(randomTimeAgo / 3600);
+    lastTrade = `${hours}h ago`;
+  }
+
   return {
     id,
     tokenName: tokenData.name,
     tokenSymbol: tokenData.symbol,
     tokenImage: tokenData.image,
     contractAddress: tokenData.contract,
-    lastTrade: `${Math.floor(Math.random() * 14)}h ago`,
+    lastTrade,
     marketCap: tokenData.marketCap,
     invested,
     realizedPNL,
