@@ -77,7 +77,7 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between">
               <span className="text-lg">X Account</span>
-              <span className="truncate ml-2 max-w-[150px]">{trader.twitterHandle}</span>
+              <span className="truncate ml-2 max-w-[150px] group-hover:text-primary transition-colors hover:text-primary">{trader.twitterHandle}</span>
             </div>
             <div className="flex justify-end mt-auto">
               <span className="text-muted-foreground text-sm">{formatFollowers(trader.followers)} followers</span>
