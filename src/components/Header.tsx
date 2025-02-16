@@ -38,6 +38,34 @@ const Header = () => {
     connectX 
   } = useWallet();
 
+  const handleNovaClick = () => {
+    window.open("https://tradeonnova.net/", "_blank");
+  };
+
+  const handleNewFeature = () => {
+    const event = new CustomEvent(
+      location.pathname === '/' ? 'openLeaderboardFilters' : 'openTradeFilters'
+    );
+    window.dispatchEvent(event);
+
+    toast("🎯 Smart Filtering", {
+      description: location.pathname === '/' ? 
+        "Find the best traders with our advanced filters!" :
+        "Filter trades by performance and metrics!",
+      duration: 2000,
+    });
+  };
+
+  const handleSponsorClick = () => {
+    if (userProfile) {
+      navigate(`/profile/${userProfile.walletAddress}`);
+      toast("🏆 Featured Trader!", {
+        description: "Follow NomadEngineer for daily trading insights!",
+        duration: 2000,
+      });
+    }
+  };
+
   const autoplayOptions = Autoplay({
     delay: 3000,
     playOnInit: true,
@@ -127,34 +155,6 @@ const Header = () => {
       navigate(`/profile/${userProfile.walletAddress}`);
       setIsOpen(false);
     }
-  };
-
-  const handleNewFeature = () => {
-    const event = new CustomEvent(
-      location.pathname === '/' ? 'openLeaderboardFilters' : 'openTradeFilters'
-    );
-    window.dispatchEvent(event);
-
-    toast("🎯 Smart Filtering", {
-      description: location.pathname === '/' ? 
-        "Find the best traders with our advanced filters!" :
-        "Filter trades by performance and metrics!",
-      duration: 2000,
-    });
-  };
-
-  const handleSponsorClick = () => {
-    if (userProfile) {
-      navigate(`/profile/${userProfile.walletAddress}`);
-      toast("🏆 Featured Trader!", {
-        description: "Follow NomadEngineer for daily trading insights!",
-        duration: 2000,
-      });
-    }
-  };
-
-  const handleNovaClick = () => {
-    window.open("https://tradeonnova.net/", "_blank");
   };
 
   const handleLearn = () => {
