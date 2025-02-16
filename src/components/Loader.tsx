@@ -6,7 +6,7 @@ const Loader = () => {
         <img 
           src="/lovable-uploads/6b510c44-79be-42a1-9624-21e432d6c0cc.png"
           alt="Loading..."
-          className="w-full h-full animate-spin"
+          className="w-full h-full"
         />
       </div>
     </div>
