@@ -1,5 +1,4 @@
-
-import { Twitter, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
+import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -110,7 +109,7 @@ const Header = () => {
                   <Sparkles className="h-4 w-4 text-[#0EA5E9] animate-pulse" />
                   <AlertDescription className="text-white flex items-center gap-2">
                     <span>Share your trading journey on</span>
-                    <Twitter className="h-4 w-4 inline" />
+                    <X className="h-4 w-4 inline" />
                     <span className="font-medium">X</span>
                     <Share2 className="h-4 w-4 text-[#0EA5E9] inline" />
                   </AlertDescription>
@@ -223,7 +222,7 @@ const Header = () => {
           {isConnected && (
             isTwitterConnected ? (
               <a href="#" className="text-muted-foreground hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
+                <X className="h-5 w-5" />
               </a>
             ) : (
               <Button 
@@ -231,7 +230,7 @@ const Header = () => {
                 variant="outline" 
                 className="text-white gap-2"
               >
-                <Twitter className="h-4 w-4" />
+                <X className="h-4 w-4" />
                 Connect X
               </Button>
             )
