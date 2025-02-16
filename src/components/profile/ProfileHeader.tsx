@@ -74,13 +74,15 @@ const ProfileHeader = ({ trader }: ProfileHeaderProps) => {
           rel="noopener noreferrer"
           className="block glass-card p-4 h-[76px] rounded-lg cursor-pointer hover:bg-primary/5 transition-colors group"
         >
-          <div className="flex flex-col justify-center h-full">
-            <div className="flex items-center justify-between">
-              <span className="text-lg flex items-center">X Account</span>
-              <span className="truncate ml-2 max-w-[150px] transition-colors text-muted-foreground group-hover:text-[#D946EF] group-hover:brightness-125">{trader.twitterHandle}</span>
-            </div>
-            <div className="flex justify-end mt-2">
-              <span className="text-muted-foreground text-sm">{formatFollowers(trader.followers)} followers</span>
+          <div className="flex items-center justify-between h-full">
+            <span className="text-lg">X Account</span>
+            <div className="flex flex-col items-end">
+              <span className="truncate ml-2 max-w-[150px] transition-colors text-muted-foreground group-hover:text-[#D946EF] group-hover:brightness-125">
+                {trader.twitterHandle}
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {formatFollowers(trader.followers)} followers
+              </span>
             </div>
           </div>
         </a>
