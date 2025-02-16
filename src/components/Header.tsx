@@ -62,6 +62,8 @@ const Header = () => {
     window.open("https://tradeonnova.net/", "_blank");
   };
 
+  const defaultProfilePicture = "https://api.dicebear.com/7.x/pixel-art/svg?seed=default-trader";
+
   return (
     <div className="pt-2">
       {showAlert && (
@@ -237,7 +239,7 @@ const Header = () => {
           {isConnected ? (
             <button className="glass-card p-1 rounded-full hover:bg-secondary/80 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <img 
-                src={isTwitterConnected ? userProfile?.profilePicture : "/lovable-uploads/240c5e93-4b1a-442b-bdf6-5dd94c16e354.png"} 
+                src={isTwitterConnected ? userProfile?.profilePicture : defaultProfilePicture} 
                 alt="Profile" 
                 className="h-10 w-10 rounded-full object-cover ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300" 
               />
@@ -257,3 +259,4 @@ const Header = () => {
 };
 
 export default Header;
+
