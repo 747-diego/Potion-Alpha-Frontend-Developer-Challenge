@@ -1,6 +1,6 @@
 # Potion Leaderboard
 
-![Potion Leaderboard Hero Image](public/lovable-uploads/b8bce5ec-daec-4d37-82df-e4a312b9c75e.png)
+![Potion Leaderboard Hero Image](public/lovable-uploads/445c8870-a6c7-4517-8ed5-d0e2b6cd46f1.png)
 
 A gamified platform where Solana memecoin traders compete, showcase performance, and win rewards. Track real-time trading metrics, explore trader profiles, and compete on daily, weekly, and monthly leaderboards.
 
