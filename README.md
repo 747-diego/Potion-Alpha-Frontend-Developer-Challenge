@@ -1,7 +1,15 @@
 
 # [Potion Alpha Frontend Developer Challenge](https://docs.potionvision.com/frontend-developer-challenge-2025-02)
 
-A real-time analytics dashboard for tracking and analyzing Solana trading activities. The application provides detailed insights into trading patterns, performance metrics, and trader profiles.
+### **Overview & Background**
+
+**About Potion Leaderboard:**
+
+Potion Leaderboard is a gamified platform where every Solana memecoin trader—from beginner to expert—competes, showcases their performance, and wins rewards. The platform's first MVP includes a public Leaderboards page (with Daily, Weekly, Monthly, and All-Time views) that lists traders' wallets, performance metrics, profile details, and social connections.
+
+**Challenge Goal:**
+
+Create a responsive, visually compelling Leaderboard page that fetches and displays trader data from an API. This page should mimic the look and feel outlined in our Figma designs and incorporate core UI interactions such as search and filtering.
 
 ## Features
 
