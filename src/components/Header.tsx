@@ -1,4 +1,3 @@
-
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -69,12 +68,7 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    const newWindow = window.open('about:blank', '_blank');
-    if (newWindow) {
-      setTimeout(() => {
-        newWindow.location.href = 'http://docs.potionleaderboard.com/';
-      }, 0);
-    }
+    window.open('http://docs.potionleaderboard.com/', '_blank');
     toast("📚 Documentation opened in new tab", {
       description: "Continue browsing while reading the docs!",
       duration: 2000,
@@ -82,7 +76,6 @@ const Header = () => {
   };
 
   const handlePrizes = () => {
-    // Trigger confetti animation
     confetti({
       particleCount: 100,
       spread: 70,
