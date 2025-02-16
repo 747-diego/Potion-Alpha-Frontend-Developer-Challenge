@@ -38,8 +38,8 @@ const Header = () => {
 
   const handleConnectX = () => {
     setIsTwitterConnected(true);
-    toast("🎉 Twitter Connected!", {
-      description: "Your Twitter account has been linked successfully!",
+    toast("🎉 X Connected!", {
+      description: "Your X account has been linked successfully!",
       duration: 2000,
     });
   };
@@ -232,7 +232,7 @@ const Header = () => {
                 className="text-white gap-2"
               >
                 <Twitter className="h-4 w-4" />
-                Connect Twitter
+                Connect X
               </Button>
             )
           )}
