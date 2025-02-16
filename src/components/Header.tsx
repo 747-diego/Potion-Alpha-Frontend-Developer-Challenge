@@ -1,3 +1,4 @@
+
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -68,7 +69,21 @@ const Header = () => {
   };
 
   const handleLearn = () => {
-    window.open('http://docs.potionleaderboard.com/', '_blank');
+    // Create an <a> element
+    const link = document.createElement('a');
+    link.href = 'http://docs.potionleaderboard.com/';
+    link.target = '_blank';
+    
+    // Simulate a ctrl/cmd + click by creating a new MouseEvent
+    const event = new MouseEvent('click', {
+      ctrlKey: true, // This will be true for Windows/Linux
+      metaKey: true, // This will be true for MacOS
+      bubbles: true
+    });
+    
+    // Dispatch the event
+    link.dispatchEvent(event);
+    
     toast("📚 Documentation opened in new tab", {
       description: "Continue browsing while reading the docs!",
       duration: 2000,
