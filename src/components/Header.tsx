@@ -1,3 +1,4 @@
+
 import { X, Sparkles, Share2, Trophy, Rocket, Bot } from "lucide-react";
 import { mockTraders } from "../data/mockTraders";
 import { useState } from "react";
@@ -109,7 +110,6 @@ const Header = () => {
                   <Sparkles className="h-4 w-4 text-[#0EA5E9] animate-pulse" />
                   <AlertDescription className="text-white flex items-center gap-2">
                     <span>Share your trading journey on</span>
-                    <X className="h-4 w-4 inline" />
                     <span className="font-medium">X</span>
                     <Share2 className="h-4 w-4 text-[#0EA5E9] inline" />
                   </AlertDescription>
