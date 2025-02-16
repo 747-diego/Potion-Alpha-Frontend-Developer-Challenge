@@ -5,7 +5,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "../contexts/WalletContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Carousel,
   CarouselContent,
@@ -64,6 +64,20 @@ const Header = () => {
 
   const handleNovaClick = () => {
     window.open("https://tradeonnova.net/", "_blank");
+  };
+
+  const handleLearn = () => {
+    toast("Coming Soon!", {
+      description: "The Learn section will be available in the next update.",
+      duration: 2000,
+    });
+  };
+
+  const handlePrizes = () => {
+    toast("Coming Soon!", {
+      description: "The Prizes section will be available in the next update.",
+      duration: 2000,
+    });
   };
 
   const defaultProfilePicture = "https://api.dicebear.com/7.x/pixel-art/svg?seed=potion-trader&colors=8B5CF6,9B87F5,D946EF";
@@ -197,27 +211,38 @@ const Header = () => {
       )}
       <header className="glass-card px-8 py-6 flex items-center justify-between mb-8 rounded-2xl border border-white/10 hover:border-primary/20 transition-colors duration-300 bg-card/80 shadow-[inset_-12px_-12px_24px_rgba(255,255,255,0.04),inset_12px_12px_24px_rgba(0,0,0,0.2)] hover:shadow-[inset_-8px_-8px_16px_rgba(255,255,255,0.06),inset_8px_8px_16px_rgba(0,0,0,0.2)]">
         <div className="flex items-center gap-10">
-          <img 
-            src="/lovable-uploads/72b222aa-ea1a-43f5-acb1-b2ce7eda0713.png" 
-            alt="Potion Leaderboard" 
-            className="h-20 animate-fade-in hover:scale-105 transition-transform duration-300" 
-          />
+          <Link to="/">
+            <img 
+              src="/lovable-uploads/72b222aa-ea1a-43f5-acb1-b2ce7eda0713.png" 
+              alt="Potion Leaderboard" 
+              className="h-20 animate-fade-in hover:scale-105 transition-transform duration-300" 
+            />
+          </Link>
           <nav>
             <ul className="flex gap-8">
               <li>
-                <a href="#" className="text-white hover:text-primary transition-colors">
+                <Link 
+                  to="/" 
+                  className="text-white hover:text-primary transition-colors"
+                >
                   Leaderboards
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <button 
+                  onClick={handleLearn}
+                  className="text-muted-foreground hover:text-white transition-colors"
+                >
                   Learn
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-white transition-colors">
+                <button 
+                  onClick={handlePrizes}
+                  className="text-muted-foreground hover:text-white transition-colors"
+                >
                   Prizes
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
