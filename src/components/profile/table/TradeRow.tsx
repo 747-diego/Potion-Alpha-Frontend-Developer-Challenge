@@ -34,7 +34,7 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
 
   return (
     <tr className="border-b border-secondary">
-      <td className="p-4">
+      <td className="sticky left-0 bg-background/80 backdrop-blur-sm z-10 p-4">
         <div className="flex items-center gap-3">
           <img
             src={trade.tokenImage}
