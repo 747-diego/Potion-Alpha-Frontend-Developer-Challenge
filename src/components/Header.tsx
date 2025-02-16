@@ -5,7 +5,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "../contexts/WalletContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import {
   Carousel,
   CarouselContent,
@@ -17,6 +17,7 @@ import confetti from 'canvas-confetti';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const userProfile = mockTraders.find(trader => trader.name === "NomadEngineer");
   const [showAlert, setShowAlert] = useState(true);
   const { 
@@ -50,8 +51,15 @@ const Header = () => {
   };
 
   const handleNewFeature = () => {
-    toast("🚀 Try it now!", {
-      description: "Check out our new trading analytics dashboard!",
+    const event = new CustomEvent(
+      location.pathname === '/' ? 'openLeaderboardFilters' : 'openTradeFilters'
+    );
+    window.dispatchEvent(event);
+
+    toast("🎯 Smart Filtering", {
+      description: location.pathname === '/' ? 
+        "Find the best traders with our advanced filters!" :
+        "Filter trades by performance and metrics!",
       duration: 2000,
     });
   };
@@ -165,8 +173,8 @@ const Header = () => {
                   <Rocket className="h-4 w-4 text-[#F97316] animate-pulse" />
                   <AlertDescription className="text-white flex items-center gap-2">
                     <span>New Feature:</span>
-                    <span className="font-medium">Advanced Trading Analytics</span>
-                    <span>is now live! 📊</span>
+                    <span className="font-medium">Smart Filtering</span>
+                    <span>🎯 Find what matters most!</span>
                   </AlertDescription>
                 </div>
                 <div className="flex items-center gap-4">
@@ -174,7 +182,7 @@ const Header = () => {
                     onClick={handleNewFeature}
                     className="text-xs px-3 py-1.5 bg-[#F97316]/20 hover:bg-[#F97316]/30 text-[#F97316] rounded-full transition-colors"
                   >
-                    Try Now
+                    Try Filters
                   </button>
                   <button
                     onClick={() => setShowAlert(false)}
