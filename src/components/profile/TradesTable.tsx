@@ -37,8 +37,8 @@ export function TradesTable({ trades, sortConfig, onSort }: TradesTableProps) {
 
   return (
     <div className="glass-card rounded-lg overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[600px]">
+      <div className={isMobile ? "overflow-x-auto" : ""}>
+        <table className={`w-full ${isMobile ? "min-w-[600px]" : ""}`}>
           <thead>
             <tr className="border-b border-secondary text-left text-muted-foreground">
               <SortableHeader label="Token" field="tokenName" sortConfig={sortConfig} onSort={onSort} />
