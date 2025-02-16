@@ -1,4 +1,3 @@
-
 import { Bot, Sparkles, Trophy, Rocket } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
@@ -30,10 +29,52 @@ const AlertContent = ({
 }: AlertContentProps) => {
   const isMobile = useIsMobile();
   
+  const getColorClasses = (color: string) => {
+    switch (color) {
+      case "primary":
+        return {
+          bg: "bg-primary/5",
+          border: "border-primary/20",
+          text: "text-primary",
+          button: "bg-primary/20 hover:bg-primary/30 text-primary"
+        };
+      case "[#0EA5E9]":
+        return {
+          bg: "bg-[#0EA5E9]/5",
+          border: "border-[#0EA5E9]/20",
+          text: "text-[#0EA5E9]",
+          button: "bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30 text-[#0EA5E9]"
+        };
+      case "[#F97316]":
+        return {
+          bg: "bg-[#F97316]/5",
+          border: "border-[#F97316]/20",
+          text: "text-[#F97316]",
+          button: "bg-[#F97316]/20 hover:bg-[#F97316]/30 text-[#F97316]"
+        };
+      case "[#22c55e]":
+        return {
+          bg: "bg-[#22c55e]/5",
+          border: "border-[#22c55e]/20",
+          text: "text-[#22c55e]",
+          button: "bg-[#22c55e]/20 hover:bg-[#22c55e]/30 text-[#22c55e]"
+        };
+      default:
+        return {
+          bg: "bg-primary/5",
+          border: "border-primary/20",
+          text: "text-primary",
+          button: "bg-primary/20 hover:bg-primary/30 text-primary"
+        };
+    }
+  };
+
+  const colorClasses = getColorClasses(color);
+  
   return (
-    <Alert className={`mb-4 bg-${color}/5 border-${color}/20 flex items-center justify-between ${isMobile ? 'px-3 py-2' : 'px-4 py-3'} animate-fade-in`}>
+    <Alert className={`mb-4 ${colorClasses.bg} ${colorClasses.border} flex items-center justify-between ${isMobile ? 'px-3 py-2' : 'px-4 py-3'} animate-fade-in`}>
       <div className="flex items-center gap-2">
-        <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} text-${color} animate-pulse`} />
+        <Icon className={`${isMobile ? 'h-3 w-3' : 'h-4 w-4'} ${colorClasses.text} animate-pulse`} />
         <AlertDescription className="text-white flex items-center gap-2">
           <span className={isMobile ? 'text-xs' : 'text-sm'}>{description}</span>
         </AlertDescription>
@@ -41,7 +82,7 @@ const AlertContent = ({
       <div className="flex items-center gap-2 sm:gap-4">
         <button
           onClick={onAction}
-          className={`text-xs px-2 sm:px-3 py-1 sm:py-1.5 bg-${color}/20 hover:bg-${color}/30 text-${color} rounded-full transition-colors`}
+          className={`text-xs px-2 sm:px-3 py-1 sm:py-1.5 ${colorClasses.button} rounded-full transition-colors`}
         >
           {actionLabel}
         </button>
