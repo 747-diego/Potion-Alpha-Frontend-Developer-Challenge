@@ -41,16 +41,18 @@ export function TradeRow({ trade, isMobile, hideAdvancedColumns, traderName }: T
             alt={trade.tokenName}
             className="w-8 h-8 rounded-full"
           />
-          <div>
-            <div className="font-medium">{trade.tokenName}</div>
-            <div 
-              className="text-sm text-muted-foreground hover:text-white cursor-pointer transition-colors"
-              onClick={() => handleCopyAddress(trade.contractAddress)}
-              title="Click to copy"
-            >
-              {formatWalletAddress(trade.contractAddress)}
+          {!isMobile && (
+            <div>
+              <div className="font-medium">{trade.tokenName}</div>
+              <div 
+                className="text-sm text-muted-foreground hover:text-white cursor-pointer transition-colors"
+                onClick={() => handleCopyAddress(trade.contractAddress)}
+                title="Click to copy"
+              >
+                {formatWalletAddress(trade.contractAddress)}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </td>
       {!isMobile && (
