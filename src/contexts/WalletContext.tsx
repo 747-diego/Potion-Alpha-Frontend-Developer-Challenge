@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import * as React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -15,13 +15,13 @@ interface WalletContextType {
   disconnectX: () => void;
 }
 
-const WalletContext = createContext<WalletContextType | undefined>(undefined);
+const WalletContext = React.createContext<WalletContextType | undefined>(undefined);
 
-export function WalletProvider({ children }: { children: ReactNode }) {
-  const [isConnected, setIsConnected] = useState(false);
-  const [isXConnected, setIsXConnected] = useState(false);
-  const [xUsername, setXUsername] = useState("@NomadEngineer");
-  const [showModal, setShowModal] = useState(false);
+export function WalletProvider({ children }: { children: React.ReactNode }) {
+  const [isConnected, setIsConnected] = React.useState(false);
+  const [isXConnected, setIsXConnected] = React.useState(false);
+  const [xUsername, setXUsername] = React.useState("@NomadEngineer");
+  const [showModal, setShowModal] = React.useState(false);
 
   const connectWallet = () => {
     setIsConnected(true);
@@ -92,7 +92,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 }
 
 export const useWallet = () => {
-  const context = useContext(WalletContext);
+  const context = React.useContext(WalletContext);
   if (!context) {
     throw new Error("useWallet must be used within a WalletProvider");
   }
