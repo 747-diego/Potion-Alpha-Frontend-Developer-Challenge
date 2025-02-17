@@ -12,7 +12,8 @@ Potion Leaderboard is a gamified platform where every Solana memecoin trader—f
 
 **Challenge Goal:**
 
-Create a responsive, visually compelling Leaderboard page that fetches and displays trader data from an API. This page should mimic the look and feel outlined in our Figma designs and incorporate core UI interactions such as search and filtering.
+Create a responsive, visually compelling Leaderboard page that fetches and displays trader data from a mock API. This page should mimic the look and feel outlined in the [Figma](https://www.figma.com/proto/4UbpftRYpuL5SczCjk9eOW/Potion-Leaderboard?node-id=21-5&p=f&t=ApOpU9XiygjA2oYR-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1) design provided and incorporate core UI interactions such as search and filtering.
+
 
 
 ## 📖 Table of Contents
