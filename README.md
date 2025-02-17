@@ -254,82 +254,104 @@ Each profile includes:
 
 ### Alert Carousel
 ```typescript
-// Interactive alert messages with auto-play
-<Carousel
-  opts={{ align: "start", loop: true }}
-  plugins={[
-    Autoplay({
-      delay: 3000,
-      stopOnInteraction: false
-    })
-  ]}
->
-  <CarouselContent>
-    <CarouselItem>
-      <Alert className="bg-primary/5 border-primary/20">
-        <Bot className="h-4 w-4 text-primary animate-pulse" />
-        <AlertDescription className="text-white">
-          The Fastest All-In-One Trading Platform on Solana
-        </AlertDescription>
-        <button className="bg-primary/20 hover:bg-primary/30 text-primary px-3 py-1.5 rounded-full">
-          Trade on Nova
-        </button>
-      </Alert>
-    </CarouselItem>
-  </CarouselContent>
+<Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay({ delay: 3000 })]}>
+  <Alert className="bg-primary/5 border-primary/20">
+    <Bot className="h-4 w-4 text-primary animate-pulse" />
+    <AlertDescription>Platform Update Message</AlertDescription>
+  </Alert>
 </Carousel>
 ```
 
+**Design Decisions:**
+- Used a carousel for multiple alerts to save space and maintain clean UI
+- Implemented autoplay with 3s delay for passive information consumption
+- Added subtle animations for visual engagement
+- Used semi-transparent backgrounds for better visual hierarchy
+
+**Assumptions:**
+- Users will want to see all alerts without manual interaction
+- Alert messages are short and concise
+- Autoplay won't be disruptive to user experience
+
+**Testing Strategy:**
+- Verify autoplay timing and smooth transitions
+- Test pause on hover functionality
+- Ensure alerts are readable on all device sizes
+- Validate animation performance on lower-end devices
+
 ### Interactive Group Button
 ```typescript
-// Button with tooltip and animation
 <TooltipProvider>
   <Tooltip>
-    <TooltipTrigger asChild>
-      <button
-        onClick={handleGroupsClick}
-        className={`px-4 py-2 rounded-full text-muted-foreground 
-                   hover:text-white transition-colors ${
-          isWiggling ? 'animate-wiggle' : ''
-        }`}
-      >
-        Groups
-      </button>
-    </TooltipTrigger>
-    <TooltipContent 
-      className="bg-secondary/90 backdrop-blur-sm border-primary/20 
-                animate-fade-in"
-      side="bottom"
-      align="center"
-    >
-      <p className="font-medium">✨ Coming Soon! ✨</p>
-      <p className="text-sm text-muted-foreground">
-        We're crafting something special for trading groups
-      </p>
-    </TooltipContent>
+    <TooltipTrigger>Groups</TooltipTrigger>
+    <TooltipContent>✨ Coming Soon!</TooltipContent>
   </Tooltip>
 </TooltipProvider>
 ```
 
+**Design Decisions:**
+- Implemented tooltip to communicate future functionality
+- Added playful wiggle animation for engagement
+- Used semi-transparent backgrounds for modern UI feel
+- Positioned tooltip below button for natural reading flow
+
+**Assumptions:**
+- Users need immediate feedback about unavailable features
+- Tooltip interaction should be intuitive
+- Animation should enhance but not distract
+
+**Testing Strategy:**
+- Verify tooltip appears on hover/focus
+- Test tooltip positioning across screen sizes
+- Ensure animation performance
+- Validate keyboard accessibility
+- Test tooltip content readability
+
 ### Glass Card Animation
 ```typescript
-// Interactive glass card with hover effects
-<div className="glass-card px-8 py-6 rounded-2xl border border-white/10 
-                hover:border-primary/20 transition-colors duration-300 
-                bg-card/80 shadow-[inset_-12px_-12px_24px_rgba(255,255,255,0.04),
-                inset_12px_12px_24px_rgba(0,0,0,0.2)] 
-                hover:shadow-[inset_-8px_-8px_16px_rgba(255,255,255,0.06),
-                inset_8px_8px_16px_rgba(0,0,0,0.2)]">
-  <h2>Interactive Content</h2>
+<div className="glass-card px-8 py-6 rounded-2xl 
+                hover:border-primary/20 transition-colors">
+  Content
 </div>
 ```
 
+**Design Decisions:**
+- Implemented glassmorphism for depth and modern aesthetic
+- Added subtle hover effects for interactivity
+- Used inset shadows for 3D effect
+- Smooth transitions for polished feel
+
+**Assumptions:**
+- Modern browsers support backdrop-blur
+- Users expect hover feedback
+- Performance impact of blur effects is acceptable
+
+**Testing Strategy:**
+- Test glass effect across different browsers
+- Verify hover animations are smooth
+- Check fallback styles for older browsers
+- Validate performance on mobile devices
+- Test contrast ratios for accessibility
+
 ### Animations
-- `animate-fade-in`: Smooth entrance animations
-- `animate-pulse`: Subtle attention-grabbing effect
-- `animate-wiggle`: Playful interaction feedback
-- `transition-colors duration-300`: Smooth color transitions
-- Combined shadows and backdrop blur effects
+
+**Design Decisions:**
+- Created reusable animation classes
+- Implemented subtle, purposeful movements
+- Used consistent timing for cohesive feel
+- Combined effects for rich interactions
+
+**Assumptions:**
+- Animations enhance rather than hinder UX
+- Users have animation-enabled devices
+- Performance impact is minimal
+
+**Testing Strategy:**
+- Test animation performance
+- Verify reduced-motion preferences
+- Check animation timing consistency
+- Validate CPU/GPU usage
+- Test across different browsers and devices
 
 ---
 
