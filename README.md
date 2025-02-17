@@ -1,5 +1,5 @@
 
-# Potion Leaderboard
+# <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> Potion Alpha Frontend Developer Challenge
 
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
 
