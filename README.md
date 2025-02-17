@@ -1,4 +1,3 @@
-
 # <a href="https://docs.potionvision.com/frontend-developer-challenge-2025-02"> <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> </a> Potion Alpha Frontend Developer Challenge
 
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
@@ -253,6 +252,38 @@ Each profile includes:
 
 ## 🎨 UI Components
 
+### Button Component
+```typescript
+// Primary button with hover effect
+<button className="bg-primary text-white px-4 py-2 rounded-lg 
+                  hover:bg-primary/80 transition-colors">
+  Connect Wallet
+</button>
+```
+
+### Input Field
+```typescript
+// Search input with icon
+<div className="relative">
+  <input 
+    type="text" 
+    className="w-full bg-secondary/50 border border-white/10 
+              rounded-lg px-4 py-2 text-white"
+    placeholder="Search traders..."
+  />
+</div>
+```
+
+### Badge Component
+```typescript
+// Status badge for positive/negative values
+<span className={`px-2 py-1 rounded-full text-sm ${
+  value > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
+}`}>
+  {value > 0 ? '+' : ''}{value}%
+</span>
+```
+
 ### Glass Card Design
 ```typescript
 // Styling class for glass effect
@@ -272,8 +303,6 @@ const isMobile = useIsMobile();
 - Hover transitions
 - Loading states
 - Smooth scrolling
-
-
 
 ---
 
