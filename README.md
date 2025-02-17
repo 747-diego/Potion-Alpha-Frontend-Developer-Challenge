@@ -1,6 +1,11 @@
 
 # <a href="https://docs.potionvision.com/frontend-developer-challenge-2025-02"> <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> </a> Potion Alpha Frontend Developer Challenge
 
+## 🚀 My Journey
+
+As a developer working on the Potion Leaderboard project, I embraced modern development practices by leveraging the Lovable AI platform to streamline my workflow. With my foundation in web development, I was able to focus on the core features while Lovable assisted with implementation details and best practices. This approach allowed me to efficiently create a responsive, feature-rich leaderboard that showcases Solana memecoin trader performances.
+
+Throughout the development process, I prioritized creating an intuitive user interface, implementing comprehensive filtering capabilities, and ensuring mobile responsiveness. The combination of my vision and Lovable's technical assistance resulted in a polished platform that serves the Solana trading community.
 
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
 
