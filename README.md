@@ -1,5 +1,8 @@
 
-# <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> Potion Alpha Frontend Developer Challenge
+# <a href="https://docs.potionvision.com/frontend-developer-challenge-2025-02">
+    <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/>
+</a> Potion Alpha Frontend Developer Challenge
+
 
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
 
