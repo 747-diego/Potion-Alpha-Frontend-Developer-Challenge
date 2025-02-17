@@ -164,9 +164,10 @@ To access protected features:
 3. (Optional) Connect X/Twitter account
 4. If connected it will also be signed in as me, the: NomadEngineer
 
-![Wallet Connection Flow](public/lovable-uploads/leaderboard-navigation.gif)
 
 ### Leaderboard Navigation
+
+![Leaderboard Navigation Flow](public/lovable-uploads/leaderboard-navigation.gif)
 
 Time Frame Selection:
 - Daily (24h performance)
@@ -188,6 +189,8 @@ Search:
 
 ### Trader Profiles
 
+![Trader Profiles Flow](public/lovable-uploads/trader-profiles.gif)
+
 Access detailed trader information:
 
 1. Click on any trader row in the leaderboard
@@ -198,8 +201,6 @@ Access detailed trader information:
    - PNL metrics
 3. Explore trade history
 4. Share a trade via X using the share icon
-
-> 💡 **Screenshot Suggestion**: Add a screenshot of a trader profile page
 
 ### Trade Analytics
 
