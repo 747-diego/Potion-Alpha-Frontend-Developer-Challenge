@@ -4,9 +4,16 @@
 
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
 
-A gamified platform where Solana memecoin traders compete, showcase performance, and win rewards. Track real-time trading metrics, explore trader profiles, and compete on daily, weekly, and monthly leaderboards.
+### **Overview & Background**
 
-[View Live Demo](#) | [Report Bug](#) | [Request Feature](#)
+**About Potion Leaderboard:**
+
+Potion Leaderboard is a gamified platform where every Solana memecoin trader—from beginner to expert—competes, showcases their performance, and wins rewards. The platform’s first MVP includes a public Leaderboards page (with Daily, Weekly, Monthly, and All-Time views) that lists traders’ wallets, performance metrics, profile details, and social connections.
+
+**Challenge Goal:**
+
+Create a responsive, visually compelling Leaderboard page that fetches and displays trader data from an API. This page should mimic the look and feel outlined in our Figma designs and incorporate core UI interactions such as search and filtering.
+
 
 ## 📖 Table of Contents
 - [About The Project](#about-the-project)
