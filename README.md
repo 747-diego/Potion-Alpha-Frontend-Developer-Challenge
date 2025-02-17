@@ -336,5 +336,5 @@ Each profile includes:
 ---
 
 
-![BUILD YORU FUTURE](public/lovable-uploads/buil-your-future.jpeg)
+![BUILD YOUR FUTURE](public/lovable-uploads/build-your-future.jpeg)
 # The Nomad Engineer
