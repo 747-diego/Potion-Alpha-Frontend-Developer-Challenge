@@ -212,7 +212,9 @@ Each profile includes:
 - Position sizing metrics
 - Trade frequency analysis
 
-## 🧪 Testing Guide
+## 🧪 Testing Guide 
+
+![Testing Flow](public/lovable-uploads/testing-guide.gif)
 
 ### 1. Wallet Integration
 ```bash
