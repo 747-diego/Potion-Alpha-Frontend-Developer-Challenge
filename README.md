@@ -1,6 +1,6 @@
 # <a href="https://docs.potionvision.com/frontend-developer-challenge-2025-02"> <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> </a> Potion Alpha Frontend Developer Challenge
 
-![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
+![Potion Leaderboard Hero img](public/lovable-uploads/Potion-Hero.gif)
 
 ### **Overview & Background**
 
@@ -87,8 +87,6 @@ npm run dev
 ### Core Components
 
 #### `src/components/`
-
-> 💡 **Screenshot Suggestion**: Add component screenshots in their respective sections to show their appearance and functionality
 
 ##### Header (`Header.tsx`)
 - Main navigation component
@@ -337,4 +335,6 @@ Each profile includes:
 
 ---
 
-> 💡 **Note**: For all screenshots, use high-quality images that clearly demonstrate the feature or component being discussed. Recommended locations are marked with "Screenshot Suggestion" comments throughout the README.
+
+![BUILD YORU FUTURE](public/lovable-uploads/buil-your-future.jpeg)
+# The Nomad Engineer
