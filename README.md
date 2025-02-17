@@ -155,6 +155,8 @@ npm run dev
 
 ### Wallet Connection
 
+![Wallet Connection Flow](public/lovable-uploads/wallet-connection.gif)
+
 To access protected features:
 
 1. Click "Connect Wallet" in the header or pop-up
