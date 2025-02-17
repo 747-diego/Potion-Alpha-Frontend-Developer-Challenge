@@ -1,12 +1,6 @@
 
 # <a href="https://docs.potionvision.com/frontend-developer-challenge-2025-02"> <img src="public/lovable-uploads/potionLogo.png" alt="Potion Alpha Logo" width="30"/> </a> Potion Alpha Frontend Developer Challenge
 
-## 🚀 My Journey
-
-As a developer working on the Potion Leaderboard project, I embraced modern development practices by leveraging the Lovable AI platform to streamline my workflow. With my foundation in web development, I was able to focus on the core features while Lovable assisted with implementation details and best practices. This approach allowed me to efficiently create a responsive, feature-rich leaderboard that showcases Solana memecoin trader performances.
-
-Throughout the development process, I prioritized creating an intuitive user interface, implementing comprehensive filtering capabilities, and ensuring mobile responsiveness. The combination of my vision and Lovable's technical assistance resulted in a polished platform that serves the Solana trading community.
-
 ![Potion Leaderboard Hero Image](public/lovable-uploads/Potion-Hero.png)
 
 ### **Overview & Background**
@@ -39,23 +33,25 @@ Create a responsive, visually compelling Leaderboard page that fetches and displ
   - [Trade Analytics](#trade-analytics)
 - [Testing Guide](#testing-guide)
 - [UI Components](#ui-components)
-- [Contributing](#contributing)
-- [License](#license)
 
-## 🎯 About The Project
+
 
 > 💡 **Screenshot Suggestion**: Add a screenshot of the main leaderboard page here showing the key UI elements like the leaderboard table, filters, and time frame selector.
 
-Potion Leaderboard revolutionizes how traders track and compare performance in the Solana memecoin ecosystem. This platform provides comprehensive trading metrics, social integration, and competitive features in an intuitive interface.
+## 🚀 My Journey
+
+As a developer working on the Potion Leaderboard project, I embraced modern development practices by leveraging the Lovable AI platform to streamline my workflow. With my foundation in web development, I was able to focus on the core features while Lovable assisted with implementation details and best practices. This approach allowed me to efficiently create a responsive, feature-rich leaderboard that showcases Solana memecoin trader performances and to achieve the challenge to the best of my ability.
+
+Throughout the development process, I prioritized creating an intuitive user interface, implementing comprehensive filtering capabilities, and ensuring mobile responsiveness. The combination of my vision and Lovable's assistance resulted in a polished platform that meets the Potion Alpha Leaderboard requirements. 
 
 ### Key Features
 
-- 📊 Real-time performance tracking
+- 📊 Mock API data performance tracking
 - 🏆 Daily, weekly, and monthly competitions
 - 👥 Detailed trader profiles
 - 📱 Fully responsive design
 - 🔍 Advanced filtering & search
-- 🔗 Social media integration
+- 🔗 Social media mock integration
 - 💰 Comprehensive trade analytics
 
 ### Built With
@@ -78,7 +74,7 @@ Potion Leaderboard revolutionizes how traders track and compare performance in t
 
 ```bash
 # Clone the repository
-git clone [repository-url]
+git clone https://github.com/747-diego/Potion-Alpha-Frontend-Developer-Challenge.git
 
 # Install dependencies
 npm install
@@ -100,7 +96,6 @@ npm run dev
 - Handles wallet connection
 - Manages X/Twitter integration
 - Responsive mobile menu
-- Profile management
 
 ```typescript
 // Key features:
@@ -128,7 +123,7 @@ npm run dev
 - Sortable columns
 - Performance metrics
 - Mobile-responsive layout
-- Share functionality
+- Share functionality (mobile/web)
 
 ##### Profile Components
 - `ProfileHeader.tsx`: Trader identity and social links
@@ -144,7 +139,6 @@ npm run dev
 - Main leaderboard view
 - Handles trader filtering
 - Manages view modes
-- Implements wallet protection
 
 ##### Profile Page (`Profile.tsx`)
 - Individual trader profiles
@@ -164,10 +158,10 @@ npm run dev
 
 To access protected features:
 
-1. Click "Connect Wallet" in the header
-2. Select your wallet provider
-3. Approve the connection
-4. (Optional) Connect X/Twitter account
+1. Click "Connect Wallet" in the header or pop-up
+2. It will be linked to my mock wallet address
+3. (Optional) Connect X/Twitter account
+4. If connected it will also be signed in as me, the: NomadEngineer
 
 > 💡 **Screenshot Suggestion**: Add a screenshot of the wallet connection flow
 
@@ -202,7 +196,7 @@ Access detailed trader information:
    - Average position size
    - PNL metrics
 3. Explore trade history
-4. Connect via social media
+4. Share a trade via X using the share icon
 
 > 💡 **Screenshot Suggestion**: Add a screenshot of a trader profile page
 
@@ -221,10 +215,8 @@ Each profile includes:
 ### 1. Wallet Integration
 ```bash
 # Test wallet connection:
-1. Click "Connect Wallet"
-2. Verify connection status
-3. Check profile picture update
-4. Test disconnect functionality
+1. Click "Connect Wallet" via header or pop-up
+2. Check profile picture update to default pixel avatar
 ```
 
 ### 2. Leaderboard Functionality
@@ -238,21 +230,21 @@ Each profile includes:
 1. Open filter drawer
 2. Apply various combinations
 3. Verify results
-4. Test reset functionality
+4. Test clear-filters for reset functionality
 ```
 
 ### 3. Profile Navigation
 ```bash
 # Test profile access:
-1. Click trader rows
-2. Verify data loading
-3. Check social links
-4. Test back navigation
+1. Click a trader profile picture in the leaderboard
+2. If connected it will bring you their profile
+3. Check social links (x.com)
+4. Test if X account is accurate
 ```
 
 ### 4. Mobile Responsiveness
 ```bash
-# Test on multiple devices:
+# Test on multiple devices / personal device:
 1. Check table scrolling
 2. Verify menu functionality
 3. Test filter drawer
@@ -281,17 +273,7 @@ const isMobile = useIsMobile();
 - Loading states
 - Smooth scrolling
 
-## 🤝 Contributing
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
