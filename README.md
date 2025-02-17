@@ -252,57 +252,84 @@ Each profile includes:
 
 ## 🎨 UI Components
 
-### Button Component
+### Alert Carousel
 ```typescript
-// Primary button with hover effect
-<button className="bg-primary text-white px-4 py-2 rounded-lg 
-                  hover:bg-primary/80 transition-colors">
-  Connect Wallet
-</button>
+// Interactive alert messages with auto-play
+<Carousel
+  opts={{ align: "start", loop: true }}
+  plugins={[
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: false
+    })
+  ]}
+>
+  <CarouselContent>
+    <CarouselItem>
+      <Alert className="bg-primary/5 border-primary/20">
+        <Bot className="h-4 w-4 text-primary animate-pulse" />
+        <AlertDescription className="text-white">
+          The Fastest All-In-One Trading Platform on Solana
+        </AlertDescription>
+        <button className="bg-primary/20 hover:bg-primary/30 text-primary px-3 py-1.5 rounded-full">
+          Trade on Nova
+        </button>
+      </Alert>
+    </CarouselItem>
+  </CarouselContent>
+</Carousel>
 ```
 
-### Input Field
+### Interactive Group Button
 ```typescript
-// Search input with icon
-<div className="relative">
-  <input 
-    type="text" 
-    className="w-full bg-secondary/50 border border-white/10 
-              rounded-lg px-4 py-2 text-white"
-    placeholder="Search traders..."
-  />
+// Button with tooltip and animation
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <button
+        onClick={handleGroupsClick}
+        className={`px-4 py-2 rounded-full text-muted-foreground 
+                   hover:text-white transition-colors ${
+          isWiggling ? 'animate-wiggle' : ''
+        }`}
+      >
+        Groups
+      </button>
+    </TooltipTrigger>
+    <TooltipContent 
+      className="bg-secondary/90 backdrop-blur-sm border-primary/20 
+                animate-fade-in"
+      side="bottom"
+      align="center"
+    >
+      <p className="font-medium">✨ Coming Soon! ✨</p>
+      <p className="text-sm text-muted-foreground">
+        We're crafting something special for trading groups
+      </p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+### Glass Card Animation
+```typescript
+// Interactive glass card with hover effects
+<div className="glass-card px-8 py-6 rounded-2xl border border-white/10 
+                hover:border-primary/20 transition-colors duration-300 
+                bg-card/80 shadow-[inset_-12px_-12px_24px_rgba(255,255,255,0.04),
+                inset_12px_12px_24px_rgba(0,0,0,0.2)] 
+                hover:shadow-[inset_-8px_-8px_16px_rgba(255,255,255,0.06),
+                inset_8px_8px_16px_rgba(0,0,0,0.2)]">
+  <h2>Interactive Content</h2>
 </div>
 ```
 
-### Badge Component
-```typescript
-// Status badge for positive/negative values
-<span className={`px-2 py-1 rounded-full text-sm ${
-  value > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
-}`}>
-  {value > 0 ? '+' : ''}{value}%
-</span>
-```
-
-### Glass Card Design
-```typescript
-// Styling class for glass effect
-className="glass-card rounded-lg border border-white/10 
-          hover:border-primary/20 transition-colors"
-```
-
-### Responsive Table
-```typescript
-// Mobile optimization
-const isMobile = useIsMobile();
-// Conditional rendering based on screen size
-```
-
 ### Animations
-- Fade-in effects
-- Hover transitions
-- Loading states
-- Smooth scrolling
+- `animate-fade-in`: Smooth entrance animations
+- `animate-pulse`: Subtle attention-grabbing effect
+- `animate-wiggle`: Playful interaction feedback
+- `transition-colors duration-300`: Smooth color transitions
+- Combined shadows and backdrop blur effects
 
 ---
 
