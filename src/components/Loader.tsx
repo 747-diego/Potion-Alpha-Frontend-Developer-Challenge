@@ -7,7 +7,7 @@ const Loader = () => {
         <img 
           src="/lovable-uploads/b8bf6ec8-5402-4484-9cf7-124b1a815d98.png"
           alt="Loading..."
-          className="w-full h-full relative z-10"
+          className="w-full h-full relative z-10 transform rotate-45"
         />
       </div>
     </div>
