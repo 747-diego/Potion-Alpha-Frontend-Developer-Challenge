@@ -164,7 +164,7 @@ To access protected features:
 3. (Optional) Connect X/Twitter account
 4. If connected it will also be signed in as me, the: NomadEngineer
 
-> 💡 **Screenshot Suggestion**: Add a screenshot of the wallet connection flow
+![Wallet Connection Flow](public/lovable-uploads/leaderboard-navigation.gif)
 
 ### Leaderboard Navigation
 
